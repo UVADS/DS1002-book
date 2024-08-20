@@ -1,0 +1,20 @@
+# In _toc.yml
+format: jb-book
+root: index
+chapters:
+- file: chapters/01-getting_started/01-getting_started
+  sections:
+  - file: chapters/01-getting_started/011-about_course
+  - file: chapters/01-getting_started/014-intro_to_jupyter_notebooks
+
+- file: chapters/02-python/02-python
+  sections:
+  - file: chapters/02-python/021-first
+  - file: chapters/02-python/022-variables
+  - file: chapters/02-python/023-operators
+  - file: chapters/02-python/024-strings
+  - file: chapters/02-python/025-structures
+  - file: chapters/02-python/026-conditional
+  - file: chapters/02-python/027-functions
+  - file: chapters/02-python/028-classes
+

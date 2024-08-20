@@ -1,0 +1,9 @@
+# In _config.yml
+title: DS-1002 Programming for Data Science
+author: Javier Rasero
+logo: imgs/logo.png
+execute:
+  execute_notebooks: inline
+sphinx:
+  extra_extensions:
+    - sphinx_exercise

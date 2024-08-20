@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Jupyter Notebooks &#8212; DS-1002 Programming for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-1/jupyter_notebooks';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Your first Python program!" href="your_first_program.html" />
+    <link rel="prev" title="Brief introduction to programming languages" href="programming.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="DS-1002 Programming for Data Science - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="DS-1002 Programming for Data Science - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to DS-1002
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 1: Getting started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="about_course.html">Introduction</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programming.html">Brief introduction to programming languages</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Jupyter Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="your_first_program.html">Your first Python program!</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/module-1/jupyter_notebooks.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Jupyter Notebooks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#components">Components</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-documents">Notebook documents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-basics">Notebook Basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modal-editor">Modal editor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-mode">Edit mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-mode">Command mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mouse-navigation">Mouse navigation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyboard-navigation">Keyboard Navigation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-code-edit-mode">Running Code (edit mode)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-menu">Cell menu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restarting-the-kernels">Restarting the kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-resources">More Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>(This is simplified documentation from <a class="reference external" href="https://jupyter-notebook.readthedocs.io">https://jupyter-notebook.readthedocs.io</a>. You are more than welcome to visit the aforementioned page for more details)</p>
+<section class="tex2jax_ignore mathjax_ignore" id="jupyter-notebooks">
+<h1>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>The Jupyter Notebook is an <strong>interactive computing environment</strong> that enables users to author notebook documents that include:</p>
+<ul class="simple">
+<li><p>Live code</p></li>
+<li><p>Interactive widgets</p></li>
+<li><p>Plots</p></li>
+<li><p>Narrative text</p></li>
+<li><p>Equations</p></li>
+<li><p>Images</p></li>
+<li><p>Video</p></li>
+</ul>
+<section id="components">
+<h3>Components<a class="headerlink" href="#components" title="Link to this heading">#</a></h3>
+<p>The Jupyter Notebook combines three components:</p>
+<ul class="simple">
+<li><p><strong>The notebook web application</strong>: An interactive web application for writing and running code interactively and authoring notebook documents.</p></li>
+<li><p><strong>Kernels</strong>: Separate processes started by the notebook web application that runs users’ code in a given language and returns output back to the notebook web application. The kernel also handles things like computations for interactive widgets, tab completion and introspection.</p></li>
+<li><p><strong>Notebook documents</strong>: Self-contained documents that contain a representation of all content visible in the notebook web application, including inputs and outputs of the computations, narrative
+text, equations, images, and rich media representations of objects. Each notebook document has its own kernel.</p></li>
+</ul>
+</section>
+</section>
+<section id="notebook-documents">
+<h2>Notebook documents<a class="headerlink" href="#notebook-documents" title="Link to this heading">#</a></h2>
+<p>When you run the notebook web application on your computer, notebook documents are just <strong>files on your local filesystem with a</strong> <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> <strong>extension</strong>. This allows you to use familiar workflows for organizing your notebooks into folders and sharing them with others.</p>
+<p>Notebooks consist of a <strong>linear sequence of cells</strong>. There are three basic cell types:</p>
+<ul class="simple">
+<li><p><strong>Code cells:</strong> Input and output of live code that is run in the kernel</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This a code cell. Code rom https://seaborn.pydata.org/examples/grouped_boxplot.html</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;ticks&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;pastel&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load the example tips dataset</span>
+<span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;tips&quot;</span><span class="p">)</span>
+
+<span class="c1"># Draw a nested boxplot to show bills by day and time</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span>
+            <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;smoker&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">],</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/210b9aff75364a45f8a928353bcc36d29a0dd9e9f866edd9b0dbffa835c4d56f.png" src="../../_images/210b9aff75364a45f8a928353bcc36d29a0dd9e9f866edd9b0dbffa835c4d56f.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Markdown cells:</strong> arrative text with embedded LaTeX equations</p></li>
+</ul>
+<p>This is here is mardown. As such Markdown rules apply here!</p>
+<ul class="simple">
+<li><p><strong>Raw cells:</strong> Unformatted text that is included, without modification, when notebooks are converted to different formats using nbconvert</p></li>
+</ul>
+</section>
+<section id="notebook-basics">
+<h2>Notebook Basics<a class="headerlink" href="#notebook-basics" title="Link to this heading">#</a></h2>
+</section>
+<section id="modal-editor">
+<h2>Modal editor<a class="headerlink" href="#modal-editor" title="Link to this heading">#</a></h2>
+<p>Jupyter Notebooks have a modal user interface, which means that the keyboard does different things depending on which mode the Notebook is in. There are two modes: edit mode and command mode.</p>
+<section id="edit-mode">
+<h3>Edit mode<a class="headerlink" href="#edit-mode" title="Link to this heading">#</a></h3>
+<p>When in edit mode, cell’s borders become blue, background becomes white and a blinking cursor shows up. In this mode, you can type into the cell, like a normal text editor.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In classic jupyter-notebooks this mode is indicated by a green cell borderand a prompt showing in the editor area.</p>
+</div>
+<div class="alert alert-info">
+<b>Info</b>: You can enter edit mode by pressing `Enter` or using the mouse to click on a cell's editor area.
+</div></section>
+<section id="command-mode">
+<h3>Command mode<a class="headerlink" href="#command-mode" title="Link to this heading">#</a></h3>
+<p>When in command mode, blue borders become longer, the background grey, and the blinking cursor disappears. In this mode, you are able to edit the notebook as a whole, but not type into individual cells.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In classic jupyter-notebooks this mode is indicated by a grey cell border with a blue left margin. When you are in command mode,</p>
+</div>
+<p>Most importantly, in command mode, the keyboard is mapped to a set of shortcuts that let you perform notebook and cell actions efficiently.</p>
+<p>For example, if you are in command mode and you press <code class="docutils literal notranslate"><span class="pre">c</span></code>, you will copy the current cell - no modifier is needed.</p>
+<div class="alert alert-info">
+<b>Info: </b>Enter command mode by pressing `Esc` or using the mouse to click *outside* a cell's editor area.
+</div><div class="alert alert-danger">
+<b>Beware</b>: Don't try to type into a cell in command mode; unexpected things will happen!
+</div></section>
+</section>
+<section id="mouse-navigation">
+<h2>Mouse navigation<a class="headerlink" href="#mouse-navigation" title="Link to this heading">#</a></h2>
+<p>All navigation and actions in the Notebook are available using the mouse through the menubar and toolbar, which are both above the main Notebook area.</p>
+<p>A couple of basic ideas:</p>
+<ul class="simple">
+<li><p><strong>cells can be selected by clicking on them.</strong> The currently selected cell gets a grey or green border depending on whether the notebook is in edit or command mode. If you click inside a cell’s editor area, you will enter edit mode. If you click on the prompt or output area of a cell you will enter command mode.</p></li>
+<li><p><strong>cell actions usually apply to the currently selected cell</strong>. Thus if you want to run the code in a cell, you would select it and click the <button class='btn btn-default btn-xs'><i class="fa fa-play icon-step-forward"></i></button> button in the toolbar or the “Cell:Run” menu item. Similarly, to copy a cell you would select it and click the <button class='btn btn-default btn-xs'><i class="fa fa-copy icon-copy"></i></button> button in the toolbar or the “Edit:Copy” menu item. With this simple pattern, you should be able to do most everything you need with the mouse.</p></li>
+</ul>
+</section>
+<section id="keyboard-navigation">
+<h2>Keyboard Navigation<a class="headerlink" href="#keyboard-navigation" title="Link to this heading">#</a></h2>
+<p>The modal user interface of the Jupyter Notebook has been optimized for efficient keyboard usage. This is made possible by having two different sets of keyboard shortcuts: one set that is active in edit mode and another in command mode.</p>
+<p>The most important keyboard shortcuts are <code class="docutils literal notranslate"><span class="pre">Enter</span></code>, which enters edit mode, and <code class="docutils literal notranslate"><span class="pre">Esc</span></code>, which enters command mode.</p>
+<p>In edit mode, most of the keyboard is dedicated to typing into the cell’s editor. Thus, in edit mode there are relatively few shortcuts.  In command mode, the entire keyboard is available for shortcuts, so there are many more.  The <code class="docutils literal notranslate"><span class="pre">Help</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">Keyboard</span> <span class="pre">Shortcuts</span></code> dialog lists the available shortcuts.</p>
+<p>I recommend learning the <strong>command mode</strong> shortcuts - you will need to be sure having pressed <code class="docutils literal notranslate"><span class="pre">Esc</span></code> for this - in the following rough order:</p>
+<ol class="arabic simple">
+<li><p>Basic navigation: <code class="docutils literal notranslate"><span class="pre">enter</span></code>, <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code>, <code class="docutils literal notranslate"><span class="pre">up/k</span></code>, <code class="docutils literal notranslate"><span class="pre">down/j</span></code></p></li>
+<li><p>Saving the notebook: <code class="docutils literal notranslate"><span class="pre">s</span></code></p></li>
+<li><p>Change Cell types: <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">1-6</span></code>, <code class="docutils literal notranslate"><span class="pre">t</span></code></p></li>
+<li><p>Cell creation: <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p>Cell editing: <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code>, <code class="docutils literal notranslate"><span class="pre">v</span></code>, <code class="docutils literal notranslate"><span class="pre">d</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code></p></li>
+</ol>
+</section>
+<section id="running-code-edit-mode">
+<h2>Running Code (edit mode)<a class="headerlink" href="#running-code-edit-mode" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Shift-Enter</span></code> or pressing the <button class='btn btn-default btn-xs'><i class="icon-step-forward fa fa-play"></i></button> button in the toolbar above runs a code cell.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Alt-Enter</span></code> runs the current cell and inserts a new one below.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ctrl-Enter</span></code> run the current cell and enters command mode.</p></li>
+</ul>
+</section>
+<section id="cell-menu">
+<h2>Cell menu<a class="headerlink" href="#cell-menu" title="Link to this heading">#</a></h2>
+<p>The “Cell” menu has a number of menu items for running code in different ways. These includes:</p>
+<ul class="simple">
+<li><p>Run and Select Below</p></li>
+<li><p>Run and Insert Below</p></li>
+<li><p>Run All</p></li>
+<li><p>Run All Above</p></li>
+<li><p>Run All Below</p></li>
+</ul>
+</section>
+<section id="restarting-the-kernels">
+<h2>Restarting the kernels<a class="headerlink" href="#restarting-the-kernels" title="Link to this heading">#</a></h2>
+<p>The kernel maintains the state of a notebook’s computations. You can reset this state by restarting the kernel. This is done by clicking on the <button class='btn btn-default btn-xs'><i class='fa fa-repeat icon-repeat'></i></button> in the toolbar above.</p>
+<div class="exercise admonition" id="Practice1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 1 </span></p>
+<section id="exercise-content">
+<p>Create a cell below or above using either the keyworad with one of the shortcuts shown before, or using the menu with the mouse. Then, change to edit mode in the created cell and try introducing a number and running the cell using any of the above combinations. Do the same now, but changing the cell to markdown and typing some text in it.</p>
+</section>
+</div>
+</section>
+<section id="more-resources">
+<h2>More Resources<a class="headerlink" href="#more-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Thorugh documentation: <a class="reference external" href="https://jupyter-notebook.readthedocs.io">https://jupyter-notebook.readthedocs.io</a>. I recommend checking the section dedicated to markdowns.</p></li>
+<li><p>jupyter notebooks cheat sheet: <a class="reference external" href="https://www.edureka.co/blog/wp-content/uploads/2018/10/Jupyter_Notebook_CheatSheet_Edureka.pdf">https://www.edureka.co/blog/wp-content/uploads/2018/10/Jupyter_Notebook_CheatSheet_Edureka.pdf</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/module-1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="programming.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Brief introduction to programming languages</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="your_first_program.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Your first Python program!</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#components">Components</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-documents">Notebook documents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-basics">Notebook Basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modal-editor">Modal editor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-mode">Edit mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#command-mode">Command mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mouse-navigation">Mouse navigation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyboard-navigation">Keyboard Navigation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-code-edit-mode">Running Code (edit mode)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cell-menu">Cell menu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restarting-the-kernels">Restarting the kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-resources">More Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Javier Rasero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

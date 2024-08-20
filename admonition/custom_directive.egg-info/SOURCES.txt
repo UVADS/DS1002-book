@@ -1,0 +1,5 @@
+setup.py
+custom_directive.egg-info/PKG-INFO
+custom_directive.egg-info/SOURCES.txt
+custom_directive.egg-info/dependency_links.txt
+custom_directive.egg-info/top_level.txt
