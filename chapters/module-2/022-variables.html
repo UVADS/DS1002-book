@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -61,6 +61,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-2/022-variables';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Operators and Expressions" href="023-operators.html" />
+    <link rel="prev" title="Your first Python program!" href="../module-1/your_first_program.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +123,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -187,6 +187,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../module-1/programming.html">Brief introduction to programming languages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../module-1/jupyter_notebooks.html">Jupyter Notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../module-1/your_first_program.html">Your first Python program!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 2: Python (Essential)</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Variables and data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023-operators.html">Operators and Expressions</a></li>
 </ul>
 
     </div>
@@ -339,7 +344,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-naming">Variable naming</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reserved-names-keywords">Reserved names (keywords)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-types">Variable types</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-data-types">Converting Data Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-data-types">Converting Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercise">Practice exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Practice exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Practice exercise</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -353,6 +363,13 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="variables-and-data-types">
 <h1>Variables and data types<a class="headerlink" href="#variables-and-data-types" title="Link to this heading">#</a></h1>
+<p>What you will learn in lesson:</p>
+<ul class="simple">
+<li><p>What is a variable</p></li>
+<li><p>Naming rules for variables</p></li>
+<li><p>Types of variables</p></li>
+<li><p>Data conversion</p></li>
+</ul>
 <section id="what-is-a-variable">
 <h2>What is a variable?<a class="headerlink" href="#what-is-a-variable" title="Link to this heading">#</a></h2>
 <p>A variable in Python is a symbolic name that references a chunk of memory where information is stored and can be accessed or modified later. We can have as many variables as we want, as long as they have unique names.</p>
@@ -472,7 +489,7 @@ document.write(`
 </div>
 </div>
 <p>Like we mentioned earlier, a variable references a chunk of memory. How can we know this memory? By using the function <code class="docutils literal notranslate"><span class="pre">id()</span></code>. This memory is unique to every variable created in Python.</p>
-<p>The ID is for the variable, not the variable’s value: In layman’s terms, two variables with the same value will have different memory locations ( <u> Exception</u>: if the number is between -5 and -256 or a simple string with no spaces, it will not be given a unique ID for memory optimization purposes).</p>
+<p>The ID is for the variable, not the variable’s value: In layman’s terms, two variables with the same value will have different memory locations ( <u> Exception</u>: if the number is between -5 and 256 or a simple string with no spaces, it will not be given a unique ID for memory optimization purposes).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
@@ -498,24 +515,30 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="c1"># 278 = 278 (shocking!)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Both variables have the same value...</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>278
+278
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># Addresses are different</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># But different memory addresses</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> 
+<span class="nb">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>139919121182192
+139919121178064
 </pre></div>
 </div>
 </div>
@@ -530,9 +553,9 @@ document.write(`
 <li><p>Underscores: _</p></li>
 </ul>
 <p>In addition, there are the following two rules:</p>
-<ul class="simple">
-<li><p>Variable names must start with a letter or the underscore character and can not start with a number</p></li>
-</ul>
+<ol class="arabic simple">
+<li><p>Variable names must start with a letter or the underscore character and can not start with a number.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
@@ -548,7 +571,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">27</span><span class="p">]</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="g g-Whitespace">    </span><span class="mi">3</span><span class="n">foo</span><span class="o">=</span> <span class="mi">12</span>
     <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid decimal literal
@@ -556,9 +579,9 @@ document.write(`
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Names are case-sensitive</p></li>
-</ul>
+<ol class="arabic simple" start="2">
+<li><p>Names are case-sensitive.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myvar</span><span class="o">=</span><span class="mi">10</span>
@@ -584,7 +607,7 @@ document.write(`
 <p>In contrast, snake case uses an underscore (“_”) between these words and use always lower case: “this_var”.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Camel-case convetions is used for class names though. We will see this in the future.</p>
+<p>Camel-case convetion is used for class names though. We will see this in the future.</p>
 </div>
 </section>
 <section id="reserved-names-keywords">
@@ -596,11 +619,32 @@ document.write(`
 <section id="variable-types">
 <h2>Variable types<a class="headerlink" href="#variable-types" title="Link to this heading">#</a></h2>
 <p>So far we have only used numbers as values assigned to a variable. However, Python has more data types.</p>
+<ul class="simple">
+<li><p>Floating-point number: A positive or negative number with decimal points.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">float_var</span> <span class="o">=</span> <span class="mf">3.1416</span> <span class="c1"># float</span>
-<span class="n">bool_var</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># boolean</span>
-<span class="n">string_var</span> <span class="o">=</span> <span class="s1">&#39;virginia&#39;</span> <span class="c1"># string (We will see this data type in more detail in a future lesson)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">float_var</span> <span class="o">=</span> <span class="mf">3.1416</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Boolean. A variables with only two values: true (1) or false (0).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bool_var</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>string: array of characters (We will see this data type in more detail in a future lesson).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">string_var</span> <span class="o">=</span> <span class="s1">&#39;virginia&#39;</span> 
 </pre></div>
 </div>
 </div>
@@ -758,6 +802,63 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="practice-exercise">
+<h3>Practice exercise<a class="headerlink" href="#practice-exercise" title="Link to this heading">#</a></h3>
+<div class="exercise admonition" id="variables1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 3 </span></p>
+<section id="exercise-content">
+<p>Define two variables “a” and “b” both taking the same value between -5 and 256. Show that both variables have the same memory address. Repeat the same operation, but with a value outside the aforementioned range. Do variables still have the same memory address?</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Practice exercise<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="exercise admonition" id="variables2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 4 </span></p>
+<section id="exercise-content">
+<p>1 - Assign the integer 100 to a variable called “num1”.<br />
+2 - Assign the number 25.67 to a variable called “num2”.<br />
+3 - Assign the boolean value False to a variable called “flag”.<br />
+4 - Use the print function to print each variable along with its data type using the type() function.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Practice exercise<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="exercise admonition" id="variables3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 5 </span></p>
+<section id="exercise-content">
+<p>1 - Create a variable “integer_var” and assign it the value 10.<br />
+2 - Create another variable “float_var” and assign it the value 3.5.<br />
+3 - Create a variable called “result” that stores the sum of “integer_var” and “float_var”.<br />
+4 - Print the value of “result” and its data type.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -791,6 +892,24 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../module-1/your_first_program.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Your first Python program!</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="023-operators.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Operators and Expressions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -811,7 +930,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-naming">Variable naming</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reserved-names-keywords">Reserved names (keywords)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-types">Variable types</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-data-types">Converting Data Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-data-types">Converting Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercise">Practice exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Practice exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Practice exercise</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
