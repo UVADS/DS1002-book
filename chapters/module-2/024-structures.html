@@ -1,0 +1,1390 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Structures &#8212; DS-1002 Programming for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-2/024-structures';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="DS-1002 Programming for Data Science - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="DS-1002 Programming for Data Science - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to DS-1002
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 1: Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-1/about_course.html">Introduction</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../module-1/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/programming.html">Brief introduction to programming languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/jupyter_notebooks.html">Jupyter Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/your_first_program.html">Your first Python program!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 2: Python (Essential)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="021-variables.html">Variables and data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022-operators.html">Operators and Expressions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/module-2/024-structures.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Structures</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Structures</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-a-list">Constructing a list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">Slicing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operations-on-lists">Operations on lists</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenate-lists-with">Concatenate lists with <code class="docutils literal notranslate"><span class="pre">+</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-can-mix-types">Lists can mix types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-can-be-nested">Lists can be nested</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries-dict">Dictionaries <code class="docutils literal notranslate"><span class="pre">dict</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing">Constructing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-a-value">Retrieve a value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#print-list-of-keys-values-or-both">Print list of keys, values, or both</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Constructing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#common-functions-and-methods-to-all-sequences">Common functions and methods to all sequences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membership-with-in">Membership with <code class="docutils literal notranslate"><span class="pre">in</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sets">Sets</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ranges">Ranges</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-structures">
+<h1>Data Structures<a class="headerlink" href="#data-structures" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Lists</p></li>
+<li><p>Tuples</p></li>
+<li><p>Sets</p></li>
+<li><p>Dictionaries</p></li>
+<li><p>List slicing and indexing</p></li>
+</ul>
+<p>In contrast to primitive data types, data structures organize types into structures that have certain properties, such as <strong>order</strong>, <strong>mutability</strong>, and <strong>addressing scheme</strong>, e.g. by index.</p>
+<section id="lists">
+<h2>Lists<a class="headerlink" href="#lists" title="Link to this heading">#</a></h2>
+<p>A list is an ordered sequence of items.</p>
+<p>Each element of a list is associated with an integer that represents the order in which the element appears.</p>
+<p>Lists are indexed with <strong>brackets</strong> <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
+<p>List elements are accessed by providing their order number in the brackets.</p>
+<p>Lists are <strong>mutable</strong>, meaning you can modify them after they have been created.</p>
+<p>They can contain mixed types.</p>
+<section id="constructing-a-list">
+<h3>Constructing a list<a class="headerlink" href="#constructing-a-list" title="Link to this heading">#</a></h3>
+<p>They can be <strong>constructed</strong> in several ways:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list1</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">list2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(())</span>
+<span class="n">list3</span> <span class="o">=</span> <span class="s2">&quot;some string&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="n">list3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;some&#39;, &#39;string&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="Practice 1">
+
+<p class="admonition-title"></p>
+<section id="exercise-content">
+<p>Using some of the previous methods, construct a list containing your numerical birth month, the first letter of your name, &amp; a boolean to the question: I like coffee.</p>
+</section>
+</div>
+</section>
+<section id="indexing">
+<h3>Indexing<a class="headerlink" href="#indexing" title="Link to this heading">#</a></h3>
+<p><strong>Zero-based indexing</strong></p>
+<p>Python uses zero-based indexing, which means for a collection <code class="docutils literal notranslate"><span class="pre">mylist</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">mylist[0]</span></code> references the first element<br />
+<code class="docutils literal notranslate"><span class="pre">mylist[1]</span></code> references the second element, etc</p>
+<p>For any iterable object of length <em>N</em>:<br />
+<code class="docutils literal notranslate"><span class="pre">mylist[:n]</span></code> will return the first <em>n</em> elements from index <em>0</em> to <em>n-1</em><br />
+<code class="docutils literal notranslate"><span class="pre">mylist[-n:]</span></code> will return the last <em>n</em> elements from index <em>N-n</em> to <em>N-1</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># Access first element (output: 1)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># doing arithmetic with the values (output: 5)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># returns 1 (index 0) through 2 (index 2 minus 1)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># returns 3 (4 minus 2 = index 2) through 4 (4 minus 1 = index 3)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5, 6]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Can find the index of an element by using <code class="docutils literal notranslate"><span class="pre">.index()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="Practice 2">
+
+<p class="admonition-title"></p>
+<section id="exercise-content">
+<p>Apply indexing to the list in Practice 1 to pull out your numerical birth month.</p>
+</section>
+</div>
+</section>
+<section id="slicing">
+<h3>Slicing<a class="headerlink" href="#slicing" title="Link to this heading">#</a></h3>
+<p>We have several options of slicing a list:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a[start:stop]</span></code> items start through stop-1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a[start:]</span></code>     items start through the rest of the array</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a[:stop]</span></code>      items from the beginning through stop-1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a[:]</span></code>          a copy of the whole array</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># Output: [1, 2]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># Output: [2, 3]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>  <span class="c1"># Output: [3, 4]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 4, 5, 6]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="Practice 3">
+
+<p class="admonition-title"></p>
+<section id="exercise-content">
+<p>Slice the list in Practice 1 using a method from above. For more see <a class="reference external" href="https://www.learnbyexample.org/python-list-slicing/">https://www.learnbyexample.org/python-list-slicing/</a></p>
+</section>
+</div>
+</section>
+<section id="operations-on-lists">
+<h3>Operations on lists<a class="headerlink" href="#operations-on-lists" title="Link to this heading">#</a></h3>
+<p><strong>Multiply lists by a scalar (single value number)</strong></p>
+<p>This yields list repeated as many times as the multiplied scalar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">*</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="Practice 4">
+
+<p class="admonition-title"></p>
+<section id="exercise-content">
+<p>Multiply the list in Practice 1 by a given scalar.</p>
+</section>
+</div>
+</section>
+</section>
+<section id="concatenate-lists-with">
+<h2>Concatenate lists with <code class="docutils literal notranslate"><span class="pre">+</span></code><a class="headerlink" href="#concatenate-lists-with" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">+</span> <span class="n">numbers2</span> <span class="c1"># concatenate two lists</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 30, 40, 50]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="Practice 5">
+
+<p class="admonition-title"></p>
+<section id="exercise-content">
+<p>Add  “numbers” to the list in Practice 1.</p>
+</section>
+</div>
+</section>
+<section id="lists-can-mix-types">
+<h2>Lists can mix types<a class="headerlink" href="#lists-can-mix-types" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;coconuts&#39;</span><span class="p">,</span> <span class="mi">777</span><span class="p">,</span> <span class="mf">7.25</span><span class="p">,</span> <span class="s1">&#39;Sir Robin&#39;</span><span class="p">,</span> <span class="mf">80.0</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myList</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;coconuts&#39;, 777, 7.25, &#39;Sir Robin&#39;, 80.0, True]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>What happens if we multiply a list with strings?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myList</span> <span class="o">*</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;coconuts&#39;,
+ 777,
+ 7.25,
+ &#39;Sir Robin&#39;,
+ 80.0,
+ True,
+ &#39;coconuts&#39;,
+ 777,
+ 7.25,
+ &#39;Sir Robin&#39;,
+ 80.0,
+ True]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is not allowed</span>
+<span class="n">myList</span> <span class="o">*</span> <span class="n">myList</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># This is not allowed</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">myList</span> <span class="o">*</span> <span class="n">myList</span>
+
+<span class="ne">TypeError</span>: can&#39;t multiply sequence by non-int of type &#39;list&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lists-can-be-nested">
+<h2>Lists can be nested<a class="headerlink" href="#lists-can-be-nested" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Darrell&#39;</span><span class="p">,</span> <span class="s1">&#39;Clayton&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Billie&#39;</span><span class="p">,</span> <span class="s1">&#39;Arthur&#39;</span><span class="p">],</span> <span class="s1">&#39;Samantha&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># returns a *list*</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># returns a *string*</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Billie&#39;, &#39;Arthur&#39;]
+Darrell
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="dictionaries-dict">
+<h1>Dictionaries <code class="docutils literal notranslate"><span class="pre">dict</span></code><a class="headerlink" href="#dictionaries-dict" title="Link to this heading">#</a></h1>
+<p>Like a hash table, containing key-value pairs.</p>
+<p>Elements are indexed using brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> (like lists).</p>
+<p>But they are constructed used braces <code class="docutils literal notranslate"><span class="pre">{}</span></code> or <code class="docutils literal notranslate"><span class="pre">dict()</span></code>.</p>
+<p>Key names must be unique. If you re-use a key, you overwrite its value.</p>
+<p>Keys don’t have to be strings – they can be numbers or tuples or expressions that evaluate to one of these.</p>
+<section id="constructing">
+<h2>Constructing<a class="headerlink" href="#constructing" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dictionary1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dictionary2</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">55</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">29</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">99</span><span class="p">)</span> <span class="c1"># Note the absence of quotes around keys</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dictionary2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;x&#39;: 55, &#39;y&#39;: 29, &#39;z&#39;: 99}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dictionary3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span> <span class="s1">&#39;baz&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dictionary3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;A&#39;: &#39;foo&#39;, 99: &#39;bar&#39;, (1, 2): &#39;baz&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="retrieve-a-value">
+<h2>Retrieve a value<a class="headerlink" href="#retrieve-a-value" title="Link to this heading">#</a></h2>
+<p>Just write a key as the <em>index</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phonelist</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Tom&#39;</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">:</span><span class="mi">456</span><span class="p">,</span> <span class="s1">&#39;Sam&#39;</span><span class="p">:</span><span class="mi">897</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phonelist</span><span class="p">[</span><span class="s1">&#39;Bob&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>456
+</pre></div>
+</div>
+</div>
+</div>
+<p>or use the method <code class="docutils literal notranslate"><span class="pre">.get()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phonelist</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>456
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="print-list-of-keys-values-or-both">
+<h2>Print list of keys, values, or both<a class="headerlink" href="#print-list-of-keys-values-or-both" title="Link to this heading">#</a></h2>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">.keys()</span></code>, <code class="docutils literal notranslate"><span class="pre">.values()</span></code>, or <code class="docutils literal notranslate"><span class="pre">.items()</span></code> methods.</p>
+<p>Keys are not sorted. They print in the order entered.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.keys()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phonelist</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c1"># Returns a list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;Tom&#39;, &#39;Bob&#39;, &#39;Sam&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.values()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phonelist</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="c1"># Returns a list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_values([123, 456, 897])
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.items()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phonelist</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="c1"># Returns a list of tuples</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_items([(&#39;Tom&#39;, 123), (&#39;Bob&#39;, 456), (&#39;Sam&#39;, 897)])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phonelist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Tom&#39;: 123, &#39;Bob&#39;: 456, &#39;Sam&#39;: 897}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Example of sorting keys using a <strong>For Loop</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">phonelist</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bob
+Sam
+Tom
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tuples">
+<h1>Tuples<a class="headerlink" href="#tuples" title="Link to this heading">#</a></h1>
+<p>A tuple is like a list but with one big difference: <strong>a tuple is an immutable object!</strong></p>
+<p>You can’t change a tuple once it’s created.</p>
+<p>A tuple can contain any number of elements of any datatype.</p>
+<p>Accessed with brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> but constructed with or without parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">numbers</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 30, 5, 6]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tuples are immutable</span>
+<span class="n">numbers4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">numbers4</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">40</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># tuples are immutable</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">numbers4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">numbers4</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="ne">TypeError</span>: &#39;tuple&#39; object does not support item assignment
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h2>Constructing<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Created with comma-separated values, with or without parentheses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">letters</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">letters</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># numbers 1,2,3,4 stored in a tuple</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A single valued tuple must include a comma <code class="docutils literal notranslate"><span class="pre">,</span></code>, e.g.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># missing the comma</span>
+<span class="n">tuple0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">29</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuple0</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">tuple0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(29, int)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># comma included</span>
+<span class="n">tuple1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">29</span><span class="p">,)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuple1</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">tuple1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((29,), tuple)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># attempting to reassign a tuple value</span>
+<span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># Trying to assign a new value 5 to the first position</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">48</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># attempting to reassign a tuple value</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="ne">TypeError</span>: &#39;tuple&#39; object does not support item assignment
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="Practice 6">
+
+<p class="admonition-title"></p>
+<section id="exercise-content">
+<p>List one important attribute of list, dictionary, and tuple</p>
+</section>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="common-functions-and-methods-to-all-sequences">
+<h1>Common functions and methods to all sequences<a class="headerlink" href="#common-functions-and-methods-to-all-sequences" title="Link to this heading">#</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">()</span>
+<span class="ow">in</span>
+<span class="o">+</span>
+<span class="o">*</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">8</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">8</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="membership-with-in">
+<h2>Membership with <code class="docutils literal notranslate"><span class="pre">in</span></code><a class="headerlink" href="#membership-with-in" title="Link to this heading">#</a></h2>
+<p>Returns a boolean.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Sam&#39;</span> <span class="ow">in</span> <span class="n">phonelist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="sets">
+<h1>Sets<a class="headerlink" href="#sets" title="Link to this heading">#</a></h1>
+<p>A <code class="docutils literal notranslate"><span class="pre">set</span></code> is an unordered collection of unique objects.</p>
+<p>They are subject to set operations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peanuts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;snoopy&#39;</span><span class="p">,</span><span class="s1">&#39;snoopy&#39;</span><span class="p">,</span><span class="s1">&#39;woodstock&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peanuts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;snoopy&#39;, &#39;woodstock&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note the set is deduped</p>
+<p>Since sets are unordered, they don’t have an index. This will break:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">peanuts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">54</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">peanuts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="ne">TypeError</span>: &#39;set&#39; object is not subscriptable
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">peanut</span> <span class="ow">in</span> <span class="n">peanuts</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">peanut</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>snoopy
+woodstock
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Check if a value is in the set using <code class="docutils literal notranslate"><span class="pre">in</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;snoopy&#39;</span> <span class="ow">in</span> <span class="n">peanuts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Combine two sets</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">,</span><span class="s1">&#39;R&#39;</span><span class="p">}</span>
+<span class="n">set2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;R&#39;</span><span class="p">,</span><span class="s1">&#39;SQL&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This fails:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set1</span> <span class="o">+</span> <span class="n">set2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">58</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">set1</span> <span class="o">+</span> <span class="n">set2</span>
+
+<span class="ne">TypeError</span>: unsupported operand type(s) for +: &#39;set&#39; and &#39;set&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This succeeds:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set1</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">set2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;R&#39;, &#39;SQL&#39;, &#39;python&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Get the set intersection</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set1</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">set2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;R&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="ranges">
+<h1>Ranges<a class="headerlink" href="#ranges" title="Link to this heading">#</a></h1>
+<p>A range is a sequence of integers, from <code class="docutils literal notranslate"><span class="pre">start</span></code> to <code class="docutils literal notranslate"><span class="pre">stop</span></code> by <code class="docutils literal notranslate"><span class="pre">step</span></code>.</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">start</span></code> point is zero by default.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">step</span></code> is one by default.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">stop</span></code> point is NOT included.</p></li>
+</ul>
+<p>Ranges can be assigned to a variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">rng</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>range(0, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<p>More often, ranges are used in iterations, which we will cover later.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">rn</span> <span class="ow">in</span> <span class="n">rng</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+</pre></div>
+</div>
+</div>
+</div>
+<p>another range:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rangy</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rn</span> <span class="ow">in</span> <span class="n">rangy</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/module-2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Structures</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-a-list">Constructing a list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">Slicing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operations-on-lists">Operations on lists</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenate-lists-with">Concatenate lists with <code class="docutils literal notranslate"><span class="pre">+</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-can-mix-types">Lists can mix types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-can-be-nested">Lists can be nested</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries-dict">Dictionaries <code class="docutils literal notranslate"><span class="pre">dict</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing">Constructing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-a-value">Retrieve a value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#print-list-of-keys-values-or-both">Print list of keys, values, or both</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Constructing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#common-functions-and-methods-to-all-sequences">Common functions and methods to all sequences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membership-with-in">Membership with <code class="docutils literal notranslate"><span class="pre">in</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sets">Sets</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ranges">Ranges</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Javier Rasero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
