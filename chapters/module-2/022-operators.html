@@ -576,64 +576,39 @@ document.write(`
 <section id="identity-operators">
 <h3>Identity Operators<a class="headerlink" href="#identity-operators" title="Link to this heading">#</a></h3>
 <p><strong>Identity <code class="docutils literal notranslate"><span class="pre">is</span></code></strong></p>
-<p>The <code class="docutils literal notranslate"><span class="pre">is</span></code> keyword is used to test if two variables refer to the same object.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">is</span></code> keyword is used to test if two variables refer to the same object in the memory. In other words, it tests if the IDs of two objects are the same.</p>
 <p>The test returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the two objects are the same object.</p>
 <p>The test returns False if they are not the same object, even if the two objects are 100% equal.</p>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator to test if two variables are equal.</p>
+<p><strong>Use the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator to test if two variables are equal.</strong></p>
 <p>– from <a class="reference external" href="https://www.w3schools.com/python/gloss_python_identity_operators.asp">W3Schools on Identity Operators</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">]</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">x</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will give a True</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="ow">is</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="ow">is</span> <span class="n">z</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># However, this will not</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">300</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="ow">is</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="ow">is</span> <span class="n">y</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">==</span> <span class="n">z</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
 </pre></div>
 </div>
 </div>
