@@ -19,7 +19,7 @@ string1[0] = 'Y'
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mTypeError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[10], line 1[0m
+Cell [0;32mIn[37], line 1[0m
 [0;32m----> 1[0m string1[[38;5;241m0[39m] [38;5;241m=[39m [38;5;124m'[39m[38;5;124mY[39m[38;5;124m'[39m
 
 [0;31mTypeError[0m: 'str' object does not support item assignment
