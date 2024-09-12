@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -433,9 +433,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List can contain mixed types</span>
-
 <span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;coconuts&#39;</span><span class="p">,</span> <span class="mi">777</span><span class="p">,</span> <span class="mf">7.25</span><span class="p">,</span> <span class="s1">&#39;Sir Robin&#39;</span><span class="p">,</span> <span class="mf">80.0</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
-
 <span class="n">myList</span>
 </pre></div>
 </div>
@@ -467,7 +465,7 @@ document.write(`
 <section id="indexing">
 <h3>Indexing<a class="headerlink" href="#indexing" title="Link to this heading">#</a></h3>
 <div class="alert alert-info">
-    <b>Info</b>: Indexing a list is similar to indexing a strings.
+    <b>Info</b>: Indexing a list is similar to indexing a string.
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
@@ -489,7 +487,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># doing arithmetic with the values (output: 5)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">numbers</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># doing arithmetic with the elements of the list (output: 5)</span>
 </pre></div>
 </div>
 </div>
@@ -501,7 +499,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can get the number of elements of the list with the function len()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Like with strings, we can get the number of elements of the list with the function len()</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -514,19 +512,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># returns 1 (index 0) through 2 (index 2 minus 1)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># returns 1 (index 0) to 2 (index 2 minus 1)</span>
 </pre></div>
 </div>
 </div>
@@ -538,12 +524,25 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># returns 3 (4 minus 2 = index 2) through 4 (4 minus 1 = index 3)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># returns 3 (4 minus 2 = index 2) to 4 (4 minus 1 = index 3)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5, 6]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns the last element (see strings lesson)</span>
+<span class="n">numbers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6]
 </pre></div>
 </div>
 </div>
@@ -568,7 +567,7 @@ document.write(`
 
 <p class="admonition-title"><span class="caption-number">Exercise 11 </span></p>
 <section id="exercise-content">
-<p>Apply indexing to the list in Practice 1 to pull out your numerical birth month.</p>
+<p>Apply indexing to the list in the first practice excercise to pull out your numerical birth month.</p>
 </section>
 </div>
 <div class="cell docutils container">
@@ -626,7 +625,7 @@ document.write(`
 
 <p class="admonition-title"><span class="caption-number">Exercise 12 </span></p>
 <section id="exercise-content">
-<p>Slice the list in the first practice exercise 1 using a method from above. For more see <a class="reference external" href="https://www.learnbyexample.org/python-list-slicing/">https://www.learnbyexample.org/python-list-slicing/</a></p>
+<p>Slice the list in the first practice exercise using a method from above. For more see <a class="reference external" href="https://www.learnbyexample.org/python-list-slicing/">https://www.learnbyexample.org/python-list-slicing/</a></p>
 </section>
 </div>
 <div class="cell docutils container">
@@ -661,7 +660,7 @@ document.write(`
 
 <p class="admonition-title"><span class="caption-number">Exercise 13 </span></p>
 <section id="exercise-content">
-<p>Multiply the list in the first practice exercise 1 by a given scalar.</p>
+<p>Multiply the list in the first practice exercise  by a given scalar.</p>
 </section>
 </div>
 <div class="cell docutils container">
@@ -767,9 +766,9 @@ Darrell
 </section>
 <section id="dictionaries">
 <h2>Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading">#</a></h2>
-<p>Like a hash table, containing key-value pairs.</p>
+<p>Dictionaries are like hash tables, containing key-value pairs.</p>
 <p>Elements are indexed using brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> (like lists).</p>
-<p>But they are constructed used braces <code class="docutils literal notranslate"><span class="pre">{}</span></code> or <code class="docutils literal notranslate"><span class="pre">dict()</span></code>.</p>
+<p>But Dictionaries are constructed using braces <code class="docutils literal notranslate"><span class="pre">{}</span></code> or <code class="docutils literal notranslate"><span class="pre">dict()</span></code>.</p>
 <p>Key names must be unique. If you re-use a key, you overwrite its value.</p>
 <p>Keys don’t have to be strings – they can be numbers or tuples or expressions that evaluate to one of these.</p>
 <section id="constructing-a-dictionary">
@@ -806,7 +805,10 @@ Darrell
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dictionary3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span> <span class="s1">&#39;baz&#39;</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dictionary3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> 
+               <span class="mi">99</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="c1"># Note that the key now is number </span>
+               <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span> <span class="s1">&#39;baz&#39;</span> <span class="c1"># Note that the key now is now a tuple (see below)</span>
+              <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -826,7 +828,7 @@ Darrell
 </section>
 <section id="retrieve-a-value">
 <h3>Retrieve a value<a class="headerlink" href="#retrieve-a-value" title="Link to this heading">#</a></h3>
-<p>Just write a key as the <em>index</em>.</p>
+<p>Just pass the key as the <em>index</em> in the brackets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phonelist</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Tom&#39;</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">:</span><span class="mi">456</span><span class="p">,</span> <span class="s1">&#39;Sam&#39;</span><span class="p">:</span><span class="mi">897</span><span class="p">}</span>
@@ -974,26 +976,29 @@ Tom
 </section>
 <section id="tuples">
 <h2>Tuples<a class="headerlink" href="#tuples" title="Link to this heading">#</a></h2>
-<p>A tuple is like a list but with one big difference: <strong>a tuple is an immutable object!</strong></p>
-<p>You can’t change a tuple once it’s created.</p>
+<p>A tuple is like a list but with one big difference: <strong>a tuple is an immutable object!</strong> That is, you can’t change a tuple once it’s created.</p>
 <p>A tuple can contain any number of elements of any datatype.</p>
 <p>Accessed with brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> but constructed with or without parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="n">numbers</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We saw lists are mutable</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+<span class="n">numbers</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 30, 5, 6]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6]
+[1, 2, 3, 30, 5, 6]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tuples are immutable</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># But, tuples are immutable</span>
 <span class="n">numbers4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
 <span class="n">numbers4</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
 </pre></div>
@@ -1003,7 +1008,7 @@ Tom
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">40</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># tuples are immutable</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># But, tuples are immutable</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">numbers4</span> <span class="o">=</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">numbers4</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
 
@@ -1233,7 +1238,9 @@ woodstock
 </div>
 <section id="some-useful-methods">
 <h3>Some useful methods<a class="headerlink" href="#some-useful-methods" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">union</span></code>: To combine two sets!</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">union</span></code>: To combine two sets!</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">,</span><span class="s1">&#39;R&#39;</span><span class="p">}</span>
@@ -1255,7 +1262,7 @@ woodstock
 </div>
 </div>
 <div class="alert alert-danger">
-    <b>Alert</b>: Sets can not be combined with the `+` operator as the are unordered.
+    <b>Alert</b>: Sets can not be combined with the `+` operator as they are unordered.
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set1</span> <span class="o">+</span> <span class="n">set2</span>
@@ -1273,7 +1280,9 @@ woodstock
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">intersection</span></code>: Get the set intersection:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intersection</span></code>: Get the set intersection:</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set1</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">set2</span><span class="p">)</span>
@@ -1299,7 +1308,9 @@ woodstock
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">difference</span></code>: It returns the different elements of the left-hand set with respect to the right-hand one</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">difference</span></code>: It returns the different elements of the left-hand set with respect to the right-hand one</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set1</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">set2</span><span class="p">)</span>
@@ -1331,8 +1342,8 @@ woodstock
 <p>A range is a sequence of integers, from <code class="docutils literal notranslate"><span class="pre">start</span></code> to <code class="docutils literal notranslate"><span class="pre">stop</span></code> by <code class="docutils literal notranslate"><span class="pre">step</span></code>.</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">start</span></code> point is zero by default.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">stop</span></code> point is NOT included. Like when slicing strings and lists, the last index of the sequence corresponds to stop-1.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">step</span></code> is one by default.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">stop</span></code> point is NOT included.</p></li>
 </ul>
 <p>Ranges can be assigned to a variable.</p>
 <div class="cell docutils container">
