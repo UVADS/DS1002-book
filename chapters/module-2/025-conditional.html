@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -61,6 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-2/025-conditional';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Data Structures" href="024-structures.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +122,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -189,11 +188,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../module-1/your_first_program.html">Your first Python program!</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 2: Python (Essential)</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="021-variables.html">Variables and data types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="022-operators.html">Operators and Expressions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="023-strings.html">Strings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="024-structures.html">Data Structures</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Control Structures</a></li>
 </ul>
 
     </div>
@@ -342,11 +342,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-introduction">I. Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indentation">Indentation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-conditions">II. Conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditions">Conditions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-and-else-can-be-used-for-conditional-processing"><code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> can be used for conditional processing.</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-if-elif">using <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-if-elif-else">using <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code></a></li>
@@ -354,18 +354,19 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-multiple-conditions">Using multiple conditions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iii-loops">III. Loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">Loops</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loop"><code class="docutils literal notranslate"><span class="pre">while-loop</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#break-exit-the-loop"><code class="docutils literal notranslate"><span class="pre">break</span></code> - exit the loop</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-stop-the-current-iteration"><code class="docutils literal notranslate"><span class="pre">continue</span></code> - stop the current iteration</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loop"><code class="docutils literal notranslate"><span class="pre">for</span></code> loop</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-some-useful-functions-with-loops">IV. Some useful functions with loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-useful-built-in-functions-with-loops">Some useful built-in functions with loops</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zip"><code class="docutils literal notranslate"><span class="pre">zip()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumerate"><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">Practice exercises</a></li>
 </ul>
             </nav>
         </div>
@@ -379,13 +380,15 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="control-structures">
 <h1>Control Structures<a class="headerlink" href="#control-structures" title="Link to this heading">#</a></h1>
+<p>What you will learn in this lesson:</p>
 <ul class="simple">
 <li><p>Conditional statements (if, elif, else)</p></li>
 <li><p>Loops (for, while)</p></li>
 <li><p>Break and continue statements</p></li>
+<li><p>Some built-in functions useful to work with loops</p></li>
 </ul>
-<section id="i-introduction">
-<h2>I. Introduction<a class="headerlink" href="#i-introduction" title="Link to this heading">#</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Python includes structures to control the flow of a program:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">conditions</span></code> (if, else)</p></li>
@@ -401,12 +404,12 @@ Iterates over a iterable object (list, tuple, dict, set, string)</p></li>
 <section id="indentation">
 <h3>Indentation<a class="headerlink" href="#indentation" title="Link to this heading">#</a></h3>
 <p>Here things start to get interesting in a good way.</p>
-<p>To define control structures (and functional blocks of code in general), Python uses uses tabs – spaces, actually –. This is incontrat to most languages most languages that use either characters like braces <code class="docutils literal notranslate"><span class="pre">{</span></code> and <code class="docutils literal notranslate"><span class="pre">}</span></code> (e.g. R, C, C++) or key words like <code class="docutils literal notranslate"><span class="pre">IF</span> <span class="pre">...</span> <span class="pre">END</span> <span class="pre">IF</span></code> (e.g. Matlab, Fortran, Bash).</p>
-<p><strong>It is therefore imperative to understand and get a feel for indentation.</strong></p>
+<p>To define control structures (and functional blocks of code in general), Python uses uses tabs – spaces, actually –. This is in contrast to most languages that use either characters like braces <code class="docutils literal notranslate"><span class="pre">{</span></code> and <code class="docutils literal notranslate"><span class="pre">}</span></code> (e.g. R, C, C++) or key words like <code class="docutils literal notranslate"><span class="pre">IF</span> <span class="pre">...</span> <span class="pre">END</span> <span class="pre">IF</span></code> (e.g. Matlab, Fortran, Bash).</p>
+<p><strong>It is therefore imperative to understand and become familiar with indentation.</strong></p>
 </section>
 </section>
-<section id="ii-conditions">
-<h2>II. Conditions<a class="headerlink" href="#ii-conditions" title="Link to this heading">#</a></h2>
+<section id="conditions">
+<h2>Conditions<a class="headerlink" href="#conditions" title="Link to this heading">#</a></h2>
 <section id="if-and-else-can-be-used-for-conditional-processing">
 <h3><code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> can be used for conditional processing.<a class="headerlink" href="#if-and-else-can-be-used-for-conditional-processing" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">if</span></code> conditon:<br />
@@ -550,8 +553,8 @@ Iterates over a iterable object (list, tuple, dict, set, string)</p></li>
 </div>
 </section>
 </section>
-<section id="iii-loops">
-<h2>III. Loops<a class="headerlink" href="#iii-loops" title="Link to this heading">#</a></h2>
+<section id="loops">
+<h2>Loops<a class="headerlink" href="#loops" title="Link to this heading">#</a></h2>
 <section id="while-loop">
 <h3><code class="docutils literal notranslate"><span class="pre">while-loop</span></code><a class="headerlink" href="#while-loop" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">while</span></code> condition :<br />
@@ -598,7 +601,7 @@ uses <code class="docutils literal notranslate"><span class="pre">if-statement</
 </div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">break</span></code> causes the loop to end early</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">break</span></code> makes the loop end early.</p>
 </section>
 <section id="continue-stop-the-current-iteration">
 <h3><code class="docutils literal notranslate"><span class="pre">continue</span></code> - stop the current iteration<a class="headerlink" href="#continue-stop-the-current-iteration" title="Link to this heading">#</a></h3>
@@ -625,18 +628,18 @@ skipping 4...
 </div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">continue</span></code> causes the loop to skip printing 4</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">continue</span></code> causes the loop to skip printing 4.</p>
 </section>
 <section id="for-loop">
 <h3><code class="docutils literal notranslate"><span class="pre">for</span></code> loop<a class="headerlink" href="#for-loop" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">for</span></code> var in <code class="docutils literal notranslate"><span class="pre">sequence</span></code> :<br />
+<p><code class="docutils literal notranslate"><span class="pre">for</span></code> var in <code class="docutils literal notranslate"><span class="pre">iterable</span></code> :<br />
     expression</p>
 <ul class="simple">
 <li><p>‘for each var in seq, execute the expression’</p></li>
 <li><p>iterate over an iterable</p></li>
 </ul>
 <div class="alert alert-info"> 
-<b>Important:</b> A sequence is either a list, a tuple, a dictionary, a set, or a string.
+<b>Important:</b> An iterable can be a string or any of the data structures (i.e. lists, ranges, dictionaries...) studied earlier.
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Bilbao&quot;</span><span class="p">,</span> <span class="s2">&quot;Valencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Bari&quot;</span><span class="p">,</span> <span class="s2">&quot;Cville&quot;</span><span class="p">,</span> <span class="s2">&quot;PITT&quot;</span><span class="p">]</span>
@@ -731,8 +734,8 @@ Nothing here
 <p>Here looping throuhg a tuple:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thistuple</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">thistuple</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">this_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">this_tuple</span><span class="p">:</span>
   <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -746,19 +749,39 @@ cherry
 </div>
 </div>
 <div class="alert alert-warning"> 
+<b>Beware:</b> If you iterate over an unordered data structure (e.g. sets), python will impose an arbitrary order.
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This may be different to using tuples</span>
+<span class="n">this_set</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">this_set</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cherry
+banana
+apple
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info"> 
     <center><b>WHILE</b> vs <b>FOR</b></center>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">For</span></code> loops are used to loop through a list of values or an operation in which the number of iterations is <strong>known</strong> in advance.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">While</span></code> loops are when <strong>you don’t know</strong> how many interations it will take – you are depending on some condition to be met. It is possible for while loops to be unending, for example:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">While</span></code> loops are when <strong>you don’t know</strong> how many interations it will take – you are depending on some condition to be met.</p></li>
 </ul>
-<pre>
+</div><div class="alert alert-danger"> 
+<b>DANGER:</b> Be careful with while loops, as they might be unending. For example:
+    <code>
 while 1:
-    print("This is so annoying")
-</pre>
+    print("This is so annoying")</code>
 </div></section>
 </section>
-<section id="iv-some-useful-functions-with-loops">
-<h2>IV. Some useful functions with loops<a class="headerlink" href="#iv-some-useful-functions-with-loops" title="Link to this heading">#</a></h2>
+<section id="some-useful-built-in-functions-with-loops">
+<h2>Some useful built-in functions with loops<a class="headerlink" href="#some-useful-built-in-functions-with-loops" title="Link to this heading">#</a></h2>
 <p>The following are a couple of super useful functions I personally use with loops almost every day.</p>
 <section id="zip">
 <h3><code class="docutils literal notranslate"><span class="pre">zip()</span></code><a class="headerlink" href="#zip" title="Link to this heading">#</a></h3>
@@ -803,7 +826,7 @@ PITT belongs to USA
 </section>
 <section id="enumerate">
 <h3><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code><a class="headerlink" href="#enumerate" title="Link to this heading">#</a></h3>
-<p>This is another useful function when we want to keep track of the index in each element of the list we are iterating over. Maybe you can’t see right now the utility of this, but believe me, it is!</p>
+<p>This is another useful function when we want to keep track of the index in each element of the list we are iterating over. Maybe you can’t see right now the utility of this, but believe me, there is!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">city</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cities</span><span class="p">):</span>
@@ -867,7 +890,7 @@ PITT belongs to USA. Both elements are in the 4 position in their list
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">33</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Look at the parenthesis above. First it goes enumerate, and then zip.</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="n">country</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">cities</span><span class="p">,</span> <span class="n">countries</span><span class="p">)):</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2"> belongs to </span><span class="si">{</span><span class="n">country</span><span class="si">}</span><span class="s2">. Both elements are in the </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2"> position in their list&quot;</span><span class="p">)</span>
@@ -878,6 +901,56 @@ PITT belongs to USA. Both elements are in the 4 position in their list
 </div>
 </div>
 </section>
+</section>
+<section id="practice-exercises">
+<h2>Practice exercises<a class="headerlink" href="#practice-exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="conditional1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 16 </span></p>
+<section id="exercise-content">
+<p>1 - Given z=4 write an “if” statement that evaluates if z is odd or even and then print z is even.<br />
+2 - Add an “else” statement to the previous code to print “z is odd”. Try changing the value of z to see whether your code works or not.
+3 - Inside either the “if” or “else”, include a print statement giving the message of what number is being checked by the condition. (Hint: use string formatting for this).</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="conditional2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 17 </span></p>
+<section id="exercise-content">
+<p>Write code that does the following:</p>
+<p>1 - Define a list of integers xx = [-2, 8, 0, 5, 6]<br />
+2 - Compute the maximum value of the list, storing it in a variable named “max_val”. (Hint: You may use the built-in function <code class="docutils literal notranslate"><span class="pre">max</span></code> for this).<br />
+3 - Now, loop over each value in the list such that, if the value is less than the maximum, it prints the value; otherwise, it prints ‘max_val’.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="conditional3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 18 </span></p>
+<section id="exercise-content">
+<p>Write a while loop to print the numbers from 1 to 10. However, if the number being printed is 7, the loop should stop early using a break statement.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers here</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -911,6 +984,15 @@ PITT belongs to USA. Both elements are in the 4 position in their list
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="024-structures.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Structures</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -927,11 +1009,11 @@ PITT belongs to USA. Both elements are in the 4 position in their list
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-introduction">I. Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indentation">Indentation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-conditions">II. Conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditions">Conditions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-and-else-can-be-used-for-conditional-processing"><code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> can be used for conditional processing.</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-if-elif">using <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-if-elif-else">using <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code></a></li>
@@ -939,18 +1021,19 @@ PITT belongs to USA. Both elements are in the 4 position in their list
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-multiple-conditions">Using multiple conditions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iii-loops">III. Loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">Loops</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-loop"><code class="docutils literal notranslate"><span class="pre">while-loop</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#break-exit-the-loop"><code class="docutils literal notranslate"><span class="pre">break</span></code> - exit the loop</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-stop-the-current-iteration"><code class="docutils literal notranslate"><span class="pre">continue</span></code> - stop the current iteration</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loop"><code class="docutils literal notranslate"><span class="pre">for</span></code> loop</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iv-some-useful-functions-with-loops">IV. Some useful functions with loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-useful-built-in-functions-with-loops">Some useful built-in functions with loops</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zip"><code class="docutils literal notranslate"><span class="pre">zip()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumerate"><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">Practice exercises</a></li>
 </ul>
   </nav></div>
 
