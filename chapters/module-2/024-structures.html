@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -353,14 +353,16 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operations-on-lists">Operations on lists</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Practice exercise</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Practice exercise</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-notes">Some notes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-methods">Some methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutability">Mutability</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-a-dictionary">Constructing a dictionary</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-a-value">Retrieve a value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-methods">Some methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-new-entry">Adding a new entry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Some methods</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a><ul class="nav section-nav flex-column">
@@ -373,7 +375,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ranges">Ranges</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Practice exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Practice exercise</a></li>
 </ul>
 </li>
 </ul>
@@ -697,8 +699,77 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="some-notes">
-<h3>Some notes<a class="headerlink" href="#some-notes" title="Link to this heading">#</a></h3>
+<section id="some-methods">
+<h3>Some methods<a class="headerlink" href="#some-methods" title="Link to this heading">#</a></h3>
+<p>The following are methods that I find particularly useful when using lists:</p>
+<p><code class="docutils literal notranslate"><span class="pre">append(elmnt)</span></code>: Appends an element to the end of the list. This append operation is performed in place.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s add the element 10 at the end of the list</span>
+<span class="n">numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6]
+[1, 2, 3, 4, 5, 6, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could achieve the same result using list concatenation. However, concatenation creates a new list rather than modifying the original one, so we would need to reassign the result back to the original variable in order to update it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This was the original &#39;numbers&#39; list</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="c1"># This is using concatenation to add the value of 10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span> <span class="o">+</span> <span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="c1"># However it did not modify the original list</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+
+<span class="c1"># We need to reassign the variable to the new list </span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="n">numbers</span> <span class="o">+</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 10]
+[1, 2, 3, 4, 5, 6]
+[1, 2, 3, 4, 5, 6, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">insert(pos,</span> <span class="pre">elmnt)</span></code>: Inserts the specified value at the specified position. This method takes two arguments. The first argument is the position in the list where you want to insert the new value, and the second argunemnt the value that you want to insert.</p>
+<p>This operation is performed in place.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+
+<span class="n">numbers</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6]
+[1, 10, 2, 3, 4, 5, 6]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h3>
 <div class="alert alert-danger">
     <b>Alert</b>: We can not directly multiply lists.
 </div><div class="cell docutils container">
@@ -711,7 +782,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">23</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># This is not allowed</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">myList</span> <span class="o">*</span> <span class="n">myList</span>
 
@@ -858,8 +929,32 @@ Darrell
 </div>
 </div>
 </section>
-<section id="some-methods">
-<h3>Some methods<a class="headerlink" href="#some-methods" title="Link to this heading">#</a></h3>
+<section id="adding-a-new-entry">
+<h3>Adding a new entry<a class="headerlink" href="#adding-a-new-entry" title="Link to this heading">#</a></h3>
+<p>We can always add new entries to a dictionary by assigning a value to a new key.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We create a new key-value mapping</span>
+<span class="n">phonelist</span><span class="p">[</span><span class="s2">&quot;John&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">332</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phonelist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Tom&#39;: 123, &#39;Bob&#39;: 456, &#39;Sam&#39;: 897, &#39;John&#39;: 332}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h3>Some methods<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">keys</span></code>: Provides the keys of a dictionary. <strong>Keys are not sorted. They print in the order entered.</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -911,6 +1006,26 @@ Darrell
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bob
 Sam
 Tom
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">update</span></code>:  Inserts a specified item to the dictionary. The specified item is usually a dictionary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phonelist</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;Sarah&quot;</span><span class="p">:</span> <span class="mi">223</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phonelist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Tom&#39;: 123, &#39;Bob&#39;: 456, &#39;Sam&#39;: 897, &#39;John&#39;: 332, &#39;Sarah&#39;: 223}
 </pre></div>
 </div>
 </div>
@@ -1465,8 +1580,8 @@ woodstock
 </tr>
 </tbody>
 </table>
-<section id="id5">
-<h3>Practice exercise<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h3>Practice exercise<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <div class="exercise admonition" id="structures6">
 
 <p class="admonition-title"><span class="caption-number">Exercise 15 </span></p>
@@ -1559,14 +1674,16 @@ woodstock
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operations-on-lists">Operations on lists</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Practice exercise</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Practice exercise</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-notes">Some notes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-methods">Some methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutability">Mutability</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-a-dictionary">Constructing a dictionary</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-a-value">Retrieve a value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-methods">Some methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-new-entry">Adding a new entry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Some methods</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a><ul class="nav section-nav flex-column">
@@ -1579,7 +1696,7 @@ woodstock
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ranges">Ranges</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Practice exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Practice exercise</a></li>
 </ul>
 </li>
 </ul>
