@@ -13,21 +13,14 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-## function requiring 2 parameters
-def fcn_bad_args(x, y):
-    return x+y
-
-# function call with only 1 of the 2 arguments
-fcn_bad_args(10)
+print(next(myit))
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mTypeError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[11], line 6[0m
-[1;32m      3[0m     [38;5;28;01mreturn[39;00m x[38;5;241m+[39my
-[1;32m      5[0m [38;5;66;03m# function call with only 1 of the 2 arguments[39;00m
-[0;32m----> 6[0m fcn_bad_args([38;5;241m10[39m)
+[0;31mStopIteration[0m                             Traceback (most recent call last)
+Cell [0;32mIn[3], line 1[0m
+[0;32m----> 1[0m [38;5;28mprint[39m([38;5;28mnext[39m(myit))
 
-[0;31mTypeError[0m: fcn_bad_args() missing 1 required positional argument: 'y'
+[0;31mStopIteration[0m: 
 

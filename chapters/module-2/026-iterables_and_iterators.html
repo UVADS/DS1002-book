@@ -1,0 +1,1183 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Iterables and Iterators &#8212; DS-1002 Programming for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-2/026-iterables_and_iterators';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Functions" href="027-functions.html" />
+    <link rel="prev" title="Control Structures" href="025-conditional.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="DS-1002 Programming for Data Science - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="DS-1002 Programming for Data Science - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to DS-1002
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 1: Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-1/about_course.html">Introduction</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../module-1/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/programming.html">Brief introduction to programming languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/jupyter_notebooks.html">Jupyter Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/your_first_program.html">Your first Python program!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 2: Python (Essential)</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="021-variables.html">Variables and data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022-operators.html">Operators and Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="023-strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="024-structures.html">Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="025-conditional.html">Control Structures</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Iterables and Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="027-functions.html">Functions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/module-2/026-iterables_and_iterators.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Iterables and Iterators</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterables">Iterables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterators">Iterators</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strings">Strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sets">Sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ranges">Ranges</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-loops">Nested Loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehension">Comprehension</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-theory">General Theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">Practice exercises</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="iterables-and-iterators">
+<h1>Iterables and Iterators<a class="headerlink" href="#iterables-and-iterators" title="Link to this heading">#</a></h1>
+<p>What you wil learn in this lesson:</p>
+<ul class="simple">
+<li><p>Further understand the concept of iterables and how iteration works in Python.</p></li>
+<li><p>Use common iteration methods such as for loops and the <code class="docutils literal notranslate"><span class="pre">iter</span></code> and <code class="docutils literal notranslate"><span class="pre">next</span></code> functions.</p></li>
+<li><p>Implement list comprehension for concise iteration-based transformations.</p></li>
+</ul>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>In the previous lesson, we introduced loops, and we mentioned that in Python, loops can iterate through things like lists. Why is that? Because lists can behave as iterable objects. Let’s see this in more detail:</p>
+<section id="iterables">
+<h3>Iterables<a class="headerlink" href="#iterables" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>An <strong>iterable</strong> is an object capable of returning its elements one at a time. Examples of iterables include strings and any of the data structures studied so far: lists, tuples, dictionaries, sets and ranges.</p></li>
+<li><p>They can are usually used in a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. Their general syntax is:</p></li>
+</ul>
+<p>         <code class="docutils literal notranslate"><span class="pre">for</span></code> var in <code class="docutils literal notranslate"><span class="pre">iterable</span></code> :<br />
+              expression</p>
+<ul class="simple">
+<li><p>When using an iterable, <strong>be mindful of the order</strong>. Remember that elements in lists, tuples, dictionaries, strings and range come out of them in the same order as they were put in, whereas for sets the ordering of the items is arbitrary.</p></li>
+</ul>
+</section>
+<section id="iterators">
+<h3>Iterators<a class="headerlink" href="#iterators" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>An <strong>iterator</strong> is an object that keeps track of its position during iteration.</p></li>
+<li><p>To define an iterator, you may use <code class="docutils literal notranslate"><span class="pre">iter()</span></code>. Iterators outputs a value each time it is used. Importantly, you can convert an iterable into an iterator using this function, i.e. <code class="docutils literal notranslate"><span class="pre">iter(iterable)</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">next()</span></code> function allows you to manually retrieve the next element from the iterator.</p></li>
+</ul>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<section id="lists">
+<h3>Lists<a class="headerlink" href="#lists" title="Link to this heading">#</a></h3>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">for</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;living room&#39;</span><span class="p">,</span><span class="s1">&#39;was&#39;</span><span class="p">,</span><span class="s1">&#39;quite&#39;</span><span class="p">,</span><span class="s1">&#39;large&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">tok</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tok</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>living room
+was
+quite
+large
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">iter()</span></code> and <code class="docutils literal notranslate"><span class="pre">next()</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;living room&#39;</span><span class="p">,</span><span class="s1">&#39;was&#39;</span><span class="p">,</span><span class="s1">&#39;quite&#39;</span><span class="p">,</span><span class="s1">&#39;large&#39;</span><span class="p">]</span>
+
+<span class="n">myit</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">myit</span><span class="p">))</span> 
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">myit</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">myit</span><span class="p">))</span> 
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">myit</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>living room
+was
+quite
+large
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">next()</span></code> when the iterator has reached the end of the list produces an exception:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">myit</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StopIteration</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">myit</span><span class="p">))</span>
+
+<span class="ne">StopIteration</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, look at the type of the iterator, and the documentation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">myit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list_iterator
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+        <center><b> Iterating using <code>for</code> vs using <code>iter</code> and <code>next</code></b></center>
+<center> <code>for</code> implicitly creates an iterator and executes <code>next</code> on each loop iteration.</center>
+</div></section>
+<section id="strings">
+<h3>Strings<a class="headerlink" href="#strings" title="Link to this heading">#</a></h3>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">for</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strn</span> <span class="o">=</span> <span class="s1">&#39;datum&#39;</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">strn</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d
+a
+t
+u
+m
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">iter()</span></code> and <code class="docutils literal notranslate"><span class="pre">next()</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">strn</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">st</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">st</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">st</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">st</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">st</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d
+a
+t
+u
+m
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tuples">
+<h3>Tuples<a class="headerlink" href="#tuples" title="Link to this heading">#</a></h3>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">for</span></code> loop`</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;auc&#39;</span><span class="p">,</span><span class="s1">&#39;recall&#39;</span><span class="p">,</span><span class="s1">&#39;precision&#39;</span><span class="p">,</span><span class="s1">&#39;support&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">met</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">met</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>auc
+recall
+precision
+support
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">iter()</span></code> and <code class="docutils literal notranslate"><span class="pre">next()</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;auc&#39;</span><span class="p">,</span><span class="s1">&#39;recall&#39;</span><span class="p">,</span><span class="s1">&#39;precision&#39;</span><span class="p">,</span><span class="s1">&#39;support&#39;</span><span class="p">)</span>
+
+<span class="n">tup_metrics</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">tup_metrics</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">tup_metrics</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">tup_metrics</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">tup_metrics</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>auc
+recall
+precision
+support
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dictionaries">
+<h3>Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading">#</a></h3>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">for-loop</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">courses</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fall&#39;</span><span class="p">:[</span><span class="s1">&#39;regression&#39;</span><span class="p">,</span><span class="s1">&#39;python&#39;</span><span class="p">],</span> <span class="s1">&#39;spring&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ml&#39;</span><span class="p">,</span><span class="s1">&#39;pyspark&#39;</span><span class="p">,</span><span class="s1">&#39;nlp&#39;</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Python’s default is to interate over the keys</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate over keys</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">courses</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fall
+spring
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate over keys, using keys() method</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">courses</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fall
+spring
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate over values</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">courses</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;regression&#39;, &#39;python&#39;]
+[&#39;ml&#39;, &#39;pyspark&#39;, &#39;nlp&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate over keys and values using `items()`</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">courses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;key  :&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;value:&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>key  : fall
+value: [&#39;regression&#39;, &#39;python&#39;]
+----------------------------------------
+key  : spring
+value: [&#39;ml&#39;, &#39;pyspark&#39;, &#39;nlp&#39;]
+----------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alternatively for the last one, iterate over keys and values using `key()`.</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">courses</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;key  :&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;value:&quot;</span><span class="p">,</span> <span class="n">courses</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="c1"># index into the dict with the key</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>key  : fall
+value: [&#39;regression&#39;, &#39;python&#39;]
+----------------------------------------
+key  : spring
+value: [&#39;ml&#39;, &#39;pyspark&#39;, &#39;nlp&#39;]
+----------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">iter()</span></code> and <code class="docutils literal notranslate"><span class="pre">next()</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">courses_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">courses</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">courses_iter</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">courses_iter</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fall
+spring
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sets">
+<h3>Sets<a class="headerlink" href="#sets" title="Link to this heading">#</a></h3>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">for</span></code></strong><br />
+note: set has no notion of order</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">princesses</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;belle&#39;</span><span class="p">,</span><span class="s1">&#39;cinderella&#39;</span><span class="p">,</span><span class="s1">&#39;rapunzel&#39;</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">princess</span> <span class="ow">in</span> <span class="n">princesses</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">princess</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cinderella
+rapunzel
+belle
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">iter()</span></code> and <code class="docutils literal notranslate"><span class="pre">next()</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">princesses</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;belle&#39;</span><span class="p">,</span><span class="s1">&#39;cinderella&#39;</span><span class="p">,</span><span class="s1">&#39;rapunzel&#39;</span><span class="p">}</span>
+
+<span class="n">myset</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">princesses</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">myset</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">myset</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">myset</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cinderella
+rapunzel
+belle
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ranges">
+<h3>Ranges<a class="headerlink" href="#ranges" title="Link to this heading">#</a></h3>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">for</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">my_range</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ii</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+2
+4
+6
+8
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>iterating using <code class="docutils literal notranslate"><span class="pre">iter()</span></code> and <code class="docutils literal notranslate"><span class="pre">next()</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_range</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">my_range</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">my_range</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">my_range</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">my_range</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">my_range</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">my_range</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+2
+4
+6
+8
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="nested-loops">
+<h2>Nested Loops<a class="headerlink" href="#nested-loops" title="Link to this heading">#</a></h2>
+<p>Iterations can be nested!</p>
+<p>This works well with nested data structures, like dicts within dicts.</p>
+<p>Be careful, though – these can get complicated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">semester</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">courses</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">semester</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">course</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">courses</span><span class="p">[</span><span class="n">semester</span><span class="p">]):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">course</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. FALL:
+	1.1. regression
+	1.2. python
+2. SPRING:
+	2.1. ml
+	2.2. pyspark
+	2.3. nlp
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="comprehension">
+<h2>Comprehension<a class="headerlink" href="#comprehension" title="Link to this heading">#</a></h2>
+<p><strong>Comprehension</strong> provides a concise way to construct new iterables by iterating over existing ones. The most common type is list comprehension, but comprehension can also be used to create dictionaries, sets, and generators.</p>
+<section id="id1">
+<h3>Introduction<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Let’s start with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop and list example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+<span class="n">is_odd</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>   
+    <span class="k">if</span> <span class="n">val</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># if remainder is one, val is odd</span>
+        <span class="n">is_odd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>       <span class="c1"># else it&#39;s not odd</span>
+        <span class="n">is_odd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">is_odd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[True, True, False, False, False, True]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The code loops over each value in the list, checks the condition, and appends to a new list.</p>
+<p>The code works, but it’s lengthy compared to a list comprehension.</p>
+<p>The approach takes extra time to write and understand.</p>
+<p>Let’s improve this situation with a list comprehension!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_odd</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">]</span>
+<span class="n">is_odd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[True, True, False, False, False, True]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, this piece of code is much shorter, and if you understand the syntax, quicker to interpet.</p>
+<p>Note the in-place use of an expression.</p>
+</section>
+<section id="general-theory">
+<h3>General Theory<a class="headerlink" href="#general-theory" title="Link to this heading">#</a></h3>
+<p>There are comprehensions for almost each list-like object:</p>
+<ul class="simple">
+<li><p>List comprehensions</p></li>
+<li><p>Dictionary comprehensions</p></li>
+<li><p>Set comprehensions</p></li>
+</ul>
+<p><strong>Comprehensions are essentially very concise <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.</strong> They are compact visually, but they also are more efficient than usual loops.</p>
+<p>All comprehensions in Python share the same fundamental components, which can be summarized as:</p>
+<p><code class="docutils literal notranslate"><span class="pre">[expression</span> <span class="pre">for</span> <span class="pre">item</span> <span class="pre">in</span> <span class="pre">iterable</span> <span class="pre">if</span> <span class="pre">condition]</span></code></p>
+<ul class="simple">
+<li><p><strong>Expression</strong> defines how each item in the resulting sequence will be transformed. <strong>This has the structure of the kind of comprehension</strong>. So, for example, dictionary comprehension expressions take the form <code class="docutils literal notranslate"><span class="pre">key_expression:value_expression</span></code> while lists and sets use <code class="docutils literal notranslate"><span class="pre">value_expression</span></code>.</p></li>
+<li><p><strong>Item</strong> is a variable representing each element from the iterable.</p></li>
+<li><p><strong>Iterable</strong> contains the series of elements you are looping over (e.g., a list, set, dictionary, string).</p></li>
+<li><p><strong>Condition</strong> allows you to exclude elements from the result if they do not meet a specified condition. This is optional.</p></li>
+</ul>
+<p>The type of comprehension is indicated by the use of enclosing pairs:</p>
+<ul class="simple">
+<li><p>List comprehensions       <code class="docutils literal notranslate"><span class="pre">[expression</span> <span class="pre">for</span> <span class="pre">item</span> <span class="pre">in</span> <span class="pre">iterable</span> <span class="pre">if</span> <span class="pre">condition]</span></code></p></li>
+<li><p>Dictionary comprehensions <code class="docutils literal notranslate"><span class="pre">{key_expression:value_expression</span> <span class="pre">for</span> <span class="pre">item</span> <span class="pre">in</span> <span class="pre">iterable</span> <span class="pre">if</span> <span class="pre">condition}</span></code></p></li>
+<li><p>Set comprehensions        <code class="docutils literal notranslate"><span class="pre">{expression</span> <span class="pre">for</span> <span class="pre">item</span> <span class="pre">in</span> <span class="pre">iterable</span> <span class="pre">if</span> <span class="pre">condition}</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is also another type of comprehension that we are not going to cover in this course, which is called generator comprehension. This looks like a tuple comprehension, i.e. <code class="docutils literal notranslate"><span class="pre">(expression</span> <span class="pre">for</span> <span class="pre">item</span> <span class="pre">in</span> <span class="pre">iterable</span> <span class="pre">if</span> <span class="pre">condition)</span></code>. What it does it to create a generator, which lazily evaluates the expression and yields items one by one. In contrast to tuples, a generator does not store all the results in memory.</p>
+</div>
+</section>
+<section id="id2">
+<h3>Examples<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Given list of words and a list of stop words, filter out the stop words (considered not important).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stop_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;am&#39;</span><span class="p">,</span><span class="s1">&#39;an&#39;</span><span class="p">,</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;the&#39;</span><span class="p">,</span><span class="s1">&#39;of&#39;</span><span class="p">]</span>
+<span class="n">words</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;am&#39;</span><span class="p">,</span><span class="s1">&#39;not&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;fan&#39;</span><span class="p">,</span><span class="s1">&#39;of&#39;</span><span class="p">,</span><span class="s1">&#39;the&#39;</span><span class="p">,</span><span class="s1">&#39;film&#39;</span><span class="p">]</span>
+
+<span class="n">clean_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">wd</span> <span class="k">for</span> <span class="n">wd</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">wd</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
+<span class="n">clean_words</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;not&#39;, &#39;fan&#39;, &#39;film&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare with this</span>
+<span class="n">clean_words</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">wd</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">wd</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">:</span>
+        <span class="n">clean_words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
+<span class="n">clean_words</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;not&#39;, &#39;fan&#39;, &#39;film&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Given a list of measurements, retain elements with specific units</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;mmHg&#39;</span>
+<span class="n">measures</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;20&#39;</span><span class="p">,</span> <span class="s1">&#39;115mmHg&#39;</span><span class="p">,</span> <span class="s1">&#39;5mg&#39;</span><span class="p">,</span> <span class="s1">&#39;10 mg&#39;</span><span class="p">,</span> <span class="s1">&#39;7.5dl&#39;</span><span class="p">,</span> <span class="s1">&#39;120 mmHg&#39;</span><span class="p">}</span>
+
+<span class="n">meas_mmhg</span> <span class="o">=</span> <span class="p">[</span><span class="n">meas</span> <span class="k">for</span> <span class="n">meas</span> <span class="ow">in</span> <span class="n">measures</span> <span class="k">if</span> <span class="n">units</span> <span class="ow">in</span> <span class="n">meas</span><span class="p">]</span>
+
+<span class="n">meas_mmhg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;120 mmHg&#39;, &#39;115mmHg&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also filter on 2 conditions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">units1</span> <span class="o">=</span> <span class="s1">&#39;mmHg&#39;</span>
+<span class="n">units2</span> <span class="o">=</span> <span class="s1">&#39;dl&#39;</span>
+<span class="n">meas_mmhg_dl</span> <span class="o">=</span> <span class="p">[</span><span class="n">meas</span> <span class="k">for</span> <span class="n">meas</span> <span class="ow">in</span> <span class="n">measures</span> <span class="k">if</span> <span class="n">units1</span> <span class="ow">in</span> <span class="n">meas</span> <span class="ow">or</span> <span class="n">units2</span> <span class="ow">in</span> <span class="n">meas</span><span class="p">]</span>
+
+<span class="n">meas_mmhg_dl</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;120 mmHg&#39;, &#39;7.5dl&#39;, &#39;115mmHg&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>For clarity, you should read it like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">meas</span> 
+ <span class="k">for</span> <span class="n">meas</span> <span class="ow">in</span> <span class="n">measures</span> 
+ <span class="k">if</span> <span class="n">units1</span> <span class="ow">in</span> <span class="n">meas</span> 
+ <span class="ow">or</span> <span class="n">units2</span> <span class="ow">in</span> <span class="n">meas</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;120 mmHg&#39;, &#39;7.5dl&#39;, &#39;115mmHg&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Example using <strong>Dictionary comprehensions</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># various deep learning models and their depths</span>
+<span class="n">model_arch</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cnn_1&#39;</span><span class="p">:</span><span class="s1">&#39;15 layers&#39;</span><span class="p">,</span> <span class="s1">&#39;cnn_2&#39;</span><span class="p">:</span><span class="s1">&#39;20 layers&#39;</span><span class="p">,</span> <span class="s1">&#39;rnn&#39;</span><span class="p">:</span> <span class="s1">&#39;10 layers&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a new dict containing only key-value pairs where the key contains &#39;cnn&#39;</span>
+
+<span class="n">cnns</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span><span class="n">model_arch</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">model_arch</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="s1">&#39;cnn&#39;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">}</span>
+<span class="n">cnns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;cnn_1&#39;: &#39;15 layers&#39;, &#39;cnn_2&#39;: &#39;20 layers&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>We build the key-value pairs using key:model_arch[key], where the key indexes into the dict model_arch</p>
+</section>
+</section>
+<section id="practice-exercises">
+<h2>Practice exercises<a class="headerlink" href="#practice-exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="iterables1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 19 </span></p>
+<section id="exercise-content">
+<p>1- Create a list of strings, where each string contains a mix of uppercase and lowercase letters.  Write a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop` to iterate over the strings such that, in each iteration, it prints the string in lower case.</p>
+<p>2 - Using the previous list, use <code class="docutils literal notranslate"><span class="pre">iter()</span></code> and <code class="docutils literal notranslate"><span class="pre">next()</span></code> to iterate over the list, printing each string.  In this case, the strings don’t need to be lowercased.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers start here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="iterables2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 20 </span></p>
+<section id="exercise-content">
+<p>Given a list of words, create a new list that contains only the words that start with a vowel. Do this with and without comprehension.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers start here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/module-2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="025-conditional.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Control Structures</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="027-functions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterables">Iterables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterators">Iterators</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strings">Strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">Tuples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sets">Sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ranges">Ranges</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-loops">Nested Loops</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehension">Comprehension</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-theory">General Theory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">Practice exercises</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Javier Rasero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
