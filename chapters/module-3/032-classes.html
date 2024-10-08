@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Object-Oriented Programming (OOP) &#8212; DS-1002 Programming for Data Science</title>
+    <title>Introduction to object-oriented programming (OOP) &#8212; DS-1002 Programming for Data Science</title>
   
   
   
@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -61,6 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-3/032-classes';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Errors and Exceptions" href="031-errors_and_exceptions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +122,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -195,6 +194,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../module-2/023-strings.html">Strings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../module-2/024-structures.html">Data Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../module-2/025-conditional.html">Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/026-iterables_and_iterators.html">Iterables and Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/027-functions.html">Functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 3: Python II (Advance)</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="031-errors_and_exceptions.html">Errors and Exceptions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to object-oriented programming (OOP)</a></li>
 </ul>
 
     </div>
@@ -333,7 +339,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Object-Oriented Programming (OOP)</h1>
+    <h1>Introduction to object-oriented programming (OOP)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -343,9 +349,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-and-objects">1. Classes and Objects</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-classes">2. Initialize classes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inheritance">3. Inheritance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-and-objects">Classes and Objects</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-a-class">Defining a class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes-and-methods">Attributes and methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-classes">Initialize classes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-self">What is <code class="docutils literal notranslate"><span class="pre">self</span></code>?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inheritance">Inheritance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-excersises">Practice excersises</a></li>
 </ul>
             </nav>
         </div>
@@ -357,84 +372,192 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="object-oriented-programming-oop">
-<h1>Object-Oriented Programming (OOP)<a class="headerlink" href="#object-oriented-programming-oop" title="Link to this heading">#</a></h1>
-<p>Python is an <strong>object-oriented</strong> programming (OOP) language. The object-oriented programming is kind of paradigm that helps you group state (attributes) and behavior (methods) together in handy packets of functionality. It also allows for useful specialized mechanisms such as inheritance.</p>
-<p>The fact that python is an OOP language does not mean you are force to follow this paradigm (unlike some other OOP languages). You can still do procedural programming as we have learned so far, with modules and functions. In Python, you can select the paradigm that fits best for your your purposes, or even mix paradigms.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-object-oriented-programming-oop">
+<h1>Introduction to object-oriented programming (OOP)<a class="headerlink" href="#introduction-to-object-oriented-programming-oop" title="Link to this heading">#</a></h1>
+<p>What you will learn in this lesson:</p>
 <ul class="simple">
 <li><p>Classes and objects</p></li>
 <li><p>Attributes and methods</p></li>
 <li><p>Inheritance</p></li>
-<li><p>Polymorphism</p></li>
-<li><p>Encapsulation</p></li>
 </ul>
-<section id="classes-and-objects">
-<h2>1. Classes and Objects<a class="headerlink" href="#classes-and-objects" title="Link to this heading">#</a></h2>
-<p><strong>Classes</strong> help describe/model data structures, or collections of functions centered on a particular set of tasks related to a particular type of data. A class is much like a template or schema. Classes may, but does not have to, take parameters.</p>
-<ul class="simple">
-<li><p><strong>Attributes</strong> - values/fields specific to each instance of a class.</p></li>
-<li><p><strong>Methods</strong> - functions available within and specific to a class. Methods may consume attributes or other parameters.</p></li>
-<li><p><strong>Constructors</strong> - the attribute structure/default values of a class.</p></li>
-</ul>
-<p><strong>Instances</strong> / <strong>Objects</strong> are actual, concrete implementations of a class with specific values.</p>
-<blockquote>
-<div><p>“OO is about grouping DATA with the FUNCTIONS that manipulate that data and hiding HOW it manipulates it so you can MODIFY the behavior through INHERITANCE.”</p>
-</div></blockquote>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Python is an <strong>object-oriented</strong> programming (OOP) language. The object-oriented programming is kind of paradigm that helps you group state (attributes) and behavior (methods) together in handy packets of functionality. It also allows for useful specialized mechanisms such as inheritance.</p>
+<p>The fact that python is an OOP language does not mean you are force to follow this paradigm (unlike some other OOP languages). You can still do procedural programming as we have learned so far, with modules and functions. In Python, you can select the paradigm that fits best for your your purposes, or even mix paradigms.</p>
+<p>OOP is about grouping DATA with the FUNCTIONS that manipulate that data and hiding HOW it manipulates it so you can MODIFY the behavior through INHERITANCE.</p>
 <p>Advantages of OOP programming:</p>
 <ul class="simple">
-<li><p><strong>MAINTAINABILITY</strong> Object-oriented programming methods make code more maintainable. Identifying the source of errors is easier because objects are self-contained.</p></li>
-<li><p><strong>REUSABILITY</strong> Because objects contain both data and methods that act on data, objects can be thought of as self-contained black boxes. This feature makes it easy to reuse code in new systems.Messages provide a predefined interface to an object’s data and functionality. With this interface, an object can be used in any context.</p></li>
-<li><p><strong>SCALABILITY</strong> Object-oriented programs are also scalable. As an object’s interface provides a road map for reusing the object in new software, and provides all the information needed to replace the object without affecting other code. This way aging code can be replaced with faster algorithms and newer technology.</p></li>
+<li><p><strong>MAINTAINABILITY</strong>. Object-oriented programming methods make code more maintainable. Identifying the source of errors is easier because objects are self-contained.</p></li>
+<li><p><strong>REUSABILITY</strong>. Because objects contain both data and methods that act on data, objects can be thought of as self-contained black boxes. This feature makes it easy to reuse code in new systems.Messages provide a predefined interface to an object’s data and functionality. With this interface, an object can be used in any context.</p></li>
+<li><p><strong>SCALABILITY</strong>. Object-oriented programs are also scalable. As an object’s interface provides a road map for reusing the object in new software, and provides all the information needed to replace the object without affecting other code. This way aging code can be replaced with faster algorithms and newer technology.</p></li>
 </ul>
-<p>You can think of classes as a kind of data structure (e.g.), which can store information:</p>
+</section>
+<section id="classes-and-objects">
+<h2>Classes and Objects<a class="headerlink" href="#classes-and-objects" title="Link to this heading">#</a></h2>
+<div class="alert alert-block alert-info"> 
+<b>Everything defined in Python is an object</b>. 
+</div>
+<p>You’ve heard this phrase quite a few times throughout the course. But what is an object?</p>
+<blockquote>
+<div><p>An <strong>object</strong> is like a special kind of data structure (like list, dictionaries, etc) that not only stores data (<strong>attributes</strong>) but also has functions (<strong>methods</strong>) that can do things with that data.</p>
+</div></blockquote>
+<p>Objects arise from <strong>classes</strong>. What is a class?</p>
+<blockquote>
+<div><p><strong>Classes</strong>  are much like a template or scheme for creating objects. It defines what data (<strong>attributes</strong>) the objects will store and what actions (<strong>methods</strong>) they can perform.</p>
+</div></blockquote>
+<section id="defining-a-class">
+<h3>Defining a class<a class="headerlink" href="#defining-a-class" title="Link to this heading">#</a></h3>
+<p>The syntax to define a class is the following:</p>
+<pre><code>class NameOfTheClass(object):
+    Attributes
+    ...
+    ...
+    Methods
+    </code></pre><p>Let’s break this syntax down a bit:</p>
+<ul class="simple">
+<li><p>We start with the keyword <code class="docutils literal notranslate"><span class="pre">class</span></code> to let Python now we are going to define a class.</p></li>
+<li><p>Then we provide a name for the class. (Note: Pythonists like to use CamelCase naming convention for this…)</p></li>
+<li><p>A parenthesis specifying the <strong>inheritance</strong> of the class. Here we used <code class="docutils literal notranslate"><span class="pre">object</span></code>, which is the most basic class that all other classes inherit from. If no inheritence is specified, stick with <code class="docutils literal notranslate"><span class="pre">object</span></code>. We will come to inheritance later.</p></li>
+<li><p>We end the header of the definition with a <code class="docutils literal notranslate"><span class="pre">:</span></code>, to specify that whatever comes next belongs to the class.</p></li>
+<li><p>After that, in an indented block, we include the attributes and methods of the class.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">age</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">#years</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="c1">#cm</span>
-    <span class="n">origin</span> <span class="o">=</span> <span class="s2">&quot;Africa&quot;</span>
-    <span class="n">sex</span> <span class="o">=</span> <span class="s2">&quot;female&quot;</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>
-    <span class="n">wild</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example</span>
+<span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>To be able to use a class, we have to instantiate it, i.e. create an object of it. <strong>Think of a class as the RECIPE to create a particular object.</strong></p>
+<p><strong>Instances</strong> / <strong>Objects</strong> are actual, concrete implementations of a class with specific values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_animal</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">my_animal</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">my_animal</span><span class="o">.</span><span class="n">origin</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_animal</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">()</span>  <span class="c1"># Creating a Animal object</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">my_animal</span><span class="p">))</span>  <span class="c1"># Show that it&#39;s a Animal object</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
-Africa
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;__main__.Animal&#39;&gt;
 </pre></div>
 </div>
 </div>
 </div>
-<p>The difference with data structures is that class can implement methods, which can perform an operation:</p>
+</section>
+<section id="attributes-and-methods">
+<h3>Attributes and methods<a class="headerlink" href="#attributes-and-methods" title="Link to this heading">#</a></h3>
+<p>What are <strong>attributes</strong>?</p>
+<blockquote>
+<div><p><strong>Attributes</strong> are the values/fields specific to each instance (or object) of a class.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="mi">11</span> <span class="c1">#years</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># kgs</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Kenny&quot;</span>
+    <span class="n">wild</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Therefore, you may think of classes as a kind of data structure (e.g. Dictionaries) to store information.</p>
+<p><u>Once you define an object</u>, you can access its attributes using append a <code class="docutils literal notranslate"><span class="pre">.</span></code> and calling its specific attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_animal</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">()</span>  <span class="c1"># Creating a Animal object</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">my_animal</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_animal</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+Kenny
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-block alert-info"> 
+<b>Important:</b>. You need to create an object in order to access its attributes (and methods, as explained below). Until then, you only have a general design manual (the class), not a specific object! Think of creating an object as defining a new type of data, like integers, floats, lists or dictionaries.
+</div><p>And what are <strong>methods</strong>?</p>
+<blockquote>
+<div><p><strong>Methods</strong> are functions available within and specific to a class. Methods may consume attributes or other parameters.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     
-    <span class="n">age</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">#years</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="c1">#cm</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span>
-    <span class="n">wild</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="mi">11</span> <span class="c1">#years</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># kgs</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Kenny&quot;</span>
+    <span class="n">wild</span> <span class="o">=</span> <span class="kc">False</span>
     
     <span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#print(f&quot;Greeting human. I am an animal of {self.age} of age and {self.height} tall.&quot;)   </span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greetings human. I am an animal&quot;</span><span class="p">)</span>   
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greetings, human. I am an animal.&quot;</span><span class="p">)</span>   
+</pre></div>
+</div>
+</div>
+</div>
+<p>So the difference with typical data structures is that classes can also implement <strong>methods</strong>, which can perform an specific operation.</p>
+<p><u>Once you define an object</u>, you can again use one of its methods by appending a <code class="docutils literal notranslate"><span class="pre">.</span></code> to the name of the object and calling its specific method.</p>
+<p>Methods are just functions, so therefore they should follow their syntax to call them:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">animal</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">()</span>
+<span class="n">animal</span><span class="o">.</span><span class="n">greet</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Greetings, human. I am an animal.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Did we see this kind of behavior of using a <code class="docutils literal notranslate"><span class="pre">.</span></code> to call methods before?</p>
+<p>Yes! For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_string</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="n">my_string</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;HELLO&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kenny&quot;</span><span class="p">,</span> <span class="s2">&quot;wild&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+<span class="n">my_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_values([11, &#39;Kenny&#39;, False])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Reiterating, this is because EVERYTHING DEFINED IN PYTHON IS AN OBJECT.</p>
+<p>Finally, <strong>methods can use the information stored in the attributes</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    
+    <span class="n">age</span> <span class="o">=</span> <span class="mi">11</span> <span class="c1">#years</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># kgs</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Kenny&quot;</span>
+    <span class="n">wild</span> <span class="o">=</span> <span class="kc">False</span>
+    
+    <span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Do not worry about the &#39;self&#39; here</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greetings, human. I am an animal. My name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">. I am </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old and I weight </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="si">}</span><span class="s2"> kgs.&quot;</span><span class="p">)</span>   
 </pre></div>
 </div>
 </div>
@@ -447,160 +570,199 @@ Africa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Greetings human. I am an animal
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Greetings, human. I am an animal. My name is Kenny. I am 11 years old and I weight 5 kgs.
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This animal is named: </span><span class="si">{</span><span class="n">animal</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, is </span><span class="si">{</span><span class="n">animal</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old, and </span><span class="si">{</span><span class="n">animal</span><span class="o">.</span><span class="n">height</span><span class="si">}</span><span class="s2"> cm tall&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This animal is named: Bob, is 10 years old, and 0.8 cm tall
-</pre></div>
-</div>
-</div>
-</div>
+<div class="alert alert-block alert-info"> 
+<b>Take-home message</b>: A class is a TEMPLATE to create a particular object. Think of them as design manuals for making machines, for example a terminator. These machines can have certain attributes (e.g. height, manufacturer, a target to terminate), and perform certain operations (e.g. walk, talk, terminate a target). 
+</div></section>
 </section>
 <section id="initialize-classes">
-<h2>2. Initialize classes<a class="headerlink" href="#initialize-classes" title="Link to this heading">#</a></h2>
-<p>Ok, so classess can save information in the form of attributes, and also implement methods aimed at perform specific operations.</p>
-<p>We also mentioned that classes are a recipe to create specific kinds of objects (e.g. Animals). However, in the previous example, our animal was too specific. <strong>What if we want an animal with a different set of attributes (e.g. a different name)?</strong></p>
+<h2>Initialize classes<a class="headerlink" href="#initialize-classes" title="Link to this heading">#</a></h2>
+<p>Ok, so classes can save information in the form of attributes, and also implement methods aimed at performing specific operations.</p>
+<p>We also mentioned that classes are a template for creating specific kinds of objects (e.g. Animals).</p>
+<p>However, in our previous example, our animal was too specific. <strong>What if we want an animal with a different set of attributes (e.g. a different name)?</strong></p>
 <p>We could redefine the class with the new attribute values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     
-    <span class="n">age</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">#years</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="c1">#cm</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span>
-    <span class="n">wild</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="mi">11</span> <span class="c1">#years</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># kgs</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Firulais&quot;</span>
+    <span class="n">wild</span> <span class="o">=</span> <span class="kc">False</span>
     
-    <span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#print(f&quot;Greeting human. I am an animal of {self.age} of age and {self.height} tall.&quot;)   </span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greeting human. I am an animal&quot;</span><span class="p">)</span>   
+    <span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Do not worry about the &#39;self&#39; here</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greetings, human. I am an animal. My name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">. I am </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old and I weight </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="si">}</span><span class="s2"> kgs.&quot;</span><span class="p">)</span>   
         
 <span class="n">new_animal</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This animal is named: </span><span class="si">{</span><span class="n">new_animal</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, is </span><span class="si">{</span><span class="n">new_animal</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old, and </span><span class="si">{</span><span class="n">new_animal</span><span class="o">.</span><span class="n">height</span><span class="si">}</span><span class="s2"> cm tall&quot;</span><span class="p">)</span>
+<span class="n">new_animal</span><span class="o">.</span><span class="n">greet</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This animal is named: John, is 10 years old, and 0.8 cm tall
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Greetings, human. I am an animal. My name is Firulais. I am 11 years old and I weight 5 kgs.
 </pre></div>
 </div>
 </div>
 </div>
-<p>Obviously, this is pretty inefficient when you want to scalate things, lacking of reusibility, which when you have to use . And this was one of the advantages of classes.</p>
+<p>Obviously, this is pretty inefficient when you want to scalate things, lacking of reusability. And reusability was one of the advantages of classes.</p>
+<p>How could we redefine our new attribute values without having to redefine our whole class again?</p>
 <p>We could use the built-in method <code class="docutils literal notranslate"><span class="pre">__setattr__</span></code>, <strong>which all classes in Python have</strong>, to set a new attribute value.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_animal</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">animal</span><span class="o">.</span><span class="n">greet</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This animal is named: </span><span class="si">{</span><span class="n">new_animal</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, is </span><span class="si">{</span><span class="n">new_animal</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old, and </span><span class="si">{</span><span class="n">new_animal</span><span class="o">.</span><span class="n">height</span><span class="si">}</span><span class="s2"> cm tall&quot;</span><span class="p">)</span>
+<span class="n">animal</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Firulais&quot;</span><span class="p">)</span>
+
+<span class="n">animal</span><span class="o">.</span><span class="n">greet</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This animal is named: Bob, is 10 years old, and 0.8 cm tall
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Greetings, human. I am an animal. My name is Kenny. I am 11 years old and I weight 5 kgs.
+Greetings, human. I am an animal. My name is Firulais. I am 11 years old and I weight 5 kgs.
 </pre></div>
 </div>
 </div>
 </div>
-<p>But this changes the original animal we created with the name “John”. We should be able to define objects with the attributes that we would like and have them separately.</p>
-<p>We can do this in the instentation moment. We need to specify which attributes in the classs need to be initialize. This can be done through the method <code class="docutils literal notranslate"><span class="pre">__init__</span></code> in the class definition:</p>
+<p>(<strong>N.B.</strong> This function can be also used to add new attributes)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_animal</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;eyes&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">new_animal</span><span class="o">.</span><span class="n">eyes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;blue&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>But this changes the original animal we created. What if we want to have separate animals, each with its own unique attribute values?</p>
+<p>We can do this when we instantiate the class—that is, when we create our objects. For that, we need to specify which attributes in the class should be initialized. This is done including the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method in the class definition as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># Do not worry about the &#39;self&#39; here</span>
                  <span class="n">age</span><span class="p">,</span>
-                 <span class="n">height</span><span class="p">,</span>
+                 <span class="n">weight</span><span class="p">,</span>
                  <span class="n">name</span><span class="p">,</span>
                  <span class="n">wild</span>
                 <span class="p">):</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wild</span> <span class="o">=</span> <span class="n">wild</span>
 
-    <span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#print(f&quot;Greeting human. I am an animal of {self.age} of age and {self.height} tall.&quot;)   </span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greeting human. I am an animal&quot;</span><span class="p">)</span>   
+    <span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Do not worry about the &#39;self&#39; here</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greetings, human. I am an animal. My name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">. I am </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old and I weight </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="si">}</span><span class="s2"> kgs.&quot;</span><span class="p">)</span>   
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">animal_bob</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">height</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="n">wild</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">animal_john</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="n">wild</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">animal_kenny</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Kenny&quot;</span><span class="p">,</span> <span class="n">wild</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">animal_firulais</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Firulais&quot;</span><span class="p">,</span> <span class="n">wild</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This animal is named: </span><span class="si">{</span><span class="n">animal_bob</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This animal is named: </span><span class="si">{</span><span class="n">animal_john</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This animal is named: </span><span class="si">{</span><span class="n">animal_kenny</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">animal_kenny</span><span class="o">.</span><span class="n">greet</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This animal is named: </span><span class="si">{</span><span class="n">animal_firulais</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">animal_firulais</span><span class="o">.</span><span class="n">greet</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This animal is named: Bob
-This animal is named: John
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This animal is named: Kenny
+Greetings, human. I am an animal. My name is Kenny. I am 11 years old and I weight 5 kgs.
+This animal is named: Firulais
+Greetings, human. I am an animal. My name is Firulais. I am 2 years old and I weight 2 kgs.
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>We can also define classess that take initial attributes by default.</strong> We just need to specify these values in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function (N.B. <code class="docutils literal notranslate"><span class="pre">__init__</span></code> is a function, so it follows the same rules when it comes to parameter definition and order).</p>
+<p>As you can see, we can create as many objects of a specific class as we want, each with its own attribute values, because we now have the template (the class) to do this!</p>
+<p><strong>Try it yourself!</strong>: Create your own Animal object and assigning values to its attributes when we define it, as we’ve just done.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answer here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>We can also define classes that take initial attributes by default.</strong> We just need to specify these values in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function (<strong>N.B.</strong> In the end, <code class="docutils literal notranslate"><span class="pre">__init__</span></code> is a function, so it follows the same rules when it comes to parameter definition and order).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
-                 <span class="n">age</span><span class="p">,</span>
-                 <span class="n">height</span><span class="p">,</span>
+                 <span class="n">age</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+                 <span class="n">weight</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
                  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Max&quot;</span><span class="p">,</span>
-                 <span class="n">wild</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">wild</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="p">):</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wild</span> <span class="o">=</span> <span class="n">wild</span>
 
-    <span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1">#print(f&quot;Greeting human. I am an animal of {self.age} of age and {self.height} tall.&quot;)   </span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greeting human. I am an animal&quot;</span><span class="p">)</span>   
+    <span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Do not worry about the &#39;self&#39; here</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greetings, human. I am an animal. My name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">. I am </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old and I weight </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="si">}</span><span class="s2"> kgs.&quot;</span><span class="p">)</span>   
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">animal_3</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span><span class="n">height</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">another_animal</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This animal is named: </span><span class="si">{</span><span class="n">animal_3</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, is </span><span class="si">{</span><span class="n">animal_3</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old, and </span><span class="si">{</span><span class="n">animal_3</span><span class="o">.</span><span class="n">height</span><span class="si">}</span><span class="s2"> cm tall&quot;</span><span class="p">)</span>
+<span class="n">another_animal</span><span class="o">.</span><span class="n">greet</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This animal is named: Max, is 12 years old, and 1.2 cm tall
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Greetings, human. I am an animal. My name is Max. I am 12 years old and I weight 2 kgs.
 </pre></div>
 </div>
 </div>
 </div>
+<section id="what-is-self">
+<h3>What is <code class="docutils literal notranslate"><span class="pre">self</span></code>?<a class="headerlink" href="#what-is-self" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">self</span></code> is a way for an object to refer to itself. When you create an object from a class, that object needs a way to access its own data (attributes) and perform its own actions (methods).</p>
+<p>Think of it like this: when you’re talking about yourself, you use the word ‘I’ or ‘me’. In Python, self works the same way for objects—it’s how the object refers to itself.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Animal</span></code> example, when we write <a class="reference external" href="http://self.name">self.name</a>, it means “the name of this specific animal”. So if we create an animal like <code class="docutils literal notranslate"><span class="pre">buddy</span> <span class="pre">=</span> <span class="pre">Animal(name=&quot;Buddy&quot;)</span></code>, the <code class="docutils literal notranslate"><span class="pre">self.name</span></code> for that object is “Buddy”.</p>
+<div class="alert alert-block alert-warning"> 
+<b>Warning:</b> <br>
+    <br>
+    <code>self</code> is only needed inside the class definition to refer to the specific object you're working with. When you're defining methods inside the class, <code>self</code> is how the object refers to its own attributes and methods.
+<br>
+<br>
+When you're using the object outside of the class, you don’t need to include self. The object already knows how to refer to itself.<br>
+<code>buddy = Animal(name="Buddy")</code><br>
+<code>buddy.greet()  # You don’t need to use 'self' here</code>
+</div></section>
 </section>
 <section id="inheritance">
-<h2>3. Inheritance<a class="headerlink" href="#inheritance" title="Link to this heading">#</a></h2>
-<p>What if we now have a new recipe (class), which is just an extension of a previous recipe to, for example, make it more specific? Do we need to redifine this recipe again? <strong>NO!</strong> This is where classes become really handy, because you can make them inherit from other classes.</p>
-<p>When a class inherits from another class, it inherits <strong>all</strong> its method and attributes, <strong>unless it overrides them</strong>.</p>
+<h2>Inheritance<a class="headerlink" href="#inheritance" title="Link to this heading">#</a></h2>
+<p>What if we want a new template (class) that is just an extension of a previous one, to make it more specific, for example?</p>
+<p>Do we need to redefine everything from scratch? <strong>NO!</strong> This is where classes become really handy. You can make them <strong>inherit</strong> from other (parent) classes. This allows us to create a new (child) class that takes on the properties (attributes) and behaviors (methods) of an existing (parent) class, while also allowing us to add new features or modify existing ones.</p>
+<div class="alert alert-block alert-info"> 
+<b>IMPORTANT</b>: When a class inherits from another class, it inherits <b>all</b> its method and attributes, <b>unless it overrides them</b>.
+</div>
+<p>To specify inheritance in class, we write the parent class name in parentheses after the new (child) class name in the class definition:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here Dog will inherit from Animal</span>
@@ -610,59 +772,137 @@ This animal is named: John
 </div>
 </div>
 </div>
+<p>Remember when we included <code class="docutils literal notranslate"><span class="pre">object</span></code> in our class definition? That’s because all classes in Python, by default, inherit from object. While it’s not strictly necessary to specify this inheritance, it’s considered good practice to include it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Pretzels&quot;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This a god named: </span><span class="si">{</span><span class="n">my_dog</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, is </span><span class="si">{</span><span class="n">my_dog</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old, and </span><span class="si">{</span><span class="n">my_dog</span><span class="o">.</span><span class="n">height</span><span class="si">}</span><span class="s2"> cm tall&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Mordisquitos&quot;</span><span class="p">)</span>
 <span class="n">my_dog</span><span class="o">.</span><span class="n">greet</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This a god named: Pretzels, is 5 years old, and 10 cm tall
-Greeting human. I am an animal
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Greetings, human. I am an animal. My name is Mordisquitos. I am 5 years old and I weight 10 kgs.
 </pre></div>
 </div>
 </div>
 </div>
-<p>Mmm, but here, when the dog salutes us, it says it is an animal, which is true, but we may want it to be more specific. We can do this by redefining its greet method:</p>
+<p>Mmm, but here, when the dog salutes us, it says it is an animal, which is true, but we may want it to be more specific. We can do this by <strong>redefining</strong> its <code class="docutils literal notranslate"><span class="pre">greet</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here Dog will inherit from Animal</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here Dog will inherit from Animal, and redefine its greet method</span>
 <span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greetings human. I am a dog!&quot;</span><span class="p">)</span> 
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greetings, human. I am a dog. My name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">. I am </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old and I weight </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="si">}</span><span class="s2"> kgs.&quot;</span><span class="p">)</span>   
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Pretzels&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This a god named: </span><span class="si">{</span><span class="n">my_dog</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, is </span><span class="si">{</span><span class="n">my_dog</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old, and </span><span class="si">{</span><span class="n">my_dog</span><span class="o">.</span><span class="n">height</span><span class="si">}</span><span class="s2"> cm tall&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Pretzels&quot;</span><span class="p">)</span>
 <span class="n">my_dog</span><span class="o">.</span><span class="n">greet</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This a god named: Pretzels, is 5 years old, and 10 cm tall
-Greetings human. I am a dog!
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Greetings, human. I am a dog. My name is Pretzels. I am 5 years old and I weight 10 kgs.
 </pre></div>
 </div>
 </div>
 </div>
-<p>Note that this has <strong>only</strong> the <code class="docutils literal notranslate"><span class="pre">greet</span></code> method in the Dog class. The Animal class still has the original <code class="docutils literal notranslate"><span class="pre">greet</span></code> method</p>
+<p>Note that this has <strong>only</strong> affected the <code class="docutils literal notranslate"><span class="pre">greet</span></code> method in the Dog class. The Animal class still has the original <code class="docutils literal notranslate"><span class="pre">greet</span></code> method</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that this has on</span>
-<span class="n">my_animal</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Pretzels&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_animal</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Pretzels&quot;</span><span class="p">)</span>
 <span class="n">my_animal</span><span class="o">.</span><span class="n">greet</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Greeting human. I am an animal
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Greetings, human. I am an animal. My name is Pretzels. I am 5 years old and I weight 10 kgs.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, our “child” class may have their own specific methods too, in addition to the ones they inherit from its parent(s):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here Dog will inherit from Animal, redefine its greet method and add a new method call &quot;bark&quot;</span>
+<span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Greetings, human. I am a dog. My name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">. I am </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old and I weight </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="si">}</span><span class="s2"> kgs.&quot;</span><span class="p">)</span>   
+    
+    <span class="c1"># This is a new method we add to this class</span>
+    <span class="k">def</span> <span class="nf">bark</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wow! woof! bow-wow!&quot;</span><span class="p">)</span>   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Pretzels&quot;</span><span class="p">)</span>
+<span class="n">my_dog</span><span class="o">.</span><span class="n">bark</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>wow! woof! bow-wow!
+</pre></div>
+</div>
+</div>
+</div>
+<p>This method belongs ONLY to the Dog class. Therefore, the following will give an error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dog</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Pretzels&quot;</span><span class="p">)</span>
+<span class="n">my_dog</span><span class="o">.</span><span class="n">bark</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">27</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">my_dog</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="n">age</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Pretzels&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">my_dog</span><span class="o">.</span><span class="n">bark</span><span class="p">()</span>
+
+<span class="ne">AttributeError</span>: &#39;Animal&#39; object has no attribute &#39;bark&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="practice-excersises">
+<h2>Practice excersises<a class="headerlink" href="#practice-excersises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="classes1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 25 </span></p>
+<section id="exercise-content">
+<p>Let’s create our recipe for a terminator!</p>
+<p>1- Define a class that can be initilize to a given terminator name (e.g. T-800). As a second attribute, define the name of the person this terminator is supposed to terminate (e.g. John Connor).</p>
+<p>2- Now, this class should have a method <code class="docutils literal notranslate"><span class="pre">ask_and_decide</span></code>, which, given an input name of person, it decides whether to terminate that person. Show this decision as print message (Hint: You can use the second attribute and <code class="docutils literal notranslate"><span class="pre">if/else</span></code> for this).</p>
+<p>3-Test the class by creating an object with a specific terminator and target, and then call <code class="docutils literal notranslate"><span class="pre">ask_and_decide</span></code> with different names to see how the terminator behaves.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers from here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="classes2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 26 </span></p>
+<section id="exercise-content">
+<p>As a Cyberdyne Systems engineer, you’ve been tasked with developing a new, more advanced terminator. This new terminator should extend the functionalities of the one you created in the previous exercise by adding a new ability. This could be anything you like—be creative! You can also add new attributes if you’d like.</p>
+<p>Remember to use inheritance for this exercise to build on the existing terminator class.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers from here</span>
 </pre></div>
 </div>
 </div>
@@ -700,6 +940,15 @@ Greetings human. I am a dog!
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="031-errors_and_exceptions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Errors and Exceptions</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -716,9 +965,18 @@ Greetings human. I am a dog!
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-and-objects">1. Classes and Objects</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-classes">2. Initialize classes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inheritance">3. Inheritance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classes-and-objects">Classes and Objects</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-a-class">Defining a class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes-and-methods">Attributes and methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-classes">Initialize classes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-self">What is <code class="docutils literal notranslate"><span class="pre">self</span></code>?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inheritance">Inheritance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-excersises">Practice excersises</a></li>
 </ul>
   </nav></div>
 
