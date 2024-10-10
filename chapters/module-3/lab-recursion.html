@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Instructions &#8212; DS-1002 Programming for Data Science</title>
+    <title>&lt;no title&gt; &#8212; DS-1002 Programming for Data Science</title>
   
   
   
@@ -58,9 +58,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-2/In-class_100324_sols';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-3/lab-recursion';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -192,19 +190,19 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 2: Python (Essential)</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="021-variables.html">Variables and data types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="022-operators.html">Operators and Expressions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="023-strings.html">Strings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="024-structures.html">Data Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="025-conditional.html">Control Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="026-iterables_and_iterators.html">Iterables and Iterators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="027-functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/021-variables.html">Variables and data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/022-operators.html">Operators and Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/023-strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/024-structures.html">Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/025-conditional.html">Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/026-iterables_and_iterators.html">Iterables and Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/027-functions.html">Functions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 3: Python II (Advance)</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../module-3/031-errors_and_exceptions.html">Errors and Exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../module-3/032-classes.html">Introduction to object-oriented programming (OOP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../module-3/033-reading_writing_files.html">Reading and Writing Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031-errors_and_exceptions.html">Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="032-classes.html">Introduction to object-oriented programming (OOP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="033-reading_writing_files.html">Reading and Writing Files</a></li>
 </ul>
 
     </div>
@@ -259,7 +257,7 @@
       
       
       
-      <li><a href="../../_sources/chapters/module-2/In-class_100324_sols.ipynb" target="_blank"
+      <li><a href="../../_sources/chapters/module-3/lab-recursion.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -330,7 +328,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -341,11 +341,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Instructions</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -355,161 +363,164 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="instructions">
-<h1>Instructions<a class="headerlink" href="#instructions" title="Link to this heading">#</a></h1>
+  <ol class="arabic simple">
+<li><p>Define a function <code class="docutils literal notranslate"><span class="pre">g</span></code>:</p>
 <ul class="simple">
-<li><p>Complete Jupyter Notebook for tasks. Clearly show relevant work.</p></li>
-<li><p>Before beginning to fill in the notebook, make sure you have written down your name in the first cell, as well as of any collaborators in case you have worked in groups.</p></li>
-<li><p>Before you turn this problem in, make sure everything runs as expected. First, <strong>restart the kernel</strong> (in the menubar, select Kernel <span class="math notranslate nohighlight">\(\rightarrow\)</span> Restart) and then <strong>run all cells</strong> (in the menubar, select Cell <span class="math notranslate nohighlight">\(\rightarrow\)</span> Run All).</p></li>
-<li><p>Make sure your changes have been changed and when ready, submit the jupyter notebook through Canvas.</p></li>
+<li><p>This function should take two inputs and return the sum of both inputs.</p></li>
+<li><p>Test the function with the inputs 2 and 4 to confirm it works as expected.</p></li>
 </ul>
+</li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NAME</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="n">COLLABORATORS</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<hr class="docutils" />
-<p><strong>1. The following function aims at returning whether a given list of numbers contains at least one element divisible by 7, but it fails due to a bug. You can test this failing behaviour by passing, for example, the list: [10, 7, 13].</strong></p>
-<p><strong>Redefine the function correcting the bug. Test that it behaves correctly with several examples. In addition, in a separate markdown cell, explain why the function was failing. (3 points)</strong></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">has_atleast_one_seven</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether the given list of numbers is lucky. A lucky list contains</span>
-<span class="sd">    at least one number divisible by 7.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">7</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        
-    <span class="k">return</span> <span class="kc">False</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solution</span>
-<span class="k">def</span> <span class="nf">has_atleast_one_seven</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether the given list of numbers is lucky. A lucky list contains</span>
-<span class="sd">    at least one number divisible by 7.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">7</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 
-    <span class="k">return</span> <span class="kc">False</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">has_atleast_one_seven</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+<span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 </pre></div>
 </div>
 </div>
 </div>
+<ol class="arabic simple" start="2">
+<li><p>Define a function <code class="docutils literal notranslate"><span class="pre">f</span></code>:</p>
+<ul class="simple">
+<li><p>This function should also take two inputs.</p></li>
+<li><p>If the second input is 1, the function should return the first input.</p></li>
+<li><p>Otherwise, the function should return the product (multiplication) of both inputs.</p></li>
+<li><p>Test the function with the inputs 2 and 4 to see the result.</p></li>
+</ul>
+</li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">has_atleast_one_seven</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">b</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span>
+
+<span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
 </pre></div>
 </div>
 </div>
 </div>
-<p>The bug was that in the original function, only one iteration was performed, because of both return in the if/else, which made you exit the function after the first iteration. We only need to exit the function early if we happen to hit an element divisible by 7. If there is not, we should carry on looping the list until the end. If that happens, that’s becaus we don’t have any element divisible by 7, and the function should return a False.</p>
-<p><strong>2. Using a for loop and and if statements, print all the numbers between 10 and 1000 (including both sides) that are divisible by 7 and the sum of their digits is greater than 10, but only if the number itself is also odd. (2 points)</strong></p>
+<ol class="arabic simple" start="3">
+<li><p>Now, instead of returning the multiplication of the two inputs, modify <code class="docutils literal notranslate"><span class="pre">f</span></code> so it returns the multiplication of the first input by the sum of both inputs. Test the modified function again with the inputs 2 and 4.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span> <span class="c1"># You have to use 1001 here to include 1000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">b</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">7</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># This condition checks if the number is divisible by 7</span>
-        <span class="n">num_as_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1"># convert the number to string and store this info in a new variable</span>
-
-        <span class="c1"># This block now calculates the sum of the digits of num as a string </span>
-        <span class="n">sum_digits</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">num_as_str</span><span class="p">:</span> <span class="c1"># This loop through its individual digit of num and update the sumation adding the iterated digit</span>
-            <span class="n">sum_digits</span> <span class="o">=</span> <span class="n">sum_digits</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1"># we have to convert the character back to an integer. </span>
-
-        <span class="c1"># Now add a condition to print num, only if the sum of digits is greater than 10 and num is odd, i.e, not even.</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">sum_digits</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>49
-77
-119
-147
-175
-189
-245
-259
-273
-287
-329
-357
-371
-385
-399
-427
-455
-469
-483
-497
-525
-539
-553
-567
-581
-595
-609
-623
-637
-651
-665
-679
-693
-707
-735
-749
-763
-777
-791
-805
-819
-833
-847
-861
-875
-889
-903
-917
-931
-945
-959
-973
-987
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
 </pre></div>
 </div>
 </div>
 </div>
-</section>
+<ol class="arabic simple" start="4">
+<li><p>Can you achieve the same result from step 3 using the <code class="docutils literal notranslate"><span class="pre">g</span></code> function (defined in step 1) inside <code class="docutils literal notranslate"><span class="pre">f</span></code>? Test the function again with the inputs 2 and 4.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">b</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">g</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Now, instead of multiplying the first input by <code class="docutils literal notranslate"><span class="pre">g</span></code>, modify the function <code class="docutils literal notranslate"><span class="pre">f</span></code> so that it multiplies the first input by <code class="docutils literal notranslate"><span class="pre">f</span></code> itself with the second input minus 1 (i.e., <code class="docutils literal notranslate"><span class="pre">f</span></code>(a, b-1)). Test the function with the inputs 2 and 4, then with 2 and 5, and finally with 2 and 6. What kind of behavior or operation do you observe?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16
+32
+64
+</pre></div>
+</div>
+</div>
+</div>
+<p>You’ve just seen an example of <strong>recursion</strong>!!!</p>
+<p>Recursion in Python occurs when a function calls itself during its execution. This programming technique is useful for solving problems that can be broken down into smaller, repetitive tasks.</p>
+<p>With each recursive call, the problem is simplified into a smaller part, and the recursion continues until it reaches a base case, where no further recursive calls are needed.</p>
+<ol class="arabic simple" start="6">
+<li><p>Use recursion, as we have just seen, to create a function that, given an input number, it returns its factorial. For example, given a 4, it should give: 4! = 4 × 3 × 2 × 1 = 24. Test the function.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Recursive call to f itself</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+40320
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>(More difficult) Create a function that creates a Fibonacci sequence. A Fibonacci sequence is a series of numbers where each number in the sequence is the sum of the two previous numbers. The sequence starts with 0 and 1, and then continues with 1, 2, 3, 5, 8, 13, 21, and so on.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -524,7 +535,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./chapters/module-2"
+            path: "./chapters/module-3"
         },
         predefinedOutput: true
     }
@@ -548,7 +559,20 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
