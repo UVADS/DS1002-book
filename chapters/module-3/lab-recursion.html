@@ -204,6 +204,11 @@
 <li class="toctree-l1"><a class="reference internal" href="032-classes.html">Introduction to object-oriented programming (OOP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="033-reading_writing_files.html">Reading and Writing Files</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 4: Python for Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-4/041-numpyI.html">NumPy I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/042-numpyII.html">NumPy II</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -456,7 +461,9 @@ document.write(`
 </div>
 </div>
 </div>
-<ol class="arabic simple" start="5">
+<div class="alert alert-info">
+We can call functions from within another functions!
+</div><ol class="arabic simple" start="5">
 <li><p>Now, instead of multiplying the first input by <code class="docutils literal notranslate"><span class="pre">g</span></code>, modify the function <code class="docutils literal notranslate"><span class="pre">f</span></code> so that it multiplies the first input by <code class="docutils literal notranslate"><span class="pre">f</span></code> itself with the second input minus 1 (i.e., <code class="docutils literal notranslate"><span class="pre">f</span></code>(a, b-1)). Test the function with the inputs 2 and 4, then with 2 and 5, and finally with 2 and 6. What kind of behavior or operation do you observe?</p></li>
 </ol>
 <div class="cell docutils container">
@@ -481,7 +488,9 @@ document.write(`
 </div>
 </div>
 </div>
-<p>You’ve just seen an example of <strong>recursion</strong>!!!</p>
+<div class="alert alert-info">
+You've just seen an example of <b>recursion</b>!!!
+</div>
 <p>Recursion in Python occurs when a function calls itself during its execution. This programming technique is useful for solving problems that can be broken down into smaller, repetitive tasks.</p>
 <p>With each recursive call, the problem is simplified into a smaller part, and the recursion continues until it reaches a base case, where no further recursive calls are needed.</p>
 <ol class="arabic simple" start="6">

@@ -1,0 +1,81 @@
+Traceback (most recent call last):
+  File "/home/javi/anaconda3/lib/python3.11/site-packages/myst_nb/core/execute/inline.py", line 120, in code_cell_outputs
+    self._client.execute_cell(
+  File "/home/javi/anaconda3/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/javi/anaconda3/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/javi/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/javi/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+from skimage import io
+
+photo = io.imread('hotel.jpg')
+type(photo)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Cell [0;32mIn[20], line 4[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mskimage[39;00m [38;5;28;01mimport[39;00m io
+[0;32m----> 4[0m photo [38;5;241m=[39m io[38;5;241m.[39mimread([38;5;124m'[39m[38;5;124mhotel.jpg[39m[38;5;124m'[39m)
+[1;32m      5[0m [38;5;28mtype[39m(photo)
+
+File [0;32m~/anaconda3/lib/python3.11/site-packages/skimage/io/_io.py:53[0m, in [0;36mimread[0;34m(fname, as_gray, plugin, **plugin_args)[0m
+[1;32m     50[0m         plugin [38;5;241m=[39m [38;5;124m'[39m[38;5;124mtifffile[39m[38;5;124m'[39m
+[1;32m     52[0m [38;5;28;01mwith[39;00m file_or_url_context(fname) [38;5;28;01mas[39;00m fname:
+[0;32m---> 53[0m     img [38;5;241m=[39m call_plugin([38;5;124m'[39m[38;5;124mimread[39m[38;5;124m'[39m, fname, plugin[38;5;241m=[39mplugin, [38;5;241m*[39m[38;5;241m*[39mplugin_args)
+[1;32m     55[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mhasattr[39m(img, [38;5;124m'[39m[38;5;124mndim[39m[38;5;124m'[39m):
+[1;32m     56[0m     [38;5;28;01mreturn[39;00m img
+
+File [0;32m~/anaconda3/lib/python3.11/site-packages/skimage/io/manage_plugins.py:205[0m, in [0;36mcall_plugin[0;34m(kind, *args, **kwargs)[0m
+[1;32m    202[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mIndexError[39;00m:
+[1;32m    203[0m         [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m([38;5;124mf[39m[38;5;124m'[39m[38;5;124mCould not find the plugin [39m[38;5;124m"[39m[38;5;132;01m{[39;00mplugin[38;5;132;01m}[39;00m[38;5;124m"[39m[38;5;124m for [39m[38;5;132;01m{[39;00mkind[38;5;132;01m}[39;00m[38;5;124m.[39m[38;5;124m'[39m)
+[0;32m--> 205[0m [38;5;28;01mreturn[39;00m func([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+
+File [0;32m~/anaconda3/lib/python3.11/site-packages/skimage/io/_plugins/imageio_plugin.py:15[0m, in [0;36mimread[0;34m(*args, **kwargs)[0m
+[1;32m     13[0m [38;5;129m@wraps[39m(imageio_imread)
+[1;32m     14[0m [38;5;28;01mdef[39;00m [38;5;21mimread[39m([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[0;32m---> 15[0m     [38;5;28;01mreturn[39;00m np[38;5;241m.[39masarray(imageio_imread([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs))
+
+File [0;32m~/anaconda3/lib/python3.11/site-packages/imageio/v2.py:359[0m, in [0;36mimread[0;34m(uri, format, **kwargs)[0m
+[1;32m    356[0m imopen_args [38;5;241m=[39m decypher_format_arg([38;5;28mformat[39m)
+[1;32m    357[0m imopen_args[[38;5;124m"[39m[38;5;124mlegacy_mode[39m[38;5;124m"[39m] [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+[0;32m--> 359[0m [38;5;28;01mwith[39;00m imopen(uri, [38;5;124m"[39m[38;5;124mri[39m[38;5;124m"[39m, [38;5;241m*[39m[38;5;241m*[39mimopen_args) [38;5;28;01mas[39;00m file:
+[1;32m    360[0m     result [38;5;241m=[39m file[38;5;241m.[39mread(index[38;5;241m=[39m[38;5;241m0[39m, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[1;32m    362[0m [38;5;28;01mreturn[39;00m result
+
+File [0;32m~/anaconda3/lib/python3.11/site-packages/imageio/core/imopen.py:113[0m, in [0;36mimopen[0;34m(uri, io_mode, plugin, extension, format_hint, legacy_mode, **kwargs)[0m
+[1;32m    111[0m     request[38;5;241m.[39mformat_hint [38;5;241m=[39m format_hint
+[1;32m    112[0m [38;5;28;01melse[39;00m:
+[0;32m--> 113[0m     request [38;5;241m=[39m Request(uri, io_mode, format_hint[38;5;241m=[39mformat_hint, extension[38;5;241m=[39mextension)
+[1;32m    115[0m source [38;5;241m=[39m [38;5;124m"[39m[38;5;124m<bytes>[39m[38;5;124m"[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(uri, [38;5;28mbytes[39m) [38;5;28;01melse[39;00m uri
+[1;32m    117[0m [38;5;66;03m# fast-path based on plugin[39;00m
+[1;32m    118[0m [38;5;66;03m# (except in legacy mode)[39;00m
+
+File [0;32m~/anaconda3/lib/python3.11/site-packages/imageio/core/request.py:247[0m, in [0;36mRequest.__init__[0;34m(self, uri, mode, extension, format_hint, **kwargs)[0m
+[1;32m    244[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mInvalid Request.Mode: [39m[38;5;132;01m{[39;00mmode[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[1;32m    246[0m [38;5;66;03m# Parse what was given[39;00m
+[0;32m--> 247[0m [38;5;28mself[39m[38;5;241m.[39m_parse_uri(uri)
+[1;32m    249[0m [38;5;66;03m# Set extension[39;00m
+[1;32m    250[0m [38;5;28;01mif[39;00m extension [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [0;32m~/anaconda3/lib/python3.11/site-packages/imageio/core/request.py:407[0m, in [0;36mRequest._parse_uri[0;34m(self, uri)[0m
+[1;32m    404[0m [38;5;28;01mif[39;00m is_read_request:
+[1;32m    405[0m     [38;5;66;03m# Reading: check that the file exists (but is allowed a dir)[39;00m
+[1;32m    406[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m os[38;5;241m.[39mpath[38;5;241m.[39mexists(fn):
+[0;32m--> 407[0m         [38;5;28;01mraise[39;00m [38;5;167;01mFileNotFoundError[39;00m([38;5;124m"[39m[38;5;124mNo such file: [39m[38;5;124m'[39m[38;5;132;01m%s[39;00m[38;5;124m'[39m[38;5;124m"[39m [38;5;241m%[39m fn)
+[1;32m    408[0m [38;5;28;01melse[39;00m:
+[1;32m    409[0m     [38;5;66;03m# Writing: check that the directory to write to does exist[39;00m
+[1;32m    410[0m     dn [38;5;241m=[39m os[38;5;241m.[39mpath[38;5;241m.[39mdirname(fn)
+
+[0;31mFileNotFoundError[0m: No such file: '/home/javi/Documentos/docencia/DS-1002/DS1002-book/hotel.jpg'
+
