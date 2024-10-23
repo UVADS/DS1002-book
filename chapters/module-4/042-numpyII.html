@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -61,6 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-4/042-numpyII';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Introduction to pandas" href="043-PandasI-Introduction.html" />
     <link rel="prev" title="NumPy (Part I)" href="041-numpyI.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -207,6 +208,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="041-numpyI.html">NumPy (Part I)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">NumPy (Part II)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043-PandasI-Introduction.html">Introduction to pandas</a></li>
 </ul>
 
     </div>
@@ -816,13 +818,13 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Bob&#39; &#39;Joe&#39; &#39;Will&#39; &#39;Bob&#39; &#39;Will&#39; &#39;Joe&#39; &#39;Joe&#39;]
-[[ 0.48552865  0.68251303  1.3623189  -0.60607398]
- [-0.2317041   0.19642801  0.34204663 -1.38394014]
- [-0.48907613 -0.43291116  0.45426699  1.53056915]
- [ 0.48119284  1.6167549  -1.16650877 -1.87545582]
- [ 0.34354883  0.29626123  0.01513108  1.11988603]
- [-0.27386746  0.44774271  0.14832161  0.84793944]
- [-0.69908212 -0.92996896  0.123386   -0.82437086]]
+[[-1.96348811  0.38917398 -0.55350267 -0.34562291]
+ [-0.51174724 -0.45391605 -0.02121473 -0.18177089]
+ [-0.21537611 -0.50449883 -1.23998849  0.26507934]
+ [-0.05670664 -0.82630603 -1.11246125  1.34743931]
+ [-1.29738587  0.37546207  0.34822322 -0.48115035]
+ [ 0.99217197  0.39639181  0.3301427   0.02685344]
+ [-3.25715276 -0.75724747  2.13559351 -0.61480613]]
 </pre></div>
 </div>
 </div>
@@ -861,8 +863,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.48552865,  0.68251303,  1.3623189 , -0.60607398],
-       [ 0.48119284,  1.6167549 , -1.16650877, -1.87545582]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.96348811,  0.38917398, -0.55350267, -0.34562291],
+       [-0.05670664, -0.82630603, -1.11246125,  1.34743931]])
 </pre></div>
 </div>
 </div>
@@ -875,8 +877,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.3623189 , -0.60607398],
-       [-1.16650877, -1.87545582]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.55350267, -0.34562291],
+       [-1.11246125,  1.34743931]])
 </pre></div>
 </div>
 </div>
@@ -891,11 +893,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.2317041 ,  0.19642801,  0.34204663, -1.38394014],
-       [-0.48907613, -0.43291116,  0.45426699,  1.53056915],
-       [ 0.34354883,  0.29626123,  0.01513108,  1.11988603],
-       [-0.27386746,  0.44774271,  0.14832161,  0.84793944],
-       [-0.69908212, -0.92996896,  0.123386  , -0.82437086]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.51174724, -0.45391605, -0.02121473, -0.18177089],
+       [-0.21537611, -0.50449883, -1.23998849,  0.26507934],
+       [-1.29738587,  0.37546207,  0.34822322, -0.48115035],
+       [ 0.99217197,  0.39639181,  0.3301427 ,  0.02685344],
+       [-3.25715276, -0.75724747,  2.13559351, -0.61480613]])
 </pre></div>
 </div>
 </div>
@@ -908,11 +910,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.2317041 ,  0.19642801,  0.34204663, -1.38394014],
-       [-0.48907613, -0.43291116,  0.45426699,  1.53056915],
-       [ 0.34354883,  0.29626123,  0.01513108,  1.11988603],
-       [-0.27386746,  0.44774271,  0.14832161,  0.84793944],
-       [-0.69908212, -0.92996896,  0.123386  , -0.82437086]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.51174724, -0.45391605, -0.02121473, -0.18177089],
+       [-0.21537611, -0.50449883, -1.23998849,  0.26507934],
+       [-1.29738587,  0.37546207,  0.34822322, -0.48115035],
+       [ 0.99217197,  0.39639181,  0.3301427 ,  0.02685344],
+       [-3.25715276, -0.75724747,  2.13559351, -0.61480613]])
 </pre></div>
 </div>
 </div>
@@ -928,10 +930,10 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ True False  True  True  True False False]
-[[ 0.48552865  0.68251303  1.3623189  -0.60607398]
- [-0.48907613 -0.43291116  0.45426699  1.53056915]
- [ 0.48119284  1.6167549  -1.16650877 -1.87545582]
- [ 0.34354883  0.29626123  0.01513108  1.11988603]]
+[[-1.96348811  0.38917398 -0.55350267 -0.34562291]
+ [-0.21537611 -0.50449883 -1.23998849  0.26507934]
+ [-0.05670664 -0.82630603 -1.11246125  1.34743931]
+ [-1.29738587  0.37546207  0.34822322 -0.48115035]]
 </pre></div>
 </div>
 </div>
@@ -946,12 +948,12 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 7.        ,  7.        ,  7.        ,  7.        ],
-       [-0.2317041 ,  0.19642801,  0.34204663, -1.38394014],
+       [-0.51174724, -0.45391605, -0.02121473, -0.18177089],
        [ 7.        ,  7.        ,  7.        ,  7.        ],
        [ 7.        ,  7.        ,  7.        ,  7.        ],
        [ 7.        ,  7.        ,  7.        ,  7.        ],
-       [-0.27386746,  0.44774271,  0.14832161,  0.84793944],
-       [-0.69908212, -0.92996896,  0.123386  , -0.82437086]])
+       [ 0.99217197,  0.39639181,  0.3301427 ,  0.02685344],
+       [-3.25715276, -0.75724747,  2.13559351, -0.61480613]])
 </pre></div>
 </div>
 </div>
@@ -1303,8 +1305,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0x7fbc07148cf0
-0x7fbc071485d0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0x7f6ddd948f90
+0x7f6ddd91ff30
 </pre></div>
 </div>
 </div>
@@ -1583,7 +1585,7 @@ mean(a, axis=None, dtype=None, out=None, keepdims=&lt;no value&gt;, *, where=&lt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_35449/1198364157.py:1: RuntimeWarning: invalid value encountered in sqrt
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_105905/1198364157.py:1: RuntimeWarning: invalid value encountered in sqrt
   np.sqrt(np.array([4, -3, 16, 9, -5]))
 </pre></div>
 </div>
@@ -1731,6 +1733,15 @@ mean(a, axis=None, dtype=None, out=None, keepdims=&lt;no value&gt;, *, where=&lt
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">NumPy (Part I)</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="043-PandasI-Introduction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to pandas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -208,6 +208,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">NumPy (Part I)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="042-numpyII.html">NumPy (Part II)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043-PandasI-Introduction.html">Introduction to pandas</a></li>
 </ul>
 
     </div>
@@ -481,7 +482,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.586865367767584 &lt;class &#39;float&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.5761378385558922 &lt;class &#39;float&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -495,8 +496,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.2719521   0.05936232  1.38975729]
- [ 1.22672543  1.10580512  0.5055885 ]] &lt;class &#39;numpy.ndarray&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.51627652 -0.22615495 -1.60086561]
+ [ 0.42263309 -0.57286585 -1.38456337]] &lt;class &#39;numpy.ndarray&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -509,8 +510,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-2.71952102,  0.59362324, 13.8975729 ],
-       [12.26725429, 11.05805125,  5.05588499]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ -5.16276516,  -2.26154948, -16.00865612],
+       [  4.22633085,  -5.72865848, -13.8456337 ]])
 </pre></div>
 </div>
 </div>
@@ -525,10 +526,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.5439042   0.11872465  2.77951458]
- [ 2.45345086  2.21161025  1.011177  ]]
-[[-0.5439042   0.11872465  2.77951458]
- [ 2.45345086  2.21161025  1.011177  ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1.03255303 -0.4523099  -3.20173122]
+ [ 0.84526617 -1.1457317  -2.76912674]]
+[[-1.03255303 -0.4523099  -3.20173122]
+ [ 0.84526617 -1.1457317  -2.76912674]]
 </pre></div>
 </div>
 </div>
@@ -556,9 +557,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.2719521   0.05936232]
- [ 1.38975729  1.22672543]
- [ 1.10580512  0.5055885 ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.51627652 -0.22615495]
+ [-1.60086561  0.42263309]
+ [-0.57286585 -1.38456337]]
 (3, 2)
 </pre></div>
 </div>
@@ -845,11 +846,11 @@ standard_normal(...) method of numpy.random.mtrand.RandomState instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.92404078, -0.10186957],
-       [ 1.07388999, -0.95281977],
-       [-0.84120512, -0.04827948],
-       [ 0.25077676,  0.74122875],
-       [-0.13653975, -0.1166105 ]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.62547267,  0.59213658],
+       [-2.37512356,  0.84327582],
+       [-0.73572066,  1.89121924],
+       [ 0.7225608 ,  0.30776945],
+       [-1.46448508,  1.31871048]])
 </pre></div>
 </div>
 </div>
