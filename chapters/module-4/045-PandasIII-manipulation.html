@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PandasIII: Data Manipulation &#8212; DS-1002 Programming for Data Science</title>
+    <title>Pandas: Data Manipulation &#8212; DS-1002 Programming for Data Science</title>
   
   
   
@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -61,6 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-4/045-PandasIII-manipulation';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Pandas: Data Exploration" href="044-PandasII-exploration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +122,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -205,11 +204,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../module-3/033-reading_writing_files.html">Reading and Writing Files</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 4: Python for Data Science</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="041-numpyI.html">NumPy (Part I)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="042-numpyII.html">NumPy (Part II)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="043-PandasI-Introduction.html">Introduction to Pandas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="044-PandasII-exploration.html">Pandas: Data Exploration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pandas: Data Manipulation</a></li>
 </ul>
 
     </div>
@@ -348,7 +348,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>PandasIII: Data Manipulation</h1>
+    <h1>Pandas: Data Manipulation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -365,6 +365,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-columns">Creating columns</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-brackets">Using brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-loc">Using <code class="docutils literal notranslate"><span class="pre">loc[]</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-assign">Using <code class="docutils literal notranslate"><span class="pre">assign</span></code></a></li>
 </ul>
 </li>
@@ -387,8 +388,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="pandasiii-data-manipulation">
-<h1>PandasIII: Data Manipulation<a class="headerlink" href="#pandasiii-data-manipulation" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pandas-data-manipulation">
+<h1>Pandas: Data Manipulation<a class="headerlink" href="#pandas-data-manipulation" title="Link to this heading">#</a></h1>
 <p><img alt="" src="https://ds1002-resources.s3.amazonaws.com/images/workflow.png" /></p>
 <p>In the previous lesson, we studied how Pandas can be used to learn about your data through inspection and exploration.</p>
 <p>In this lesson, you’ll learn how Pandas can help you process the data to prepare them for analysis.</p>
@@ -401,16 +402,16 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># As always, we need to import Pandas</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="advanced-filtering-and-subsetting">
-<h2>Advanced Filtering and Subsetting<a class="headerlink" href="#advanced-filtering-and-subsetting" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/mwaskom/seaborn-data/refs/heads/master/iris.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We are going to keep using the Iris data</span>
+<span class="n">iris_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/mwaskom/seaborn-data/refs/heads/master/iris.csv&quot;</span><span class="p">)</span>
 <span class="n">iris_df</span>
 </pre></div>
 </div>
@@ -535,6 +536,8 @@ document.write(`
 <p>150 rows × 5 columns</p>
 </div></div></div>
 </div>
+<section id="advanced-filtering-and-subsetting">
+<h2>Advanced Filtering and Subsetting<a class="headerlink" href="#advanced-filtering-and-subsetting" title="Link to this heading">#</a></h2>
 <section id="boolean-filtering">
 <h3>Boolean Filtering<a class="headerlink" href="#boolean-filtering" title="Link to this heading">#</a></h3>
 <p>It is very common to subset a dataframe based on some condition on the data.</p>
@@ -742,6 +745,135 @@ Name: sepal_length, Length: 150, dtype: bool
 </table>
 </div></div></div>
 </div>
+<p>And like with NumPy, we can use this boolean filtering to modify existing observations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_copy</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">iris_copy</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">iris_copy</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span> <span class="p">]</span><span class="o">&gt;=</span> <span class="mf">4.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">iris_copy</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">4.7</span><span class="p">),</span> <span class="s2">&quot;sepal_length&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;medium_length&quot;</span>
+<span class="n">iris_copy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>medium_length</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>medium_length</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 5 columns</p>
+</div></div></div>
+</div>
 </section>
 <section id="masking">
 <h3>Masking<a class="headerlink" href="#masking" title="Link to this heading">#</a></h3>
@@ -824,14 +956,14 @@ Name: sepal_length, Length: 150, dtype: bool
 </section>
 <section id="creating-columns">
 <h2>Creating columns<a class="headerlink" href="#creating-columns" title="Link to this heading">#</a></h2>
-<p>It is typical to create new columns from existing columns.</p>
+<p>It is typical to create new columns in a dataframe from existing ones.</p>
 <section id="using-brackets">
 <h3>Using brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code><a class="headerlink" href="#using-brackets" title="Link to this heading">#</a></h3>
 <p>Like in dictionaries, you can create a new entry (column) in the dataframe using <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
 <p>In this example, a new column (or field) is created by multiplying summing <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code> with <code class="docutils literal notranslate"><span class="pre">sepal_width</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_volume&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">*</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_width</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_surface&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">*</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_width</span>
 
 <span class="n">iris_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -861,7 +993,7 @@ Name: sepal_length, Length: 150, dtype: bool
       <th>petal_length</th>
       <th>petal_width</th>
       <th>species</th>
-      <th>sepal_volume</th>
+      <th>sepal_surface</th>
     </tr>
   </thead>
   <tbody>
@@ -916,14 +1048,14 @@ Name: sepal_length, Length: 150, dtype: bool
 </div>
 <p>Note that:</p>
 <ul class="simple">
-<li><p>The left side has form: DataFrame name, bracket notation, new column name</p></li>
-<li><p>The assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code> is used</p></li>
-<li><p>The right side contains an expression; here, two df columns are multiplied together</p></li>
+<li><p>The left side has form: DataFrame name, bracket notation, new column name.</p></li>
+<li><p>The assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code> is used.</p></li>
+<li><p>The right side contains an expression; here, two df columns are multiplied together.</p></li>
 </ul>
 <p>Bracket notation also works on the fields, but it’s more typing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_volume_2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_surface_2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">]</span>
 
 <span class="n">iris_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -953,8 +1085,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <th>petal_length</th>
       <th>petal_width</th>
       <th>species</th>
-      <th>sepal_volume</th>
-      <th>sepal_volume_2</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
     </tr>
   </thead>
   <tbody>
@@ -1012,16 +1144,17 @@ Name: sepal_length, Length: 150, dtype: bool
 </table>
 </div></div></div>
 </div>
-<p>The bracket notation must be used when assigning to a new column. This will break:</p>
-<div class="cell docutils container">
+<div class="alert alert-block alert-warning">
+<b>Beware</b>: The bracket notation must be used when assigning to a new column. The following examples will break:
+</div><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="s1">&#39;sepal_volume_3&#39;</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">+</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_width</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="s1">&#39;sepal_surface_3&#39;</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">*</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_width</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-    <span class="n">iris_df</span><span class="o">.</span><span class="s1">&#39;sepal_volume_3&#39;</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">+</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_width</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="n">iris_df</span><span class="o">.</span><span class="s1">&#39;sepal_surface_3&#39;</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">*</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_width</span>
             <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
@@ -1030,25 +1163,25 @@ Name: sepal_length, Length: 150, dtype: bool
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_volume_3</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">+</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_width</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_surface_3</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">+</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">sepal_width</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_21005/2179810851.py:1: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
-  iris_df.sepal_volume_3 = iris_df.sepal_length + iris_df.sepal_width
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_28682/1425502001.py:1: UserWarning: Pandas doesn&#39;t allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+  iris_df.sepal_surface_3 = iris_df.sepal_length + iris_df.sepal_width
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="using-assign">
-<h3>Using <code class="docutils literal notranslate"><span class="pre">assign</span></code><a class="headerlink" href="#using-assign" title="Link to this heading">#</a></h3>
-<p>This method also allows you to create new columns in a given dataset.</p>
-<p><strong>it is very useful when you want to create a new dataframe while maintaining the original as it was.</strong></p>
+<section id="using-loc">
+<h3>Using <code class="docutils literal notranslate"><span class="pre">loc[]</span></code><a class="headerlink" href="#using-loc" title="Link to this heading">#</a></h3>
+<p>We can also use loc to create new columns. It is basically very similar to using just brackets:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;sepal_surface_loc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">]</span>
+<span class="n">iris_df</span>
 </pre></div>
 </div>
 </div>
@@ -1076,159 +1209,9 @@ Name: sepal_length, Length: 150, dtype: bool
       <th>petal_length</th>
       <th>petal_width</th>
       <th>species</th>
-      <th>sepal_volume</th>
-      <th>sepal_volume_2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5.1</td>
-      <td>3.5</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>setosa</td>
-      <td>17.85</td>
-      <td>17.85</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>4.9</td>
-      <td>3.0</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>setosa</td>
-      <td>14.70</td>
-      <td>14.70</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4.7</td>
-      <td>3.2</td>
-      <td>1.3</td>
-      <td>0.2</td>
-      <td>setosa</td>
-      <td>15.04</td>
-      <td>15.04</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4.6</td>
-      <td>3.1</td>
-      <td>1.5</td>
-      <td>0.2</td>
-      <td>setosa</td>
-      <td>14.26</td>
-      <td>14.26</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5.0</td>
-      <td>3.6</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>setosa</td>
-      <td>18.00</td>
-      <td>18.00</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>145</th>
-      <td>6.7</td>
-      <td>3.0</td>
-      <td>5.2</td>
-      <td>2.3</td>
-      <td>virginica</td>
-      <td>20.10</td>
-      <td>20.10</td>
-    </tr>
-    <tr>
-      <th>146</th>
-      <td>6.3</td>
-      <td>2.5</td>
-      <td>5.0</td>
-      <td>1.9</td>
-      <td>virginica</td>
-      <td>15.75</td>
-      <td>15.75</td>
-    </tr>
-    <tr>
-      <th>147</th>
-      <td>6.5</td>
-      <td>3.0</td>
-      <td>5.2</td>
-      <td>2.0</td>
-      <td>virginica</td>
-      <td>19.50</td>
-      <td>19.50</td>
-    </tr>
-    <tr>
-      <th>148</th>
-      <td>6.2</td>
-      <td>3.4</td>
-      <td>5.4</td>
-      <td>2.3</td>
-      <td>virginica</td>
-      <td>21.08</td>
-      <td>21.08</td>
-    </tr>
-    <tr>
-      <th>149</th>
-      <td>5.9</td>
-      <td>3.0</td>
-      <td>5.1</td>
-      <td>1.8</td>
-      <td>virginica</td>
-      <td>17.70</td>
-      <td>17.70</td>
-    </tr>
-  </tbody>
-</table>
-<p>150 rows × 7 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sepal_volume_4</span> <span class="o">=</span> <span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;sepal_width&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>sepal_length</th>
-      <th>sepal_width</th>
-      <th>petal_length</th>
-      <th>petal_width</th>
-      <th>species</th>
-      <th>sepal_volume</th>
-      <th>sepal_volume_2</th>
-      <th>sepal_volume_4</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
+      <th>sepal_surface_loc</th>
     </tr>
   </thead>
   <tbody>
@@ -1358,21 +1341,739 @@ Name: sepal_length, Length: 150, dtype: bool
 <p>150 rows × 8 columns</p>
 </div></div></div>
 </div>
+<p>Notice the use of <code class="docutils literal notranslate"><span class="pre">:</span></code> here, which applies the new column values across all rows. However, this isn’t always necessary—you can specify conditions to control which rows receive a particular value when creating a column.</p>
+<p>Here for example, let’s create a binarized version of the sepal_surface property:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_surface&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;sepal_surface_bin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;high&quot;</span>
+<span class="n">iris_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>17.85</td>
+      <td>17.85</td>
+      <td>17.85</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>14.70</td>
+      <td>14.70</td>
+      <td>14.70</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>15.04</td>
+      <td>15.04</td>
+      <td>15.04</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>14.26</td>
+      <td>14.26</td>
+      <td>14.26</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>18.00</td>
+      <td>18.00</td>
+      <td>18.00</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+      <td>20.10</td>
+      <td>20.10</td>
+      <td>20.10</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+      <td>15.75</td>
+      <td>15.75</td>
+      <td>15.75</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+      <td>19.50</td>
+      <td>19.50</td>
+      <td>19.50</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+      <td>21.08</td>
+      <td>21.08</td>
+      <td>21.08</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+      <td>17.70</td>
+      <td>17.70</td>
+      <td>17.70</td>
+      <td>high</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 9 columns</p>
+</div></div></div>
+</div>
+<p>Unspecified observations will automatically be assigned a NaN value. However, you can always update these values later using boolean filtering to selectively assign values where needed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;sepal_surface_bin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;low&quot;</span>
+<span class="n">iris_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>17.85</td>
+      <td>17.85</td>
+      <td>17.85</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>14.70</td>
+      <td>14.70</td>
+      <td>14.70</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>15.04</td>
+      <td>15.04</td>
+      <td>15.04</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>14.26</td>
+      <td>14.26</td>
+      <td>14.26</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>18.00</td>
+      <td>18.00</td>
+      <td>18.00</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+      <td>20.10</td>
+      <td>20.10</td>
+      <td>20.10</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+      <td>15.75</td>
+      <td>15.75</td>
+      <td>15.75</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+      <td>19.50</td>
+      <td>19.50</td>
+      <td>19.50</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+      <td>21.08</td>
+      <td>21.08</td>
+      <td>21.08</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+      <td>17.70</td>
+      <td>17.70</td>
+      <td>17.70</td>
+      <td>high</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 9 columns</p>
+</div></div></div>
+</div>
+<p><strong>Try it yourself with Practice Exercise 1 in this notebook!</strong></p>
+</section>
+<section id="using-assign">
+<h3>Using <code class="docutils literal notranslate"><span class="pre">assign</span></code><a class="headerlink" href="#using-assign" title="Link to this heading">#</a></h3>
+<p>This method also allows you to create new columns in a given dataframe.</p>
+<div class="alert alert-block alert-info">
+<b>Info</b>: This method is very useful when you want to create a new dataframe while maintaining the original as it was.
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>17.85</td>
+      <td>17.85</td>
+      <td>17.85</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>14.70</td>
+      <td>14.70</td>
+      <td>14.70</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>15.04</td>
+      <td>15.04</td>
+      <td>15.04</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>14.26</td>
+      <td>14.26</td>
+      <td>14.26</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>18.00</td>
+      <td>18.00</td>
+      <td>18.00</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+      <td>20.10</td>
+      <td>20.10</td>
+      <td>20.10</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+      <td>15.75</td>
+      <td>15.75</td>
+      <td>15.75</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+      <td>19.50</td>
+      <td>19.50</td>
+      <td>19.50</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+      <td>21.08</td>
+      <td>21.08</td>
+      <td>21.08</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+      <td>17.70</td>
+      <td>17.70</td>
+      <td>17.70</td>
+      <td>high</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 9 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sepal_surface_assign</span> <span class="o">=</span> <span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;sepal_width&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
+      <th>sepal_surface_assign</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>17.85</td>
+      <td>17.85</td>
+      <td>17.85</td>
+      <td>high</td>
+      <td>17.85</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>14.70</td>
+      <td>14.70</td>
+      <td>14.70</td>
+      <td>low</td>
+      <td>14.70</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>15.04</td>
+      <td>15.04</td>
+      <td>15.04</td>
+      <td>high</td>
+      <td>15.04</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>14.26</td>
+      <td>14.26</td>
+      <td>14.26</td>
+      <td>low</td>
+      <td>14.26</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>18.00</td>
+      <td>18.00</td>
+      <td>18.00</td>
+      <td>high</td>
+      <td>18.00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+      <td>20.10</td>
+      <td>20.10</td>
+      <td>20.10</td>
+      <td>high</td>
+      <td>20.10</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+      <td>15.75</td>
+      <td>15.75</td>
+      <td>15.75</td>
+      <td>high</td>
+      <td>15.75</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+      <td>19.50</td>
+      <td>19.50</td>
+      <td>19.50</td>
+      <td>high</td>
+      <td>19.50</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+      <td>21.08</td>
+      <td>21.08</td>
+      <td>21.08</td>
+      <td>high</td>
+      <td>21.08</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+      <td>17.70</td>
+      <td>17.70</td>
+      <td>17.70</td>
+      <td>high</td>
+      <td>17.70</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 10 columns</p>
+</div></div></div>
+</div>
+<p><strong>Try it yourself with Practice Exercise 2 in this notebook!</strong></p>
 </section>
 </section>
 <section id="removing-columns">
 <h2>Removing columns<a class="headerlink" href="#removing-columns" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Using the reserverd keyword <code class="docutils literal notranslate"><span class="pre">del</span></code> to drop a DataFrame or single columns from the dataframe:</p></li>
+<li><p>Using the reserverd keyword <code class="docutils literal notranslate"><span class="pre">del</span></code> to drop a DataFrame or single columns from the dataframe.</p></li>
 </ul>
-<div class="cell docutils container">
+<div class="alert alert-block alert-warning">
+<b>Beware</b>: This deletion happens in-place, that is, the original datafame is modified.
+</div> <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df_drop</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The history saving thread hit an unexpected error (OperationalError(&#39;attempt to write a readonly database&#39;)).History will not be written to the database.
 </pre></div>
 </div>
 </div>
@@ -1407,8 +2108,10 @@ Name: sepal_length, Length: 150, dtype: bool
       <th>petal_length</th>
       <th>petal_width</th>
       <th>species</th>
-      <th>sepal_volume</th>
-      <th>sepal_volume_2</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
     </tr>
   </thead>
   <tbody>
@@ -1421,6 +2124,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>setosa</td>
       <td>17.85</td>
       <td>17.85</td>
+      <td>17.85</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1431,6 +2136,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>setosa</td>
       <td>14.70</td>
       <td>14.70</td>
+      <td>14.70</td>
+      <td>low</td>
     </tr>
   </tbody>
 </table>
@@ -1439,7 +2146,7 @@ Name: sepal_length, Length: 150, dtype: bool
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># delete the column &#39;x&#39;</span>
-<span class="k">del</span> <span class="n">iris_df_drop</span><span class="p">[</span><span class="s1">&#39;sepal_volume_2&#39;</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">iris_df_drop</span><span class="p">[</span><span class="s1">&#39;sepal_surface_2&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1474,7 +2181,9 @@ Name: sepal_length, Length: 150, dtype: bool
       <th>petal_length</th>
       <th>petal_width</th>
       <th>species</th>
-      <th>sepal_volume</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
     </tr>
   </thead>
   <tbody>
@@ -1486,6 +2195,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>0.2</td>
       <td>setosa</td>
       <td>17.85</td>
+      <td>17.85</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1495,6 +2206,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>0.2</td>
       <td>setosa</td>
       <td>14.70</td>
+      <td>14.70</td>
+      <td>low</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1504,6 +2217,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>0.2</td>
       <td>setosa</td>
       <td>15.04</td>
+      <td>15.04</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1513,6 +2228,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>0.2</td>
       <td>setosa</td>
       <td>14.26</td>
+      <td>14.26</td>
+      <td>low</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1522,9 +2239,13 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>0.2</td>
       <td>setosa</td>
       <td>18.00</td>
+      <td>18.00</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -1540,6 +2261,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>2.3</td>
       <td>virginica</td>
       <td>20.10</td>
+      <td>20.10</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>146</th>
@@ -1549,6 +2272,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>1.9</td>
       <td>virginica</td>
       <td>15.75</td>
+      <td>15.75</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>147</th>
@@ -1558,6 +2283,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>2.0</td>
       <td>virginica</td>
       <td>19.50</td>
+      <td>19.50</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>148</th>
@@ -1567,6 +2294,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>2.3</td>
       <td>virginica</td>
       <td>21.08</td>
+      <td>21.08</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>149</th>
@@ -1576,19 +2305,202 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>1.8</td>
       <td>virginica</td>
       <td>17.70</td>
+      <td>17.70</td>
+      <td>high</td>
     </tr>
   </tbody>
 </table>
-<p>150 rows × 6 columns</p>
+<p>150 rows × 8 columns</p>
 </div></div></div>
 </div>
 <ul class="simple">
-<li><p>Using the method <code class="docutils literal notranslate"><span class="pre">drop()</span></code> to drop one or more columns by specifying <code class="docutils literal notranslate"><span class="pre">axis</span></code> argument equal 1:</p></li>
+<li><p>Using the method <code class="docutils literal notranslate"><span class="pre">drop()</span></code> to drop one or more columns by specifying <code class="docutils literal notranslate"><span class="pre">axis</span></code> argument equal 1.</p></li>
 </ul>
+<div class="alert alert-block alert-info">
+<b>Info</b>: In contrast to using <code>del</code>, here a new dataframe is created.
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df_drop</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;sepal_surface&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>17.85</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>14.70</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>15.04</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>14.26</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>18.00</td>
+      <td>high</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we drop columns</span>
-<span class="n">iris_df_drop</span> <span class="o">=</span> <span class="n">iris_df_drop</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;sepal_volume&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The original dataframe is not modified</span>
+<span class="n">iris_df_drop</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>17.85</td>
+      <td>17.85</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>14.70</td>
+      <td>14.70</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>15.04</td>
+      <td>15.04</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>14.26</td>
+      <td>14.26</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+      <td>18.00</td>
+      <td>18.00</td>
+      <td>high</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If we want to modify, we need to reassign the copy dataframe to it </span>
+<span class="n">iris_df_drop</span> <span class="o">=</span> <span class="n">iris_df_drop</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;sepal_surface&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">iris_df_drop</span>
 </pre></div>
 </div>
@@ -1616,6 +2528,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <th>sepal_width</th>
       <th>petal_length</th>
       <th>petal_width</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
     </tr>
   </thead>
   <tbody>
@@ -1625,6 +2539,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.5</td>
       <td>1.4</td>
       <td>0.2</td>
+      <td>17.85</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1632,6 +2548,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.0</td>
       <td>1.4</td>
       <td>0.2</td>
+      <td>14.70</td>
+      <td>low</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1639,6 +2557,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.2</td>
       <td>1.3</td>
       <td>0.2</td>
+      <td>15.04</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1646,6 +2566,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.1</td>
       <td>1.5</td>
       <td>0.2</td>
+      <td>14.26</td>
+      <td>low</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1653,9 +2575,13 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.6</td>
       <td>1.4</td>
       <td>0.2</td>
+      <td>18.00</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -1667,6 +2593,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.0</td>
       <td>5.2</td>
       <td>2.3</td>
+      <td>20.10</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>146</th>
@@ -1674,6 +2602,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>2.5</td>
       <td>5.0</td>
       <td>1.9</td>
+      <td>15.75</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>147</th>
@@ -1681,6 +2611,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.0</td>
       <td>5.2</td>
       <td>2.0</td>
+      <td>19.50</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>148</th>
@@ -1688,6 +2620,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.4</td>
       <td>5.4</td>
       <td>2.3</td>
+      <td>21.08</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>149</th>
@@ -1695,10 +2629,12 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.0</td>
       <td>5.1</td>
       <td>1.8</td>
+      <td>17.70</td>
+      <td>high</td>
     </tr>
   </tbody>
 </table>
-<p>150 rows × 4 columns</p>
+<p>150 rows × 6 columns</p>
 </div></div></div>
 </div>
 <p>Note that with this <code class="docutils literal notranslate"><span class="pre">drop()</span></code> method you can also drop specific observations by setting <code class="docutils literal notranslate"><span class="pre">axis</span></code>=0</p>
@@ -1733,6 +2669,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <th>sepal_width</th>
       <th>petal_length</th>
       <th>petal_width</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
     </tr>
   </thead>
   <tbody>
@@ -1742,6 +2680,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.0</td>
       <td>1.4</td>
       <td>0.2</td>
+      <td>14.70</td>
+      <td>low</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1749,6 +2689,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.2</td>
       <td>1.3</td>
       <td>0.2</td>
+      <td>15.04</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1756,6 +2698,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.1</td>
       <td>1.5</td>
       <td>0.2</td>
+      <td>14.26</td>
+      <td>low</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1763,6 +2707,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.6</td>
       <td>1.4</td>
       <td>0.2</td>
+      <td>18.00</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>5</th>
@@ -1770,9 +2716,13 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.9</td>
       <td>1.7</td>
       <td>0.4</td>
+      <td>21.06</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -1784,6 +2734,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.0</td>
       <td>5.2</td>
       <td>2.3</td>
+      <td>20.10</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>146</th>
@@ -1791,6 +2743,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>2.5</td>
       <td>5.0</td>
       <td>1.9</td>
+      <td>15.75</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>147</th>
@@ -1798,6 +2752,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.0</td>
       <td>5.2</td>
       <td>2.0</td>
+      <td>19.50</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>148</th>
@@ -1805,6 +2761,8 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.4</td>
       <td>5.4</td>
       <td>2.3</td>
+      <td>21.08</td>
+      <td>high</td>
     </tr>
     <tr>
       <th>149</th>
@@ -1812,19 +2770,27 @@ Name: sepal_length, Length: 150, dtype: bool
       <td>3.0</td>
       <td>5.1</td>
       <td>1.8</td>
+      <td>17.70</td>
+      <td>high</td>
     </tr>
   </tbody>
 </table>
-<p>149 rows × 4 columns</p>
+<p>149 rows × 6 columns</p>
 </div></div></div>
 </div>
 </section>
 <section id="transforming-your-data">
 <h2>Transforming your data<a class="headerlink" href="#transforming-your-data" title="Link to this heading">#</a></h2>
 <p>Sometimes, as part of preprocessing, you may need to apply a function to transform your dataframe.</p>
-<p>The most straightforward way to do this is with the <code class="docutils literal notranslate"><span class="pre">apply</span></code> function. Let’s explore some common uses:</p>
+<p>The most straightforward way to do this is with the <code class="docutils literal notranslate"><span class="pre">apply</span></code> method. Typical uses of this are the following:</p>
 <ul class="simple">
-<li><p>Creation of new columns, particularly when these need to arise from a complex operation</p></li>
+<li><p>Applying transformations or computations that are more complex than what’s available through built-in methods.</p></li>
+<li><p>Reducing the dimensions of the data, thereby allowing for aggregation operations when used with a function that returns a single value.</p></li>
+<li><p>Applying user-defined or lambda functions across rows or columns efficiently.</p></li>
+</ul>
+<p>Let’s explore some of these uses:</p>
+<ul class="simple">
+<li><p>Creation of new columns, particularly when these need to arise from a complex operation.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1852,8 +2818,9 @@ Name: sepal_length, Length: 150, dtype: float64
 </div>
 </div>
 </div>
-<p>You can also use a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function, which is basically a small anonymous function that can take any number of arguments, but can only have one expression.</p>
+<p>You can also use a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function, which is basically a small anonymous function that can take any number of arguments, but can only have <strong>one expression</strong>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">arguments</span> <span class="pre">:</span> <span class="pre">expression</span></code></p>
+<p>See the <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#lambda">documentation</a> for more details.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span>
@@ -1951,8 +2918,10 @@ Length: 150, dtype: float64
       <th>petal_length</th>
       <th>petal_width</th>
       <th>species</th>
-      <th>sepal_volume</th>
-      <th>sepal_volume_2</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
       <th>avg_length</th>
       <th>avg_width</th>
     </tr>
@@ -1967,6 +2936,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>17.85</td>
       <td>17.85</td>
+      <td>17.85</td>
+      <td>high</td>
       <td>3.25</td>
       <td>1.85</td>
     </tr>
@@ -1979,6 +2950,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>14.70</td>
       <td>14.70</td>
+      <td>14.70</td>
+      <td>low</td>
       <td>3.15</td>
       <td>1.60</td>
     </tr>
@@ -1991,6 +2964,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>15.04</td>
       <td>15.04</td>
+      <td>15.04</td>
+      <td>high</td>
       <td>3.00</td>
       <td>1.70</td>
     </tr>
@@ -2003,6 +2978,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>14.26</td>
       <td>14.26</td>
+      <td>14.26</td>
+      <td>low</td>
       <td>3.05</td>
       <td>1.65</td>
     </tr>
@@ -2015,6 +2992,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>18.00</td>
       <td>18.00</td>
+      <td>18.00</td>
+      <td>high</td>
       <td>3.20</td>
       <td>1.90</td>
     </tr>
@@ -2022,6 +3001,7 @@ Length: 150, dtype: float64
 </table>
 </div></div></div>
 </div>
+<p><strong>Try it yourself with Practice Exercise 3 in this notebook!</strong></p>
 </section>
 <section id="sorting-data">
 <h2>Sorting Data<a class="headerlink" href="#sorting-data" title="Link to this heading">#</a></h2>
@@ -2064,8 +3044,10 @@ Length: 150, dtype: float64
       <th>petal_length</th>
       <th>petal_width</th>
       <th>species</th>
-      <th>sepal_volume</th>
-      <th>sepal_volume_2</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
       <th>avg_length</th>
       <th>avg_width</th>
     </tr>
@@ -2080,6 +3062,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>12.90</td>
       <td>12.90</td>
+      <td>12.90</td>
+      <td>low</td>
       <td>2.70</td>
       <td>1.55</td>
     </tr>
@@ -2092,6 +3076,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>12.76</td>
       <td>12.76</td>
+      <td>12.76</td>
+      <td>low</td>
       <td>2.90</td>
       <td>1.55</td>
     </tr>
@@ -2104,6 +3090,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>13.20</td>
       <td>13.20</td>
+      <td>13.20</td>
+      <td>low</td>
       <td>2.85</td>
       <td>1.60</td>
     </tr>
@@ -2116,6 +3104,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>14.08</td>
       <td>14.08</td>
+      <td>14.08</td>
+      <td>low</td>
       <td>2.85</td>
       <td>1.70</td>
     </tr>
@@ -2128,11 +3118,15 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>10.35</td>
       <td>10.35</td>
+      <td>10.35</td>
+      <td>low</td>
       <td>2.90</td>
       <td>1.30</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -2152,6 +3146,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>21.56</td>
       <td>21.56</td>
+      <td>21.56</td>
+      <td>high</td>
       <td>7.20</td>
       <td>2.40</td>
     </tr>
@@ -2164,6 +3160,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>29.26</td>
       <td>29.26</td>
+      <td>29.26</td>
+      <td>high</td>
       <td>7.20</td>
       <td>3.00</td>
     </tr>
@@ -2176,6 +3174,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>20.02</td>
       <td>20.02</td>
+      <td>20.02</td>
+      <td>high</td>
       <td>7.30</td>
       <td>2.45</td>
     </tr>
@@ -2188,6 +3188,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>23.10</td>
       <td>23.10</td>
+      <td>23.10</td>
+      <td>high</td>
       <td>6.90</td>
       <td>2.65</td>
     </tr>
@@ -2200,12 +3202,14 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>30.02</td>
       <td>30.02</td>
+      <td>30.02</td>
+      <td>high</td>
       <td>7.15</td>
       <td>2.90</td>
     </tr>
   </tbody>
 </table>
-<p>150 rows × 9 columns</p>
+<p>150 rows × 11 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -2238,8 +3242,10 @@ Length: 150, dtype: float64
       <th>petal_length</th>
       <th>petal_width</th>
       <th>species</th>
-      <th>sepal_volume</th>
-      <th>sepal_volume_2</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
       <th>avg_length</th>
       <th>avg_width</th>
     </tr>
@@ -2254,6 +3260,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>30.02</td>
       <td>30.02</td>
+      <td>30.02</td>
+      <td>high</td>
       <td>7.15</td>
       <td>2.90</td>
     </tr>
@@ -2266,6 +3274,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>20.02</td>
       <td>20.02</td>
+      <td>20.02</td>
+      <td>high</td>
       <td>7.30</td>
       <td>2.45</td>
     </tr>
@@ -2278,6 +3288,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>23.10</td>
       <td>23.10</td>
+      <td>23.10</td>
+      <td>high</td>
       <td>6.90</td>
       <td>2.65</td>
     </tr>
@@ -2290,6 +3302,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>29.26</td>
       <td>29.26</td>
+      <td>29.26</td>
+      <td>high</td>
       <td>7.20</td>
       <td>3.00</td>
     </tr>
@@ -2302,11 +3316,15 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>21.56</td>
       <td>21.56</td>
+      <td>21.56</td>
+      <td>high</td>
       <td>7.20</td>
       <td>2.40</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -2326,6 +3344,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>10.35</td>
       <td>10.35</td>
+      <td>10.35</td>
+      <td>low</td>
       <td>2.90</td>
       <td>1.30</td>
     </tr>
@@ -2338,6 +3358,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>12.76</td>
       <td>12.76</td>
+      <td>12.76</td>
+      <td>low</td>
       <td>2.90</td>
       <td>1.55</td>
     </tr>
@@ -2350,6 +3372,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>13.20</td>
       <td>13.20</td>
+      <td>13.20</td>
+      <td>low</td>
       <td>2.85</td>
       <td>1.60</td>
     </tr>
@@ -2362,6 +3386,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>14.08</td>
       <td>14.08</td>
+      <td>14.08</td>
+      <td>low</td>
       <td>2.85</td>
       <td>1.70</td>
     </tr>
@@ -2374,23 +3400,25 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>12.90</td>
       <td>12.90</td>
+      <td>12.90</td>
+      <td>low</td>
       <td>2.70</td>
       <td>1.55</td>
     </tr>
   </tbody>
 </table>
-<p>150 rows × 9 columns</p>
+<p>150 rows × 11 columns</p>
 </div></div></div>
 </div>
 </section>
 <section id="by-index-sort-index">
 <h3>By index: <code class="docutils literal notranslate"><span class="pre">sort_index()</span></code><a class="headerlink" href="#by-index-sort-index" title="Link to this heading">#</a></h3>
 <p>You can customize this sorting with the following parameters:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- `axis` along which to sort. The value 0 identifies the rows, and 1 identifies the columns.
-- `ascending` takes True or False
-- `inplace` will save sorted values into the df
-</pre></div>
-</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">axis</span></code> along which to sort. The value 0 identifies the rows, and 1 identifies the columns.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ascending</span></code> takes True or False</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inplace</span></code> will save sorted values into the df</p></li>
+</ul>
 <p>Look at its <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_index.html">documentation</a> for further details.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2422,8 +3450,10 @@ Length: 150, dtype: float64
       <th>petal_length</th>
       <th>petal_width</th>
       <th>species</th>
-      <th>sepal_volume</th>
-      <th>sepal_volume_2</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
       <th>avg_length</th>
       <th>avg_width</th>
     </tr>
@@ -2438,6 +3468,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>17.85</td>
       <td>17.85</td>
+      <td>17.85</td>
+      <td>high</td>
       <td>3.25</td>
       <td>1.85</td>
     </tr>
@@ -2450,6 +3482,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>14.70</td>
       <td>14.70</td>
+      <td>14.70</td>
+      <td>low</td>
       <td>3.15</td>
       <td>1.60</td>
     </tr>
@@ -2462,6 +3496,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>15.04</td>
       <td>15.04</td>
+      <td>15.04</td>
+      <td>high</td>
       <td>3.00</td>
       <td>1.70</td>
     </tr>
@@ -2474,6 +3510,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>14.26</td>
       <td>14.26</td>
+      <td>14.26</td>
+      <td>low</td>
       <td>3.05</td>
       <td>1.65</td>
     </tr>
@@ -2486,11 +3524,15 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>18.00</td>
       <td>18.00</td>
+      <td>18.00</td>
+      <td>high</td>
       <td>3.20</td>
       <td>1.90</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -2510,6 +3552,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>20.10</td>
       <td>20.10</td>
+      <td>20.10</td>
+      <td>high</td>
       <td>5.95</td>
       <td>2.65</td>
     </tr>
@@ -2522,6 +3566,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>15.75</td>
       <td>15.75</td>
+      <td>15.75</td>
+      <td>high</td>
       <td>5.65</td>
       <td>2.20</td>
     </tr>
@@ -2534,6 +3580,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>19.50</td>
       <td>19.50</td>
+      <td>19.50</td>
+      <td>high</td>
       <td>5.85</td>
       <td>2.50</td>
     </tr>
@@ -2546,6 +3594,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>21.08</td>
       <td>21.08</td>
+      <td>21.08</td>
+      <td>high</td>
       <td>5.80</td>
       <td>2.85</td>
     </tr>
@@ -2558,12 +3608,14 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>17.70</td>
       <td>17.70</td>
+      <td>17.70</td>
+      <td>high</td>
       <td>5.50</td>
       <td>2.40</td>
     </tr>
   </tbody>
 </table>
-<p>150 rows × 9 columns</p>
+<p>150 rows × 11 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -2596,8 +3648,10 @@ Length: 150, dtype: float64
       <th>petal_length</th>
       <th>petal_width</th>
       <th>species</th>
-      <th>sepal_volume</th>
-      <th>sepal_volume_2</th>
+      <th>sepal_surface</th>
+      <th>sepal_surface_2</th>
+      <th>sepal_surface_loc</th>
+      <th>sepal_surface_bin</th>
       <th>avg_length</th>
       <th>avg_width</th>
     </tr>
@@ -2612,6 +3666,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>17.70</td>
       <td>17.70</td>
+      <td>17.70</td>
+      <td>high</td>
       <td>5.50</td>
       <td>2.40</td>
     </tr>
@@ -2624,6 +3680,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>21.08</td>
       <td>21.08</td>
+      <td>21.08</td>
+      <td>high</td>
       <td>5.80</td>
       <td>2.85</td>
     </tr>
@@ -2636,6 +3694,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>19.50</td>
       <td>19.50</td>
+      <td>19.50</td>
+      <td>high</td>
       <td>5.85</td>
       <td>2.50</td>
     </tr>
@@ -2648,6 +3708,8 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>15.75</td>
       <td>15.75</td>
+      <td>15.75</td>
+      <td>high</td>
       <td>5.65</td>
       <td>2.20</td>
     </tr>
@@ -2660,11 +3722,15 @@ Length: 150, dtype: float64
       <td>virginica</td>
       <td>20.10</td>
       <td>20.10</td>
+      <td>20.10</td>
+      <td>high</td>
       <td>5.95</td>
       <td>2.65</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -2684,6 +3750,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>18.00</td>
       <td>18.00</td>
+      <td>18.00</td>
+      <td>high</td>
       <td>3.20</td>
       <td>1.90</td>
     </tr>
@@ -2696,6 +3764,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>14.26</td>
       <td>14.26</td>
+      <td>14.26</td>
+      <td>low</td>
       <td>3.05</td>
       <td>1.65</td>
     </tr>
@@ -2708,6 +3778,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>15.04</td>
       <td>15.04</td>
+      <td>15.04</td>
+      <td>high</td>
       <td>3.00</td>
       <td>1.70</td>
     </tr>
@@ -2720,6 +3792,8 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>14.70</td>
       <td>14.70</td>
+      <td>14.70</td>
+      <td>low</td>
       <td>3.15</td>
       <td>1.60</td>
     </tr>
@@ -2732,25 +3806,65 @@ Length: 150, dtype: float64
       <td>setosa</td>
       <td>17.85</td>
       <td>17.85</td>
+      <td>17.85</td>
+      <td>high</td>
       <td>3.25</td>
       <td>1.85</td>
     </tr>
   </tbody>
 </table>
-<p>150 rows × 9 columns</p>
+<p>150 rows × 11 columns</p>
 </div></div></div>
 </div>
 </section>
 </section>
 <section id="practice-exercises">
 <h2>Practice exercises<a class="headerlink" href="#practice-exercises" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">apply()</span></code> to append a new column that is the minimum of (petal_length, petal_width)</p></li>
-</ol>
+<div class="exercise admonition" id="pandas9">
+
+<p class="admonition-title"><span class="caption-number">Exercise 44 </span></p>
+<section id="exercise-content">
+<p>1- Create a new column named <code class="docutils literal notranslate"><span class="pre">petal_length_cat</span></code>, where <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> values greater than the dataset’s average are labelled as “high” and those equal to or below the average are labeled as “low.” Then, print the count of occurrences for each category in this column.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers from here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="pandas10">
+
+<p class="admonition-title"><span class="caption-number">Exercise 45 </span></p>
+<section id="exercise-content">
+<p>2- Create new columns for both sepals and petals representing their aspect ratio (length divided by width). Use <code class="docutils literal notranslate"><span class="pre">assign</span></code> for this.</p>
+<p>Generate a scatterplot to show the relationship between these two new columns, and calculate the correlation coefficient between them.</p>
+<p>Additionally, create a boxplot to illustrate differences in each of these new variables across species.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers from here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="pandas11">
+
+<p class="admonition-title"><span class="caption-number">Exercise 46 </span></p>
+<section id="exercise-content">
+<p>3- Use <code class="docutils literal notranslate"><span class="pre">apply()</span></code> to append a new column that is the minimum of (petal_length, petal_width).</p>
 <p>Print the head, tail of the new dataframe to check things look correct.</p>
-<ol class="arabic simple" start="2">
-<li><p>Create a categorical Create a new column that categorizes age (e.g., &lt;25 as ‘Young’, &gt;=25 as ‘Adult’). Set and reset an index on a non-unique column, exploring how indexing can help in data analysis.</p></li>
-</ol>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers from here</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -2784,6 +3898,15 @@ Length: 150, dtype: float64
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="044-PandasII-exploration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pandas: Data Exploration</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -2807,6 +3930,7 @@ Length: 150, dtype: float64
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-columns">Creating columns</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-brackets">Using brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-loc">Using <code class="docutils literal notranslate"><span class="pre">loc[]</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-assign">Using <code class="docutils literal notranslate"><span class="pre">assign</span></code></a></li>
 </ul>
 </li>

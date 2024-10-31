@@ -13,12 +13,12 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-iris_df.'sepal_volume_3' = iris_df.sepal_length + iris_df.sepal_width
+iris_df.'sepal_surface_3' = iris_df.sepal_length * iris_df.sepal_width
 ------------------
 
 
-[0;36m  Cell [0;32mIn[12], line 1[0;36m[0m
-[0;31m    iris_df.'sepal_volume_3' = iris_df.sepal_length + iris_df.sepal_width[0m
+[0;36m  Cell [0;32mIn[13], line 1[0;36m[0m
+[0;31m    iris_df.'sepal_surface_3' = iris_df.sepal_length * iris_df.sepal_width[0m
 [0m            ^[0m
 [0;31mSyntaxError[0m[0;31m:[0m invalid syntax
 

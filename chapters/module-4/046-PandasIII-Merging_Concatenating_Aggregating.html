@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -210,6 +210,7 @@
 <li class="toctree-l1"><a class="reference internal" href="042-numpyII.html">NumPy (Part II)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="043-PandasI-Introduction.html">Introduction to Pandas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="044-PandasII-exploration.html">Pandas: Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="045-PandasIII-manipulation.html">Pandas: Data Manipulation</a></li>
 </ul>
 
     </div>
@@ -359,16 +360,18 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Concatenating and Merging</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pd-concat"><code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge"><code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concate-pd-concat">Concate: <code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-merge">merge: <code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation">Aggregation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#groupby"><code class="docutils literal notranslate"><span class="pre">.groupby()</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-aggregation">Data Aggregation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-by-groupby">Aggregation by <code class="docutils literal notranslate"><span class="pre">.groupby()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pd-pivot-table"><code class="docutils literal notranslate"><span class="pre">pd.pivot_table()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-data">Reshaping Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape"><code class="docutils literal notranslate"><span class="pre">.reshape()</span></code></a></li>
 </ul>
 
             </nav>
@@ -518,8 +521,8 @@ document.write(`
 </div>
 <section id="concatenating-and-merging">
 <h1>Concatenating and Merging<a class="headerlink" href="#concatenating-and-merging" title="Link to this heading">#</a></h1>
-<section id="pd-concat">
-<h2><code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code><a class="headerlink" href="#pd-concat" title="Link to this heading">#</a></h2>
+<section id="concate-pd-concat">
+<h2>Concate: <code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code><a class="headerlink" href="#concate-pd-concat" title="Link to this heading">#</a></h2>
 <p>Concatenate pandas objects along an axis</p>
 <p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.concat.html">Details</a></p>
 <p>Create two dfs and vertically stack them</p>
@@ -541,22 +544,22 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          0         1         2         3
-0  0.423961  0.710109  1.161766 -0.851164
-1 -0.685333  0.118576 -0.403060 -0.516236
-2  0.416619  0.109273 -1.695289  0.945754
+0 -0.974224 -0.361428 -1.260157 -0.425635
+1  0.917031 -0.046927  1.048192  0.075938
+2  0.624287 -0.835596 -2.225162 -2.354256
 ---------------------------------------------
           0         1         2         3
-0 -0.181073 -0.989443 -1.328233 -0.206291
-1  1.435843 -0.829319  0.720960  0.394315
-2  0.611838  0.641097  1.345133 -0.617344
+0 -0.367434 -2.306643 -1.030095 -0.373502
+1 -0.179604 -1.704118  0.127096  0.098003
+2  2.444379  0.584522 -0.991921 -0.355007
 ---------------------------------------------
           0         1         2         3
-0  0.423961  0.710109  1.161766 -0.851164
-1 -0.685333  0.118576 -0.403060 -0.516236
-2  0.416619  0.109273 -1.695289  0.945754
-0 -0.181073 -0.989443 -1.328233 -0.206291
-1  1.435843 -0.829319  0.720960  0.394315
-2  0.611838  0.641097  1.345133 -0.617344
+0 -0.974224 -0.361428 -1.260157 -0.425635
+1  0.917031 -0.046927  1.048192  0.075938
+2  0.624287 -0.835596 -2.225162 -2.354256
+0 -0.367434 -2.306643 -1.030095 -0.373502
+1 -0.179604 -1.704118  0.127096  0.098003
+2  2.444379  0.584522 -0.991921 -0.355007
 </pre></div>
 </div>
 </div>
@@ -608,36 +611,36 @@ This assumes that the indexes represent IDs of specific things or events</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.423961</td>
-      <td>0.710109</td>
-      <td>1.161766</td>
-      <td>-0.851164</td>
-      <td>-0.181073</td>
-      <td>-0.989443</td>
-      <td>-1.328233</td>
-      <td>-0.206291</td>
+      <td>-0.974224</td>
+      <td>-0.361428</td>
+      <td>-1.260157</td>
+      <td>-0.425635</td>
+      <td>-0.367434</td>
+      <td>-2.306643</td>
+      <td>-1.030095</td>
+      <td>-0.373502</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.685333</td>
-      <td>0.118576</td>
-      <td>-0.403060</td>
-      <td>-0.516236</td>
-      <td>1.435843</td>
-      <td>-0.829319</td>
-      <td>0.720960</td>
-      <td>0.394315</td>
+      <td>0.917031</td>
+      <td>-0.046927</td>
+      <td>1.048192</td>
+      <td>0.075938</td>
+      <td>-0.179604</td>
+      <td>-1.704118</td>
+      <td>0.127096</td>
+      <td>0.098003</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.416619</td>
-      <td>0.109273</td>
-      <td>-1.695289</td>
-      <td>0.945754</td>
-      <td>0.611838</td>
-      <td>0.641097</td>
-      <td>1.345133</td>
-      <td>-0.617344</td>
+      <td>0.624287</td>
+      <td>-0.835596</td>
+      <td>-2.225162</td>
+      <td>-2.354256</td>
+      <td>2.444379</td>
+      <td>0.584522</td>
+      <td>-0.991921</td>
+      <td>-0.355007</td>
     </tr>
   </tbody>
 </table>
@@ -677,24 +680,24 @@ This assumes that the indexes represent IDs of specific things or events</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.423961</td>
-      <td>0.710109</td>
-      <td>1.161766</td>
-      <td>-0.851164</td>
+      <td>-0.974224</td>
+      <td>-0.361428</td>
+      <td>-1.260157</td>
+      <td>-0.425635</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.685333</td>
-      <td>0.118576</td>
-      <td>-0.403060</td>
-      <td>-0.516236</td>
+      <td>0.917031</td>
+      <td>-0.046927</td>
+      <td>1.048192</td>
+      <td>0.075938</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.416619</td>
-      <td>0.109273</td>
-      <td>-1.695289</td>
-      <td>0.945754</td>
+      <td>0.624287</td>
+      <td>-0.835596</td>
+      <td>-2.225162</td>
+      <td>-2.354256</td>
     </tr>
   </tbody>
 </table>
@@ -734,32 +737,32 @@ This assumes that the indexes represent IDs of specific things or events</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.181073</td>
-      <td>-0.989443</td>
-      <td>-1.328233</td>
-      <td>-0.206291</td>
+      <td>-0.367434</td>
+      <td>-2.306643</td>
+      <td>-1.030095</td>
+      <td>-0.373502</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1.435843</td>
-      <td>-0.829319</td>
-      <td>0.720960</td>
-      <td>0.394315</td>
+      <td>-0.179604</td>
+      <td>-1.704118</td>
+      <td>0.127096</td>
+      <td>0.098003</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.611838</td>
-      <td>0.641097</td>
-      <td>1.345133</td>
-      <td>-0.617344</td>
+      <td>2.444379</td>
+      <td>0.584522</td>
+      <td>-0.991921</td>
+      <td>-0.355007</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 </section>
-<section id="merge">
-<h2><code class="docutils literal notranslate"><span class="pre">merge()</span></code><a class="headerlink" href="#merge" title="Link to this heading">#</a></h2>
+<section id="merge-merge">
+<h2>merge: <code class="docutils literal notranslate"><span class="pre">merge()</span></code><a class="headerlink" href="#merge-merge" title="Link to this heading">#</a></h2>
 <p>SQL-style joining of tables (DataFrames)</p>
 <p>Important parameters include:</p>
 <ul class="simple">
@@ -818,16 +821,16 @@ The <code class="docutils literal notranslate"><span class="pre">key</span></cod
 <li><p>Use <strong>concat</strong> to combine based on shared indexes or columns</p></li>
 </ul>
 </section>
-<section id="aggregation">
-<h1>Aggregation<a class="headerlink" href="#aggregation" title="Link to this heading">#</a></h1>
+<section id="data-aggregation">
+<h1>Data Aggregation<a class="headerlink" href="#data-aggregation" title="Link to this heading">#</a></h1>
 <p>Involves one or more of:</p>
 <ul class="simple">
 <li><p>splitting the data into groups</p></li>
 <li><p>applying a function to each group</p></li>
 <li><p>combining results</p></li>
 </ul>
-<section id="groupby">
-<h2><code class="docutils literal notranslate"><span class="pre">.groupby()</span></code><a class="headerlink" href="#groupby" title="Link to this heading">#</a></h2>
+<section id="aggregation-by-groupby">
+<h2>Aggregation by <code class="docutils literal notranslate"><span class="pre">.groupby()</span></code><a class="headerlink" href="#aggregation-by-groupby" title="Link to this heading">#</a></h2>
 <p>Compute mean of each column, grouped (separately) by species</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -942,6 +945,52 @@ The <code class="docutils literal notranslate"><span class="pre">key</span></cod
 </div>
 </section>
 </section>
+<section id="reshaping-data">
+<h1>Reshaping Data<a class="headerlink" href="#reshaping-data" title="Link to this heading">#</a></h1>
+</section>
+<section id="reshape">
+<h1><code class="docutils literal notranslate"><span class="pre">.reshape()</span></code><a class="headerlink" href="#reshape" title="Link to this heading">#</a></h1>
+<p>Changes the object’s shape</p>
+<p>We illustrate creating pandas Series, extracting array of length 6, and reshaping to 3x2 array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a series</span>
+<span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+
+<span class="c1"># extract values</span>
+<span class="n">vals</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">values</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;orig data:&#39;</span><span class="p">,</span> <span class="n">vals</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;orig type:&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;orig shape:&#39;</span><span class="p">,</span> <span class="n">vals</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># reshaping series</span>
+<span class="n">reshaped_vals</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> reshaped vals:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reshaped_vals</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> new type:&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">reshaped_vals</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;new shape:&#39;</span><span class="p">,</span> <span class="n">reshaped_vals</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>orig data: [1 1 2 3 5 8]
+orig type: &lt;class &#39;numpy.ndarray&#39;&gt;
+orig shape: (6,)
+
+ reshaped vals:
+[[1 1]
+ [2 3]
+ [5 8]]
+
+ new type: &lt;class &#39;numpy.ndarray&#39;&gt;
+new shape: (3, 2)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -990,16 +1039,18 @@ The <code class="docutils literal notranslate"><span class="pre">key</span></cod
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Concatenating and Merging</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pd-concat"><code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge"><code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concate-pd-concat">Concate: <code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-merge">merge: <code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation">Aggregation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#groupby"><code class="docutils literal notranslate"><span class="pre">.groupby()</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-aggregation">Data Aggregation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-by-groupby">Aggregation by <code class="docutils literal notranslate"><span class="pre">.groupby()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pd-pivot-table"><code class="docutils literal notranslate"><span class="pre">pd.pivot_table()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-data">Reshaping Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reshape"><code class="docutils literal notranslate"><span class="pre">.reshape()</span></code></a></li>
 </ul>
 
   </nav></div>
