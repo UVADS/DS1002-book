@@ -1,0 +1,1986 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pandas: Advanced Data Manipulation and Aggregation &#8212; DS-1002 Programming for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-4/046-PandasIV-advanced_manipulation_aggregation';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Pandas: Introduction to Feature Engineering" href="047-PandasV-Intro_Feature_Engineering.html" />
+    <link rel="prev" title="Pandas: Data Manipulation" href="045-PandasIII-manipulation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="DS-1002 Programming for Data Science - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="DS-1002 Programming for Data Science - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to DS-1002
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 1: Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-1/about_course.html">Introduction</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../module-1/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/programming.html">Brief introduction to programming languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/jupyter_notebooks.html">Jupyter Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/your_first_program.html">Your first Python program!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 2: Python (Essential)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-2/021-variables.html">Variables and data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/022-operators.html">Operators and Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/023-strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/024-structures.html">Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/025-conditional.html">Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/026-iterables_and_iterators.html">Iterables and Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/027-functions.html">Functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 3: Python II (Advance)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-3/031-errors_and_exceptions.html">Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-3/032-classes.html">Introduction to object-oriented programming (OOP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-3/033-reading_writing_files.html">Reading and Writing Files</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 4: Python for Data Science</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="041-numpyI.html">NumPy (Part I)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042-numpyII.html">NumPy (Part II)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043-PandasI-Introduction.html">Introduction to Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044-PandasII-exploration.html">Pandas: Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="045-PandasIII-manipulation.html">Pandas: Data Manipulation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pandas: Advanced Data Manipulation and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="047-PandasV-Intro_Feature_Engineering.html">Pandas: Introduction to Feature Engineering</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/module-4/046-PandasIV-advanced_manipulation_aggregation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pandas: Advanced Data Manipulation and Aggregation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-dataframes">Combine dataframes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concate-pd-concat">Concate: <code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-pd-merge">Merge: <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join-join">Join: <code class="docutils literal notranslate"><span class="pre">join()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-aggregation">Data Aggregation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#groupby-method"><code class="docutils literal notranslate"><span class="pre">groupby()</span></code> method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pd-pivot-table-function"><code class="docutils literal notranslate"><span class="pre">pd.pivot_table()</span></code> function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-data">Reshaping Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pd-melt"><code class="docutils literal notranslate"><span class="pre">pd.melt()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">Practice exercises</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pandas-advanced-data-manipulation-and-aggregation">
+<h1>Pandas: Advanced Data Manipulation and Aggregation<a class="headerlink" href="#pandas-advanced-data-manipulation-and-aggregation" title="Link to this heading">#</a></h1>
+<p><img alt="" src="https://ds1002-resources.s3.amazonaws.com/images/workflow.png" /></p>
+<p>In this lesson, you will learn advanced data manipulation techniques using Pandas. Specifically, we will cover:</p>
+<ul class="simple">
+<li><p>Combining dataframes</p></li>
+<li><p>Data aggregation</p></li>
+<li><p>Data reshaping</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load dependencies (NumPy and Pandas) </span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will keep using the Iris dataset for this tutorial</span>
+<span class="n">iris_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/mwaskom/seaborn-data/refs/heads/master/iris.csv&quot;</span><span class="p">)</span>
+<span class="n">iris_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 5 columns</p>
+</div></div></div>
+</div>
+<section id="combine-dataframes">
+<h2>Combine dataframes<a class="headerlink" href="#combine-dataframes" title="Link to this heading">#</a></h2>
+<section id="concate-pd-concat">
+<h3>Concate: <code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code><a class="headerlink" href="#concate-pd-concat" title="Link to this heading">#</a></h3>
+<p>It allows you to concatenate pandas objects along a particular axis. See <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.concat.html">documentation</a> for further details.</p>
+<ul class="simple">
+<li><p><strong>Concat rows</strong></p></li>
+</ul>
+<p>Here we would be combining two datasets with the same features (columns) but different observations.</p>
+<p><img alt="" src="https://pandas.pydata.org/docs/_images/merging_concat_basic.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two dfs and vertically stack them.</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">])</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">45</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+
+<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">45</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          a         b         c         d
+0  2.185435  1.002872 -0.029634  2.028856
+1 -0.875013 -1.323426 -0.517671 -0.519281
+2 -0.655456  0.708395 -0.419140  1.257233
+---------------------------------------------
+          a         b         c         d
+0 -0.640966 -2.015608 -0.241571 -0.303553
+1 -1.782508 -0.317744 -0.998355 -0.939285
+2  0.455360 -0.545225  0.459453  0.282877
+---------------------------------------------
+          a         b         c         d
+0  2.185435  1.002872 -0.029634  2.028856
+1 -0.875013 -1.323426 -0.517671 -0.519281
+2 -0.655456  0.708395 -0.419140  1.257233
+0 -0.640966 -2.015608 -0.241571 -0.303553
+1 -1.782508 -0.317744 -0.998355 -0.939285
+2  0.455360 -0.545225  0.459453  0.282877
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Concat columns</strong>.</p></li>
+</ul>
+<p>Here our datasets have the same IDs, for example, subjects or time points, but different measures (columns).</p>
+<p><img alt="" src="https://pandas.pydata.org/docs/_images/merging_concat_axis1_join_axes.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two dfs and vertically stack them.</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">])</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">])</span>
+
+<span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span><span class="n">df2</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">df4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.189000</td>
+      <td>-1.051835</td>
+      <td>0.675315</td>
+      <td>0.983315</td>
+      <td>-0.667326</td>
+      <td>-0.367171</td>
+      <td>-0.650382</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.819721</td>
+      <td>0.084818</td>
+      <td>0.254183</td>
+      <td>0.300219</td>
+      <td>1.210534</td>
+      <td>0.201252</td>
+      <td>-0.409164</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.911595</td>
+      <td>-1.838310</td>
+      <td>-0.582055</td>
+      <td>-0.404169</td>
+      <td>1.912954</td>
+      <td>0.288270</td>
+      <td>1.105270</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="merge-pd-merge">
+<h3>Merge: <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code><a class="headerlink" href="#merge-pd-merge" title="Link to this heading">#</a></h3>
+<p>SQL-style joining of tables (dataframes)</p>
+<p>Important parameters include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">how</span></code> : type of merge {‘left’, ‘right’, ‘outer’, ‘inner’, ‘cross’}, default ‘inner’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">on</span></code>  : names to join on. Normally it indicates the name of the column for matching up the observations.</p></li>
+</ul>
+<p>See <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html">documentation</a> for further details.</p>
+<p><img alt="" src="https://pandas.pydata.org/docs/_images/merging_merge_on_key.png" /></p>
+<div class="alert alert-block alert-info"> <b>Personal note</b>: This is probably one of the most useful functions in Pandas. I use it almost in any project where I have to combine different datasets (very common!)</div><p>Look at the follow example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two tables, `left` and `right`.</span>
+<span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;jamie&quot;</span><span class="p">,</span> <span class="s2">&quot;bill&quot;</span><span class="p">],</span> <span class="s2">&quot;lval&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">22</span><span class="p">]})</span>
+<span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;jamie&quot;</span><span class="p">,</span> <span class="s2">&quot;bill&quot;</span><span class="p">,</span> <span class="s2">&quot;asher&quot;</span><span class="p">],</span> <span class="s2">&quot;rval&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">]})</span>
+
+<span class="c1"># Right join them on `key`, which means including all records from table on right.</span>
+<span class="n">joined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---left&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">---right&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">---joined&#39;</span><span class="p">)</span>
+<span class="n">joined</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---left
+     key  lval
+0  jamie    15
+1   bill    22
+
+---right
+     key  rval
+0  jamie     4
+1   bill     5
+2  asher     8
+
+---joined
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>lval</th>
+      <th>rval</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>jamie</td>
+      <td>15.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>bill</td>
+      <td>22.0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>asher</td>
+      <td>NaN</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare to left join</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;key&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>lval</th>
+      <th>rval</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>jamie</td>
+      <td>15</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>bill</td>
+      <td>22</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="join-join">
+<h3>Join: <code class="docutils literal notranslate"><span class="pre">join()</span></code><a class="headerlink" href="#join-join" title="Link to this heading">#</a></h3>
+<p>An SQL-like joiner, but this one takes advantage of indexes.</p>
+<p>Give our dataframes indexes and distinctive columns names.</p>
+<p>See <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html">documentation</a> for further details.</p>
+<p><img alt="" src="https://pandas.pydata.org/docs/_images/merging_join.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="s2">&quot;A1&quot;</span><span class="p">,</span> <span class="s2">&quot;A2&quot;</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B0&quot;</span><span class="p">,</span> <span class="s2">&quot;B1&quot;</span><span class="p">,</span> <span class="s2">&quot;B2&quot;</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;K0&quot;</span><span class="p">,</span> <span class="s2">&quot;K1&quot;</span><span class="p">,</span> <span class="s2">&quot;K2&quot;</span><span class="p">])</span>
+   
+<span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="s2">&quot;C3&quot;</span><span class="p">],</span> <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;D0&quot;</span><span class="p">,</span> <span class="s2">&quot;D2&quot;</span><span class="p">,</span> <span class="s2">&quot;D3&quot;</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;K0&quot;</span><span class="p">,</span> <span class="s2">&quot;K2&quot;</span><span class="p">,</span> <span class="s2">&quot;K3&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">right</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C</th>
+      <th>D</th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>K0</th>
+      <td>C0</td>
+      <td>D0</td>
+      <td>A0</td>
+      <td>B0</td>
+    </tr>
+    <tr>
+      <th>K2</th>
+      <td>C2</td>
+      <td>D2</td>
+      <td>A2</td>
+      <td>B2</td>
+    </tr>
+    <tr>
+      <th>K3</th>
+      <td>C3</td>
+      <td>D3</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>K0</th>
+      <td>A0</td>
+      <td>B0</td>
+      <td>C0</td>
+      <td>D0</td>
+    </tr>
+    <tr>
+      <th>K1</th>
+      <td>A1</td>
+      <td>B1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>K2</th>
+      <td>A2</td>
+      <td>B2</td>
+      <td>C2</td>
+      <td>D2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use <strong>concat</strong> to combine based on shared indexes or columns.</p></li>
+<li><p>Use <strong>merge</strong> if you want to combine datasets given a column (e.g. subject records).</p></li>
+<li><p>Use <strong>join</strong> if you have shared indexes.</p></li>
+</ul>
+</section>
+</section>
+<section id="data-aggregation">
+<h2>Data Aggregation<a class="headerlink" href="#data-aggregation" title="Link to this heading">#</a></h2>
+<p>Involves one or more of:</p>
+<ul class="simple">
+<li><p>Splitting the data into groups</p></li>
+<li><p>Applying a function to each group</p></li>
+<li><p>Combining results</p></li>
+</ul>
+<section id="groupby-method">
+<h3><code class="docutils literal notranslate"><span class="pre">groupby()</span></code> method<a class="headerlink" href="#groupby-method" title="Link to this heading">#</a></h3>
+<p>It allows you to compute summary statistics (e.g., sum, mean) on groups of data, which is essential for summarizing and exploring grouped data.</p>
+<ul class="simple">
+<li><p><strong>Basic case</strong>: <code class="docutils literal notranslate"><span class="pre">dataframe.groupby(&quot;column_name&quot;).aggregation</span> <span class="pre">method</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataframe --&gt; group by species --&gt; aggregate through the mean</span>
+<span class="n">iris_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+    </tr>
+    <tr>
+      <th>species</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>setosa</th>
+      <td>5.006</td>
+      <td>3.428</td>
+      <td>1.462</td>
+      <td>0.246</td>
+    </tr>
+    <tr>
+      <th>versicolor</th>
+      <td>5.936</td>
+      <td>2.770</td>
+      <td>4.260</td>
+      <td>1.326</td>
+    </tr>
+    <tr>
+      <th>virginica</th>
+      <td>6.588</td>
+      <td>2.974</td>
+      <td>5.552</td>
+      <td>2.026</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataframe --&gt; group by species --&gt; aggregate through the minimum</span>
+<span class="n">iris_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+    </tr>
+    <tr>
+      <th>species</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>setosa</th>
+      <td>4.3</td>
+      <td>2.3</td>
+      <td>1.0</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th>versicolor</th>
+      <td>4.9</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>virginica</th>
+      <td>4.9</td>
+      <td>2.2</td>
+      <td>4.5</td>
+      <td>1.4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>You can find a full list of aggregation methods here: <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html#built-in-aggregation-methods">https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html#built-in-aggregation-methods</a></p>
+<ul class="simple">
+<li><p><strong>More than one aggregation method</strong>: <code class="docutils literal notranslate"><span class="pre">agg()</span></code> method on the grouped data frame</p></li>
+</ul>
+<p>See <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html#the-aggregate-method">https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html#the-aggregate-method</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="4" halign="left">sepal_length</th>
+      <th colspan="4" halign="left">sepal_width</th>
+      <th colspan="4" halign="left">petal_length</th>
+      <th colspan="4" halign="left">petal_width</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>count</th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>count</th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>count</th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>count</th>
+    </tr>
+    <tr>
+      <th>species</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>setosa</th>
+      <td>4.3</td>
+      <td>5.006</td>
+      <td>5.8</td>
+      <td>50</td>
+      <td>2.3</td>
+      <td>3.428</td>
+      <td>4.4</td>
+      <td>50</td>
+      <td>1.0</td>
+      <td>1.462</td>
+      <td>1.9</td>
+      <td>50</td>
+      <td>0.1</td>
+      <td>0.246</td>
+      <td>0.6</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>versicolor</th>
+      <td>4.9</td>
+      <td>5.936</td>
+      <td>7.0</td>
+      <td>50</td>
+      <td>2.0</td>
+      <td>2.770</td>
+      <td>3.4</td>
+      <td>50</td>
+      <td>3.0</td>
+      <td>4.260</td>
+      <td>5.1</td>
+      <td>50</td>
+      <td>1.0</td>
+      <td>1.326</td>
+      <td>1.8</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>virginica</th>
+      <td>4.9</td>
+      <td>6.588</td>
+      <td>7.9</td>
+      <td>50</td>
+      <td>2.2</td>
+      <td>2.974</td>
+      <td>3.8</td>
+      <td>50</td>
+      <td>4.5</td>
+      <td>5.552</td>
+      <td>6.9</td>
+      <td>50</td>
+      <td>1.4</td>
+      <td>2.026</td>
+      <td>2.5</td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><strong>Multiple columns</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;petal_width&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;petal_width&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;petal_width_bin&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;high&quot;</span>
+<span class="n">iris_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;petal_width&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">iris_df</span><span class="p">[</span><span class="s2">&quot;petal_width&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;petal_width_bin&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;low&quot;</span>
+
+<span class="n">iris_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_width_bin&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+    </tr>
+    <tr>
+      <th>species</th>
+      <th>petal_width_bin</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>setosa</th>
+      <th>low</th>
+      <td>5.0060</td>
+      <td>3.4280</td>
+      <td>1.4620</td>
+      <td>0.246</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">versicolor</th>
+      <th>high</th>
+      <td>6.0675</td>
+      <td>2.8625</td>
+      <td>4.4225</td>
+      <td>1.400</td>
+    </tr>
+    <tr>
+      <th>low</th>
+      <td>5.4100</td>
+      <td>2.4000</td>
+      <td>3.6100</td>
+      <td>1.030</td>
+    </tr>
+    <tr>
+      <th>virginica</th>
+      <th>high</th>
+      <td>6.5880</td>
+      <td>2.9740</td>
+      <td>5.5520</td>
+      <td>2.026</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><strong>Multiple columns and multiple aggregation methods</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_width_bin&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="4" halign="left">sepal_length</th>
+      <th colspan="4" halign="left">sepal_width</th>
+      <th colspan="4" halign="left">petal_length</th>
+      <th colspan="4" halign="left">petal_width</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>count</th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>count</th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>count</th>
+      <th>min</th>
+      <th>mean</th>
+      <th>max</th>
+      <th>count</th>
+    </tr>
+    <tr>
+      <th>species</th>
+      <th>petal_width_bin</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>setosa</th>
+      <th>low</th>
+      <td>4.3</td>
+      <td>5.0060</td>
+      <td>5.8</td>
+      <td>50</td>
+      <td>2.3</td>
+      <td>3.4280</td>
+      <td>4.4</td>
+      <td>50</td>
+      <td>1.0</td>
+      <td>1.4620</td>
+      <td>1.9</td>
+      <td>50</td>
+      <td>0.1</td>
+      <td>0.246</td>
+      <td>0.6</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">versicolor</th>
+      <th>high</th>
+      <td>5.2</td>
+      <td>6.0675</td>
+      <td>7.0</td>
+      <td>40</td>
+      <td>2.2</td>
+      <td>2.8625</td>
+      <td>3.4</td>
+      <td>40</td>
+      <td>3.6</td>
+      <td>4.4225</td>
+      <td>5.1</td>
+      <td>40</td>
+      <td>1.2</td>
+      <td>1.400</td>
+      <td>1.8</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>low</th>
+      <td>4.9</td>
+      <td>5.4100</td>
+      <td>6.0</td>
+      <td>10</td>
+      <td>2.0</td>
+      <td>2.4000</td>
+      <td>2.7</td>
+      <td>10</td>
+      <td>3.0</td>
+      <td>3.6100</td>
+      <td>4.1</td>
+      <td>10</td>
+      <td>1.0</td>
+      <td>1.030</td>
+      <td>1.1</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>virginica</th>
+      <th>high</th>
+      <td>4.9</td>
+      <td>6.5880</td>
+      <td>7.9</td>
+      <td>50</td>
+      <td>2.2</td>
+      <td>2.9740</td>
+      <td>3.8</td>
+      <td>50</td>
+      <td>4.5</td>
+      <td>5.5520</td>
+      <td>6.9</td>
+      <td>50</td>
+      <td>1.4</td>
+      <td>2.026</td>
+      <td>2.5</td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="pd-pivot-table-function">
+<h3><code class="docutils literal notranslate"><span class="pre">pd.pivot_table()</span></code> function<a class="headerlink" href="#pd-pivot-table-function" title="Link to this heading">#</a></h3>
+<p>This function allows you to apply a function <code class="docutils literal notranslate"><span class="pre">aggfunc</span></code> to selected values grouped by columns. See <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html">documentation</a> for further details.</p>
+<p>Compute mean sepal length for each species:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">iris_df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">],</span> <span class="n">aggfunc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>species</th>
+      <th>setosa</th>
+      <th>versicolor</th>
+      <th>virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>sepal_length</th>
+      <td>5.006</td>
+      <td>5.936</td>
+      <td>6.588</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Similar to:</span>
+<span class="n">iris_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">)[[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>species</th>
+      <th>setosa</th>
+      <th>versicolor</th>
+      <th>virginica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>sepal_length</th>
+      <td>5.006</td>
+      <td>5.936</td>
+      <td>6.588</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="reshaping-data">
+<h2>Reshaping Data<a class="headerlink" href="#reshaping-data" title="Link to this heading">#</a></h2>
+<section id="pd-melt">
+<h3><code class="docutils literal notranslate"><span class="pre">pd.melt()</span></code><a class="headerlink" href="#pd-melt" title="Link to this heading">#</a></h3>
+<p>It allows you to convert a dataframe to long format.</p>
+<p>It is useful to convert a dataframe into a format where one or more columns are identifier variables (id_vars), while all other columns, considered measured variables (value_vars).</p>
+<div class="alert alert-block alert-info"> <b>Personal note</b>: This is probably another useful function in Pandas, which I also use in almost all projects, particularly when I have to plot things (see below).</div><p><img alt="" src="https://pandas.pydata.org/docs/_images/reshaping_melt.png" /></p>
+<p>From our original iris dataframe, say we want our <code class="docutils literal notranslate"><span class="pre">species</span></code> to be identifier variables, while the rest be different measures. We can do the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This just drops the previously binarized petal_width column</span>
+<span class="n">iris_df</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;petal_width_bin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_melted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">iris_df</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">)</span>
+<span class="n">iris_melted</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>variable</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>setosa</td>
+      <td>sepal_length</td>
+      <td>5.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>setosa</td>
+      <td>sepal_length</td>
+      <td>4.9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>setosa</td>
+      <td>sepal_length</td>
+      <td>4.7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>setosa</td>
+      <td>sepal_length</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>setosa</td>
+      <td>sepal_length</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>595</th>
+      <td>virginica</td>
+      <td>petal_width</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <th>596</th>
+      <td>virginica</td>
+      <td>petal_width</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <th>597</th>
+      <td>virginica</td>
+      <td>petal_width</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>598</th>
+      <td>virginica</td>
+      <td>petal_width</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <th>599</th>
+      <td>virginica</td>
+      <td>petal_width</td>
+      <td>1.8</td>
+    </tr>
+  </tbody>
+</table>
+<p>600 rows × 3 columns</p>
+</div></div></div>
+</div>
+<p>This is very useful if we want to plot both measures together, stratified by our identifed variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">iris_melted</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;variable&#39;, ylabel=&#39;value&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/f6e5edee81248bbfa4b1c20bdc900b108f597907984192fde0bd3ff6a7206d29.png" src="../../_images/f6e5edee81248bbfa4b1c20bdc900b108f597907984192fde0bd3ff6a7206d29.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="practice-exercises">
+<h2>Practice exercises<a class="headerlink" href="#practice-exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="pandas12">
+
+<p class="admonition-title"><span class="caption-number">Exercise 47 </span></p>
+<section id="exercise-content">
+<p>1- Given the following two dataframes, <code class="docutils literal notranslate"><span class="pre">df_patients</span></code> and <code class="docutils literal notranslate"><span class="pre">df_conditions</span></code>, representing patient information and their diagnosed conditions in a hospital setting respectively, do the following:</p>
+<p>1.1- Use the join method to add the <code class="docutils literal notranslate"><span class="pre">df_conditions</span></code> dataframe to <code class="docutils literal notranslate"><span class="pre">df_patients</span></code>.
+- See what happens when you use how=’inner’. Which patients remain in the final dataframe?
+- See what happens when you use how=’outer’. How does the result differ?</p>
+<p>1.2- Use the concat function to vertically stack <code class="docutils literal notranslate"><span class="pre">df_patients</span></code> and <code class="docutils literal notranslate"><span class="pre">df_conditions</span></code>. Why concatenating row-wise might not be very useful here?</p>
+<p>1.3- Use concat to combine <code class="docutils literal notranslate"><span class="pre">df_patients</span></code> and <code class="docutils literal notranslate"><span class="pre">df_conditions</span></code> column-wise. See if the result looks similar to join. What do you notice about alignment?</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># DataFrame with patient information</span>
+<span class="n">data_patients</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;patient_id&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">201</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">204</span><span class="p">],</span>
+    <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">70</span><span class="p">],</span>
+    <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">68.0</span><span class="p">,</span> <span class="mf">82.3</span><span class="p">,</span> <span class="mf">74.5</span><span class="p">,</span> <span class="mf">60.2</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df_patients</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_patients</span><span class="p">)</span>
+<span class="n">df_patients</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;patient_id&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># DataFrame with medical condition details</span>
+<span class="n">data_conditions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;patient_id&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">201</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">205</span><span class="p">],</span>
+    <span class="s1">&#39;condition&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Hypertension&#39;</span><span class="p">,</span> <span class="s1">&#39;Diabetes&#39;</span><span class="p">,</span> <span class="s1">&#39;Chronic Kidney Disease&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;treatment_plan&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Medication&#39;</span><span class="p">,</span> <span class="s1">&#39;Insulin Therapy&#39;</span><span class="p">,</span> <span class="s1">&#39;Dialysis&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df_conditions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_conditions</span><span class="p">)</span>
+<span class="n">df_conditions</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;patient_id&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers from here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="pandas13">
+
+<p class="admonition-title"><span class="caption-number">Exercise 48 </span></p>
+<section id="exercise-content">
+<p>Use a pivot table to compute the following statistics on <code class="docutils literal notranslate"><span class="pre">sepal_width</span></code> and <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> grouped by species:</p>
+<ul class="simple">
+<li><p>median</p></li>
+<li><p>mean</p></li>
+</ul>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers from here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="pandas14">
+
+<p class="admonition-title"><span class="caption-number">Exercise 49 </span></p>
+<section id="exercise-content">
+<p>Given the following dataframe, which contains monthly patient visit counts for different departments, reshape it into a long format using <code class="docutils literal notranslate"><span class="pre">pd.melt()</span></code>, so that each row represents the patient count for a department in a particular month. Set the identifier variable as “Department” and the values column as “Patient_Count.” Check the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.melt.html">documentation</a> to figure out how to do this.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Department&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Cardiology&#39;</span><span class="p">,</span> <span class="s1">&#39;Neurology&#39;</span><span class="p">,</span> <span class="s1">&#39;Oncology&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Jan&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">95</span><span class="p">],</span>
+    <span class="s1">&#39;Feb&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+    <span class="s1">&#39;Mar&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">110</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># Create DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Department</th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Cardiology</td>
+      <td>120</td>
+      <td>150</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Neurology</td>
+      <td>80</td>
+      <td>85</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Oncology</td>
+      <td>95</td>
+      <td>100</td>
+      <td>110</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers from here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/module-4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="045-PandasIII-manipulation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pandas: Data Manipulation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="047-PandasV-Intro_Feature_Engineering.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Pandas: Introduction to Feature Engineering</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-dataframes">Combine dataframes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concate-pd-concat">Concate: <code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-pd-merge">Merge: <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join-join">Join: <code class="docutils literal notranslate"><span class="pre">join()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-aggregation">Data Aggregation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#groupby-method"><code class="docutils literal notranslate"><span class="pre">groupby()</span></code> method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pd-pivot-table-function"><code class="docutils literal notranslate"><span class="pre">pd.pivot_table()</span></code> function</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-data">Reshaping Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pd-melt"><code class="docutils literal notranslate"><span class="pre">pd.melt()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">Practice exercises</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Javier Rasero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
