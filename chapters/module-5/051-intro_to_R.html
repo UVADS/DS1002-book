@@ -1,0 +1,854 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to R &#8212; DS-1002 Programming for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-5/051-intro_to_R';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data Structures" href="052-data-structures.html" />
+    <link rel="prev" title="Pandas: Introduction to Feature Engineering" href="../module-4/047-PandasV-Intro_Feature_Engineering.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="DS-1002 Programming for Data Science - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="DS-1002 Programming for Data Science - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to DS-1002
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 1: Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-1/about_course.html">Introduction</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../module-1/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/programming.html">Brief introduction to programming languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/jupyter_notebooks.html">Jupyter Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/your_first_program.html">Your first Python program!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 2: Python (Essential)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-2/021-variables.html">Variables and data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/022-operators.html">Operators and Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/023-strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/024-structures.html">Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/025-conditional.html">Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/026-iterables_and_iterators.html">Iterables and Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/027-functions.html">Functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 3: Python II (Advance)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-3/031-errors_and_exceptions.html">Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-3/032-classes.html">Introduction to object-oriented programming (OOP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-3/033-reading_writing_files.html">Reading and Writing Files</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 4: Python for Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-4/041-numpyI.html">NumPy (Part I)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/042-numpyII.html">NumPy (Part II)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/043-PandasI-Introduction.html">Introduction to Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/044-PandasII-exploration.html">Pandas: Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/045-PandasIII-manipulation.html">Pandas: Data Manipulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/046-PandasIV-advanced_manipulation_aggregation.html">Pandas: Advanced Data Manipulation and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/047-PandasV-Intro_Feature_Engineering.html">Pandas: Introduction to Feature Engineering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 5: R</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="052-data-structures.html">Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="053-Control-structures.html">Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="054-functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="055-tidyverse.html">R for data science</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/module-5/051-intro_to_R.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to R</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-syntax-overview">R Syntax overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hellow-world-program">Hellow world program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characters">Characters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-to-characters">Convert to characters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">Slicing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join-characters">Join characters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#replace-characters">Replace characters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format-strings">Format strings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#math-operators">Math Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">Practice exercises</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-r">
+<h1>Introduction to R<a class="headerlink" href="#introduction-to-r" title="Link to this heading">#</a></h1>
+<img align="right" width="200" height="200" src="https://stamsgroup.com/wp-content/uploads/2020/08/R.programming-300x300.png">
+<p><strong>What is R?</strong> R is a programming language for statistical computing and graphics, developed and maintained by the R Core Team and the R Foundation for Statistical Computing. Initially created at the University of Auckland in 1991, it became an open-source project in 1995. Similar to Python, R is open-source, which allows users to contribute packages that simplify complex tasks—all available for free.</p>
+<p><strong>What are the pros and cons of R?</strong></p>
+<p>There are a few advantages R has over Python in the realm of statistics and data analysis:</p>
+<ul class="simple">
+<li><p>Built for statistics</p></li>
+<li><p>Data visualization</p></li>
+<li><p>Additional statistical packages</p></li>
+<li><p>Data wrangling</p></li>
+<li><p>Academic focus</p></li>
+<li><p>Customizable</p></li>
+</ul>
+<p>Disadvantages of R vs. Python:</p>
+<ul class="simple">
+<li><p>Less readable</p></li>
+<li><p>More difficult to learn well</p></li>
+<li><p>Not as beginner-friendly</p></li>
+</ul>
+<p>For a first impression of what R can do, let’s generate 1000 random numbers following a standard normal distribution (<code class="docutils literal notranslate"><span class="pre">rnorm</span></code> = random normal) and plot them. R includes a built-in function called <code class="docutils literal notranslate"><span class="pre">plot</span></code> specifically for creating plots like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">1000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/31805950d8499b57c39bdfbc3a67021af2192f28a93c9217fee70eb158fe9027.png" src="../../_images/31805950d8499b57c39bdfbc3a67021af2192f28a93c9217fee70eb158fe9027.png" />
+</div>
+</div>
+<p>The standard normal distribution is a special case of a Gaussian distribution with mean (average location) of 1 and a standard deviation (average dispersion) of 0. The gaussian distribution has a characteristic bell shape, as shown in the histogram below using the R’s <code class="docutils literal notranslate"><span class="pre">hist</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">1000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e7e3ff2b906c8e926c0e4d6ac6a81e8a3a0ba98ae4fc28c085a0fab1911aff6e.png" src="../../_images/e7e3ff2b906c8e926c0e4d6ac6a81e8a3a0ba98ae4fc28c085a0fab1911aff6e.png" />
+</div>
+</div>
+<section id="r-syntax-overview">
+<h2>R Syntax overview<a class="headerlink" href="#r-syntax-overview" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Syntax loosely follows traditional <code class="docutils literal notranslate"><span class="pre">C</span></code>-style</p>
+<ul>
+<li><p><strong>Braces</strong> <code class="docutils literal notranslate"><span class="pre">{</span></code> and <code class="docutils literal notranslate"><span class="pre">}</span></code> are used to form blocks (for <code class="docutils literal notranslate"><span class="pre">if</span></code> conditins, <code class="docutils literal notranslate"><span class="pre">for</span></code> loops, functions, etc).</p></li>
+<li><p><strong>Semi-colons</strong> are used optionally to end statements, required
+if on same line.</p></li>
+</ul>
+</li>
+<li><p><strong>Assignments</strong> are made with <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code> or <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> (or <code class="docutils literal notranslate"><span class="pre">=</span></code>)</p></li>
+<li><p><strong>Dots</strong> <code class="docutils literal notranslate"><span class="pre">.</span></code> have no special meaning – they are not operators.</p></li>
+<li><p>Single and double <strong>quotes</strong> have the same meaning, but double
+quotes tend to be preferred.</p>
+<ul>
+<li><p>Use single quotes if you expect your string to contain double
+quotes.</p></li>
+</ul>
+</li>
+<li><p><strong>Indexing starts from 1!</strong></p></li>
+</ul>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
+<p>Like in other languages, variables can be named almost arbitrarily. Here are the naming rules:</p>
+<ul class="simple">
+<li><p>A variable name must start with a letter and can be a combination of letters, digits, period(.)
+and underscore(_).</p></li>
+<li><p>If it starts with period(.), it cannot be followed by a digit.</p></li>
+<li><p>A variable name cannot start with a number or underscore (_)</p></li>
+<li><p>Variable names are case-sensitive (age, Age and AGE are three different variables)</p></li>
+<li><p>Reserved words cannot be used as variables (TRUE, FALSE, NULL, if…)</p></li>
+</ul>
+<p>To assign a value to a variable, use the <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code> operator. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">&lt;-</span><span class="m">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;-</span></code> symbol should be understood as a single unit: an arrow pointing to the variable receiving the assigned value. This is known as the <strong>assignment</strong> operator.</p>
+</section>
+<section id="hellow-world-program">
+<h2>Hellow world program<a class="headerlink" href="#hellow-world-program" title="Link to this heading">#</a></h2>
+<p>As is common in any first lesson on programming, one of the first things to do is write a “Hello, World!” program.</p>
+<p>In R, you can print variables and values using the<code class="docutils literal notranslate"><span class="pre">print</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Hello, DS-1002 class!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Hello, DS-1002 class!&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-types">
+<h2>Data types<a class="headerlink" href="#data-types" title="Link to this heading">#</a></h2>
+<p>R has the following basic data types:</p>
+<ul class="simple">
+<li><p><strong>character</strong>: e.g. “a”, “hola”, etc.</p></li>
+<li><p><strong>numeric</strong> (real or decimal): 3, 3.1415, -10, etc.</p></li>
+<li><p><strong>integer</strong>: 3L (The L specifies this variable to be an integer)</p></li>
+<li><p><strong>logical</strong>: TRUE or FALSE</p></li>
+<li><p><strong>complex</strong>: 1+2i</p></li>
+</ul>
+<p>In case of doubt about the data type, R provides built-in functions to inspect this, for example, <code class="docutils literal notranslate"><span class="pre">class</span></code> and <code class="docutils literal notranslate"><span class="pre">typeof</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+<span class="nf">typeof</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'character'</div><div class="output text_html">'character'</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+<span class="nf">typeof</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'numeric'</div><div class="output text_html">'double'</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="m">3L</span><span class="p">)</span>
+<span class="nf">typeof</span><span class="p">(</span><span class="m">3L</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'integer'</div><div class="output text_html">'integer'</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">class</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">typeof</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'logical'</div><div class="output text_html">'logical'</div></div>
+</div>
+<p><strong>Try it out yourself with practice exercise 1!</strong></p>
+</section>
+<section id="characters">
+<h2>Characters<a class="headerlink" href="#characters" title="Link to this heading">#</a></h2>
+<p>Let’s take a moment to focus on characters, as this is how string values are represented in R.</p>
+<section id="convert-to-characters">
+<h3>Convert to characters<a class="headerlink" href="#convert-to-characters" title="Link to this heading">#</a></h3>
+<p>You can convert values to characters using the <code class="docutils literal notranslate"><span class="pre">as.character()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">&lt;-</span><span class="m">3.14</span>
+<span class="n">x</span>
+<span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span><span class="o">&lt;-</span><span class="nf">as.character</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span>
+<span class="nf">class</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">3.14</div><div class="output text_html">'numeric'</div><div class="output text_html">'3.14'</div><div class="output text_html">'character'</div></div>
+</div>
+</section>
+<section id="slicing">
+<h3>Slicing<a class="headerlink" href="#slicing" title="Link to this heading">#</a></h3>
+<p>Strings in R function differently compared to Python. Specifically, they do not support slicing.</p>
+<p>To achieve similar functionality, you can use the <code class="docutils literal notranslate"><span class="pre">substr</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># R example</span>
+<span class="n">text</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Hello, class!&quot;</span>
+<span class="n">substring</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">substr</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w">  </span><span class="c1"># Output: &quot;Hello&quot;</span>
+
+<span class="n">substring</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'Hello'</div></div>
+</div>
+</section>
+<section id="join-characters">
+<h3>Join characters<a class="headerlink" href="#join-characters" title="Link to this heading">#</a></h3>
+<p>Two character values can be joined using the <code class="docutils literal notranslate"><span class="pre">paste()</span></code> function, which also accepts a <code class="docutils literal notranslate"><span class="pre">sep</span></code> argument to specify the joining character.
+This provides functionality similar to Python’s <code class="docutils literal notranslate"><span class="pre">join</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">first</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Data&quot;</span>
+<span class="n">second</span><span class="w"> </span><span class="o">&lt;-</span><span class="s">&quot;Science&quot;</span>
+<span class="nf">paste</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">second</span><span class="p">)</span>
+
+<span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Data&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Science&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;at&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;UVA&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'Data Science'</div><div class="output text_html">'Data.Science.at.UVA'</div></div>
+</div>
+</section>
+<section id="replace-characters">
+<h3>Replace characters<a class="headerlink" href="#replace-characters" title="Link to this heading">#</a></h3>
+<p>To replace characters in R, you can use the <code class="docutils literal notranslate"><span class="pre">sub()</span></code> function. In Python, this would be done using the <code class="docutils literal notranslate"><span class="pre">replace</span></code> method available to all strings.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">my.string</span><span class="o">&lt;-</span><span class="s">&quot;My name is Javier&quot;</span>
+<span class="nf">sub</span><span class="p">(</span><span class="s">&quot;Javier&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Xavier&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">my.string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'My name is Xavier'</div></div>
+</div>
+</section>
+<section id="format-strings">
+<h3>Format strings<a class="headerlink" href="#format-strings" title="Link to this heading">#</a></h3>
+<p>In R, we can format our strings using the <code class="docutils literal notranslate"><span class="pre">sprintf()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sprintf</span><span class="p">(</span><span class="s">&quot;Today is %s, November %d, %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Tuesday&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">202</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">'Today is Tuesday, November 12, 202'</div></div>
+</div>
+<p><strong>Try it out yourself with practice exercise 2!</strong></p>
+</section>
+</section>
+<section id="math-operators">
+<h2>Math Operators<a class="headerlink" href="#math-operators" title="Link to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Operator</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>+</strong></p></td>
+<td><p>addition</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-</strong></p></td>
+<td><p>subtraction</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>*</strong></p></td>
+<td><p>multiplication</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>/</strong></p></td>
+<td><p>division</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>^ or **</strong></p></td>
+<td><p>exponentiation</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>x %% y</strong></p></td>
+<td><p>modulus (x mod y) 5%%2 is 1</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>x %/% y</strong></p></td>
+<td><p>integer division 5%/%2 is 2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">4</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="m">14</span><span class="o">^</span><span class="m">3</span>
+<span class="m">7</span><span class="w"> </span><span class="o">%/%</span><span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">320</div><div class="output text_html">2744</div><div class="output text_html">2</div></div>
+</div>
+</section>
+<section id="practice-exercises">
+<h2>Practice exercises<a class="headerlink" href="#practice-exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="introR1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 51 </span></p>
+<section id="exercise-content">
+<p>1.1- Create and assign values to two variables: one numeric and one character. Print each variable’s value and type.</p>
+<p>1.2 - Use string formatting to print a message in the following format: “The value of [variable name 1] is [variable value 1], and [variable name 2] is [variable value 2].” (Replace [variable name 1], [variable value 1], etc., with the actual variable names and values).</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition" id="introR2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 52 </span></p>
+<section id="exercise-content">
+<p>2.1 - Create two character variables with any values you choose.<br />
+2.2 - Concatenate these two variables and save the result in a new variable. Print this new variable.<br />
+2.3 - Replace certain characters in the concatenated variable with other characters of your choice. Save the result in another new variable and print it.<br />
+2.4 - Extract a portion of the concatenated variable using slicing. Save this extracted part in a new variable and print it.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./chapters/module-5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../module-4/047-PandasV-Intro_Feature_Engineering.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pandas: Introduction to Feature Engineering</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="052-data-structures.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Structures</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-syntax-overview">R Syntax overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hellow-world-program">Hellow world program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characters">Characters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-to-characters">Convert to characters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">Slicing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join-characters">Join characters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#replace-characters">Replace characters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format-strings">Format strings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#math-operators">Math Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">Practice exercises</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Javier Rasero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

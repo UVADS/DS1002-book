@@ -1,0 +1,60 @@
+Traceback (most recent call last):
+  File "/home/javi/anaconda3/lib/python3.11/site-packages/myst_nb/core/execute/inline.py", line 120, in code_cell_outputs
+    self._client.execute_cell(
+  File "/home/javi/anaconda3/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/javi/anaconda3/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/javi/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/javi/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Obviously, this is going to give an error because we are trying to use a sepal_volume before it was created
+iris.df.volume.3<-iris.df %>% mutate(sepal_volume_log=log(sepal_volume), sepal_volume=sepal_length*sepal_width)
+head(iris.df.volume.3)
+------------------
+
+
+[1m[33mError[39m in `mutate()`:[22m
+[1m[22m[36mℹ[39m In argument: `sepal_volume_log = log(sepal_volume)`.
+[1mCaused by error:[22m
+[33m![39m objeto 'sepal_volume' no encontrado
+Traceback:
+
+1. mutate(., sepal_volume_log = log(sepal_volume), sepal_volume = sepal_length * 
+ .     sepal_width)
+2. mutate.data.frame(., sepal_volume_log = log(sepal_volume), sepal_volume = sepal_length * 
+ .     sepal_width)
+3. mutate_cols(.data, dplyr_quosures(...), by)
+4. withCallingHandlers(for (i in seq_along(dots)) {
+ .     poke_error_context(dots, i, mask = mask)
+ .     context_poke("column", old_current_column)
+ .     new_columns <- mutate_col(dots[[i]], data, mask, new_columns)
+ . }, error = dplyr_error_handler(dots = dots, mask = mask, bullets = mutate_bullets, 
+ .     error_call = error_call, error_class = "dplyr:::mutate_error"), 
+ .     warning = dplyr_warning_handler(state = warnings_state, mask = mask, 
+ .         error_call = error_call))
+5. mutate_col(dots[[i]], data, mask, new_columns)
+6. mask$eval_all_mutate(quo)
+7. eval()
+8. .handleSimpleError(function (cnd) 
+ . {
+ .     local_error_context(dots, i = frame[[i_sym]], mask = mask)
+ .     if (inherits(cnd, "dplyr:::internal_error")) {
+ .         parent <- error_cnd(message = bullets(cnd))
+ .     }
+ .     else {
+ .         parent <- cnd
+ .     }
+ .     message <- c(cnd_bullet_header(action), i = if (has_active_group_context(mask)) cnd_bullet_cur_group_label())
+ .     abort(message, class = error_class, parent = parent, call = error_call)
+ . }, "objeto 'sepal_volume' no encontrado", base::quote(NULL))
+9. h(simpleError(msg, call))
+10. abort(message, class = error_class, parent = parent, call = error_call)
+11. signal_abort(cnd, .file)
+12. signalCondition(cnd)
+

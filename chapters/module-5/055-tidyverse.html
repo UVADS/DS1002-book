@@ -1,0 +1,1389 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>R for data science &#8212; DS-1002 Programming for Data Science</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/module-5/055-tidyverse';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Functions" href="054-functions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="DS-1002 Programming for Data Science - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="DS-1002 Programming for Data Science - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to DS-1002
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 1: Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-1/about_course.html">Introduction</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../module-1/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/programming.html">Brief introduction to programming languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/jupyter_notebooks.html">Jupyter Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-1/your_first_program.html">Your first Python program!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 2: Python (Essential)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-2/021-variables.html">Variables and data types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/022-operators.html">Operators and Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/023-strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/024-structures.html">Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/025-conditional.html">Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/026-iterables_and_iterators.html">Iterables and Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-2/027-functions.html">Functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 3: Python II (Advance)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-3/031-errors_and_exceptions.html">Errors and Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-3/032-classes.html">Introduction to object-oriented programming (OOP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-3/033-reading_writing_files.html">Reading and Writing Files</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 4: Python for Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-4/041-numpyI.html">NumPy (Part I)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/042-numpyII.html">NumPy (Part II)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/043-PandasI-Introduction.html">Introduction to Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/044-PandasII-exploration.html">Pandas: Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/045-PandasIII-manipulation.html">Pandas: Data Manipulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/046-PandasIV-advanced_manipulation_aggregation.html">Pandas: Advanced Data Manipulation and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-4/047-PandasV-Intro_Feature_Engineering.html">Pandas: Introduction to Feature Engineering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 5: R</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="051-intro_to_R.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="052-data-structures.html">Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="053-Control-structures.html">Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="054-functions.html">Functions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">R for data science</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/module-5/055-tidyverse.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>R for data science</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-tidyverse">Loading the tidyverse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pipe-operator">The pipe (<code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code>) operator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">Data cleaning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-na-drop-missing-values"><code class="docutils literal notranslate"><span class="pre">drop_na</span></code>: drop missing values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#replace-na-replace-missing-values"><code class="docutils literal notranslate"><span class="pre">replace_na</span></code>: replace missing values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distinc-drop-duplicated-data"><code class="docutils literal notranslate"><span class="pre">distinc</span></code>: drop duplicated data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-manipulation">Data manipulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-pick-observations-by-their-values"><code class="docutils literal notranslate"><span class="pre">filter</span></code>: Pick observations by their values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrange-sort-data-by-value"><code class="docutils literal notranslate"><span class="pre">arrange</span></code>: sort data by value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-select-columns"><code class="docutils literal notranslate"><span class="pre">select</span></code>: select columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutate-creating-columns"><code class="docutils literal notranslate"><span class="pre">mutate</span></code>: creating columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-by-and-summarize-collapse-down-to-a-single-summary"><code class="docutils literal notranslate"><span class="pre">group_by</span></code> and <code class="docutils literal notranslate"><span class="pre">summarize</span></code>: collapse down to a single summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-longer-reshape-data-to-long-format"><code class="docutils literal notranslate"><span class="pre">pivot_longer</span></code>: reshape data to long format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualization">Data visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">Practice exercises</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="r-for-data-science">
+<h1>R for data science<a class="headerlink" href="#r-for-data-science" title="Link to this heading">#</a></h1>
+<p>The <strong>tidyverse</strong> is one of the most popular ecosystems for data science in R. It includes many R packages commonly used in everyday data analysis. The core packages are as follows:</p>
+<ul class="simple">
+<li><p><strong>ggplot2</strong> for visualization</p></li>
+<li><p><strong>dplyr</strong> for data manipulation</p></li>
+<li><p><strong>tidyr</strong> to tidy your data</p></li>
+<li><p><strong>readr</strong> to read data</p></li>
+<li><p><strong>purrr</strong> for functional programming</p></li>
+<li><p><strong>tibble</strong> for enhanced data frames</p></li>
+<li><p><strong>stringr</strong> for string manipulation</p></li>
+<li><p><strong>forcats</strong> for working with categorical data (factors)</p></li>
+</ul>
+<section id="loading-the-tidyverse">
+<h2>Loading the tidyverse<a class="headerlink" href="#loading-the-tidyverse" title="Link to this heading">#</a></h2>
+<p>The <strong>tidyverse</strong> is a collection of packages. In R, to load a library or package, you simply use the <code class="docutils literal notranslate"><span class="pre">library()</span></code> function. This is similar to using the <code class="docutils literal notranslate"><span class="pre">import</span></code> keyword in Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># install.packages(&quot;tidyverse&quot;)</span>
+<span class="nf">library</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr    </span> 1.1.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr    </span> 2.1.5
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats  </span> 1.0.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr  </span> 1.5.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2  </span> 3.5.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble   </span> 3.2.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">lubridate</span> 1.9.3     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tidyr    </span> 1.3.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr    </span> 1.0.2     
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span> masks <span class=" -Color -Color-Blue">stats</span>::filter()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>    masks <span class=" -Color -Color-Blue">stats</span>::lag()
+<span class=" -Color -Color-Cyan">ℹ</span> Use the conflicted package (<span class=" -Color -Color-Blue">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-pipe-operator">
+<h2>The pipe (<code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code>) operator<a class="headerlink" href="#the-pipe-operator" title="Link to this heading">#</a></h2>
+<p>One of the most powerful tools introduced in the <strong>tidyverse</strong> is the pipe (<code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code>) operator, which enables chaining functions in a clear, readable way—especially useful for data manipulation tasks.</p>
+<p>Here’s an example where we first apply a logical filter, then select specific columns, and finally sort the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example with the iris dataset</span>
+<span class="n">iris.df</span><span class="o">&lt;-</span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;https://raw.githubusercontent.com/mwaskom/seaborn-data/refs/heads/master/iris.csv&quot;</span><span class="p">)</span>
+
+<span class="n">iris.df.pipe</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="c1"># Save the resulting pipeline into this variable</span>
+<span class="w">    </span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># start with the original dataframe</span>
+<span class="w">        </span><span class="nf">filter</span><span class="p">(</span><span class="n">species</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;virginica&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># take observations corresponding to virginica</span>
+<span class="w">            </span><span class="nf">select</span><span class="p">(</span><span class="n">petal_length</span><span class="p">,</span><span class="w"> </span><span class="n">petal_width</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># select petal_length and petal_width colums</span>
+<span class="w">                </span><span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">petal_length</span><span class="p">))</span><span class="w"> </span><span class="c1"># sort data in descending order based on petal_length</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.pipe</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 2</caption>
+<thead>
+	<tr><th></th><th scope=col>petal_length</th><th scope=col>petal_width</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>6.9</td><td>2.3</td></tr>
+	<tr><th scope=row>2</th><td>6.7</td><td>2.2</td></tr>
+	<tr><th scope=row>3</th><td>6.7</td><td>2.0</td></tr>
+	<tr><th scope=row>4</th><td>6.6</td><td>2.1</td></tr>
+	<tr><th scope=row>5</th><td>6.4</td><td>2.0</td></tr>
+	<tr><th scope=row>6</th><td>6.3</td><td>1.8</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="data-cleaning">
+<h2>Data cleaning<a class="headerlink" href="#data-cleaning" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df.to.clean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">                          </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
+<span class="w">                         </span><span class="p">)</span>
+<span class="n">df.to.clean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 4 × 2</caption>
+<thead>
+	<tr><th scope=col>x</th><th scope=col>y</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td> 2</td><td>NA</td></tr>
+	<tr><td>NA</td><td>NA</td></tr>
+	<tr><td> 1</td><td> 6</td></tr>
+	<tr><td> 1</td><td> 6</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<section id="drop-na-drop-missing-values">
+<h3><code class="docutils literal notranslate"><span class="pre">drop_na</span></code>: drop missing values<a class="headerlink" href="#drop-na-drop-missing-values" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df.to.clean</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">drop_na</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 2 × 2</caption>
+<thead>
+	<tr><th scope=col>x</th><th scope=col>y</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>6</td></tr>
+	<tr><td>1</td><td>6</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="replace-na-replace-missing-values">
+<h3><code class="docutils literal notranslate"><span class="pre">replace_na</span></code>: replace missing values<a class="headerlink" href="#replace-na-replace-missing-values" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df.to.clean</span><span class="w"> </span><span class="o">%&gt;%</span><span class="nf">replace_na</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="m">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 4 × 2</caption>
+<thead>
+	<tr><th scope=col>x</th><th scope=col>y</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>2</td><td>0</td></tr>
+	<tr><td>0</td><td>0</td></tr>
+	<tr><td>1</td><td>6</td></tr>
+	<tr><td>1</td><td>6</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="distinc-drop-duplicated-data">
+<h3><code class="docutils literal notranslate"><span class="pre">distinc</span></code>: drop duplicated data<a class="headerlink" href="#distinc-drop-duplicated-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df.to.clean</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">distinct</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 2</caption>
+<thead>
+	<tr><th scope=col>x</th><th scope=col>y</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td> 2</td><td>NA</td></tr>
+	<tr><td>NA</td><td>NA</td></tr>
+	<tr><td> 1</td><td> 6</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Remember</strong>: we can concatenate them together.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df.to.clean</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">replace_na</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">distinct</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 3 × 2</caption>
+<thead>
+	<tr><th scope=col>x</th><th scope=col>y</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>2</td><td>0</td></tr>
+	<tr><td>0</td><td>0</td></tr>
+	<tr><td>1</td><td>6</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="data-manipulation">
+<h2>Data manipulation<a class="headerlink" href="#data-manipulation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s load again our Iris dataframe</span>
+<span class="n">iris.df</span><span class="o">&lt;-</span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;https://raw.githubusercontent.com/mwaskom/seaborn-data/refs/heads/master/iris.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dim</span><span class="p">(</span><span class="n">iris.df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>150</li><li>5</li></ol>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">str</span><span class="p">(</span><span class="n">iris.df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;data.frame&#39;:	150 obs. of  5 variables:
+ $ sepal_length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+ $ sepal_width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+ $ petal_length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+ $ petal_width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+ $ species     : chr  &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; ...
+</pre></div>
+</div>
+</div>
+</div>
+<section id="filter-pick-observations-by-their-values">
+<h3><code class="docutils literal notranslate"><span class="pre">filter</span></code>: Pick observations by their values<a class="headerlink" href="#filter-pick-observations-by-their-values" title="Link to this heading">#</a></h3>
+<p>This function allows you to subset observations based on specific conditions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">iris.df.setosa</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">species</span><span class="o">==</span><span class="s">&quot;setosa&quot;</span><span class="p">)</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.setosa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>sepal_length</th><th scope=col>sepal_width</th><th scope=col>petal_length</th><th scope=col>petal_width</th><th scope=col>species</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>2</th><td>4.9</td><td>3.0</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>3</th><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>4</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>5</th><td>5.0</td><td>3.6</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>6</th><td>5.4</td><td>3.9</td><td>1.7</td><td>0.4</td><td>setosa</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here filtering based on two columns</span>
+<span class="n">iris.df.setosa.2</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">species</span><span class="o">==</span><span class="s">&quot;setosa&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sepal_width</span><span class="o">&gt;</span><span class="m">3</span><span class="p">)</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.setosa.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>sepal_length</th><th scope=col>sepal_width</th><th scope=col>petal_length</th><th scope=col>petal_width</th><th scope=col>species</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>2</th><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>3</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>4</th><td>5.0</td><td>3.6</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>5</th><td>5.4</td><td>3.9</td><td>1.7</td><td>0.4</td><td>setosa</td></tr>
+	<tr><th scope=row>6</th><td>4.6</td><td>3.4</td><td>1.4</td><td>0.3</td><td>setosa</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here filtering with two logical conditions in the same column</span>
+<span class="n">iris.df.3</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">sepal_width</span><span class="o">&gt;</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sepal_width</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>sepal_length</th><th scope=col>sepal_width</th><th scope=col>petal_length</th><th scope=col>petal_width</th><th scope=col>species</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>4.9</td><td>3.0</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>2</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>3</th><td>4.8</td><td>3.0</td><td>1.4</td><td>0.1</td><td>setosa</td></tr>
+	<tr><th scope=row>4</th><td>4.3</td><td>3.0</td><td>1.1</td><td>0.1</td><td>setosa</td></tr>
+	<tr><th scope=row>5</th><td>5.0</td><td>3.0</td><td>1.6</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>6</th><td>4.4</td><td>3.0</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="arrange-sort-data-by-value">
+<h3><code class="docutils literal notranslate"><span class="pre">arrange</span></code>: sort data by value<a class="headerlink" href="#arrange-sort-data-by-value" title="Link to this heading">#</a></h3>
+<p>This function takes a dataframe, and a set of column names (or more complicated expressions) to order by (in ascending order by default). If more than one column name is provided, each additional column is used to break ties in the values of preceding columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># This sorts the data based on sepal length first and then sepal_width</span>
+<span class="n">iris.df.sorted</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">arrange</span><span class="p">(</span><span class="n">sepal_length</span><span class="p">,</span><span class="w"> </span><span class="n">sepal_width</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.sorted</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>sepal_length</th><th scope=col>sepal_width</th><th scope=col>petal_length</th><th scope=col>petal_width</th><th scope=col>species</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>4.3</td><td>3.0</td><td>1.1</td><td>0.1</td><td>setosa</td></tr>
+	<tr><th scope=row>2</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>3</th><td>4.4</td><td>3.0</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>4</th><td>4.4</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>5</th><td>4.5</td><td>2.3</td><td>1.3</td><td>0.3</td><td>setosa</td></tr>
+	<tr><th scope=row>6</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td><td>setosa</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>If we want to reorder in descending order, we can use the function <code class="docutils literal notranslate"><span class="pre">desc</span></code>. This, in contrast to Python’s Pandas, can be specified to single columns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># This sorts the data based on sepal length first, in descending order, and then sepal_width, in ascending order</span>
+<span class="n">iris.df.sorted</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">sepal_length</span><span class="p">),</span><span class="w"> </span><span class="n">sepal_width</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.sorted</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>sepal_length</th><th scope=col>sepal_width</th><th scope=col>petal_length</th><th scope=col>petal_width</th><th scope=col>species</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>7.9</td><td>3.8</td><td>6.4</td><td>2.0</td><td>virginica</td></tr>
+	<tr><th scope=row>2</th><td>7.7</td><td>2.6</td><td>6.9</td><td>2.3</td><td>virginica</td></tr>
+	<tr><th scope=row>3</th><td>7.7</td><td>2.8</td><td>6.7</td><td>2.0</td><td>virginica</td></tr>
+	<tr><th scope=row>4</th><td>7.7</td><td>3.0</td><td>6.1</td><td>2.3</td><td>virginica</td></tr>
+	<tr><th scope=row>5</th><td>7.7</td><td>3.8</td><td>6.7</td><td>2.2</td><td>virginica</td></tr>
+	<tr><th scope=row>6</th><td>7.6</td><td>3.0</td><td>6.6</td><td>2.1</td><td>virginica</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="select-select-columns">
+<h3><code class="docutils literal notranslate"><span class="pre">select</span></code>: select columns<a class="headerlink" href="#select-select-columns" title="Link to this heading">#</a></h3>
+<p>It allows you to pick a subset of variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># This selects columns by the given names of the columns. Here we just select sepal_length, sepal_width and species</span>
+<span class="n">iris.df.select</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="n">sepal_length</span><span class="p">,</span><span class="w"> </span><span class="n">sepal_width</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="p">)</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.select</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>sepal_length</th><th scope=col>sepal_width</th><th scope=col>species</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>5.1</td><td>3.5</td><td>setosa</td></tr>
+	<tr><th scope=row>2</th><td>4.9</td><td>3.0</td><td>setosa</td></tr>
+	<tr><th scope=row>3</th><td>4.7</td><td>3.2</td><td>setosa</td></tr>
+	<tr><th scope=row>4</th><td>4.6</td><td>3.1</td><td>setosa</td></tr>
+	<tr><th scope=row>5</th><td>5.0</td><td>3.6</td><td>setosa</td></tr>
+	<tr><th scope=row>6</th><td>5.4</td><td>3.9</td><td>setosa</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>If you want to select consecutive columns, we can use the <code class="docutils literal notranslate"><span class="pre">:</span></code> operator, as in vectors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># This selects all columns between sepal_length and petal_width (inclusive)</span>
+<span class="n">iris.df.select.2</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="n">sepal_length</span><span class="o">:</span><span class="n">petal_width</span><span class="p">)</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.select.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 4</caption>
+<thead>
+	<tr><th></th><th scope=col>sepal_length</th><th scope=col>sepal_width</th><th scope=col>petal_length</th><th scope=col>petal_width</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td></tr>
+	<tr><th scope=row>2</th><td>4.9</td><td>3.0</td><td>1.4</td><td>0.2</td></tr>
+	<tr><th scope=row>3</th><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td></tr>
+	<tr><th scope=row>4</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td></tr>
+	<tr><th scope=row>5</th><td>5.0</td><td>3.6</td><td>1.4</td><td>0.2</td></tr>
+	<tr><th scope=row>6</th><td>5.4</td><td>3.9</td><td>1.7</td><td>0.4</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>And you can use a minus (<code class="docutils literal notranslate"><span class="pre">-</span></code>) operator before the name of the columns to filter them out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># This selects all columns but sepal_length and sepal_width</span>
+<span class="n">iris.df.select.3</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">sepal_length</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">sepal_width</span><span class="p">)</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.select.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>petal_length</th><th scope=col>petal_width</th><th scope=col>species</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>2</th><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>3</th><td>1.3</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>4</th><td>1.5</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>5</th><td>1.4</td><td>0.2</td><td>setosa</td></tr>
+	<tr><th scope=row>6</th><td>1.7</td><td>0.4</td><td>setosa</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>And you can also remove consecutive columns by combining both operators:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">iris.df.select.4</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">sepal_length</span><span class="o">:</span><span class="n">petal_width</span><span class="p">))</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.select.4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 1</caption>
+<thead>
+	<tr><th></th><th scope=col>species</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>setosa</td></tr>
+	<tr><th scope=row>2</th><td>setosa</td></tr>
+	<tr><th scope=row>3</th><td>setosa</td></tr>
+	<tr><th scope=row>4</th><td>setosa</td></tr>
+	<tr><th scope=row>5</th><td>setosa</td></tr>
+	<tr><th scope=row>6</th><td>setosa</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="mutate-creating-columns">
+<h3><code class="docutils literal notranslate"><span class="pre">mutate</span></code>: creating columns<a class="headerlink" href="#mutate-creating-columns" title="Link to this heading">#</a></h3>
+<p>This function allows you to add new columns to data frames. It would be mostly similar to <code class="docutils literal notranslate"><span class="pre">assign</span></code> in Python’s Pandas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># This creates a new column by multiplying summing sepal_length with sepal_width</span>
+<span class="n">iris.df.volume</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="n">sepal_volume</span><span class="o">=</span><span class="n">sepal_length</span><span class="o">*</span><span class="n">sepal_width</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.volume</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 6</caption>
+<thead>
+	<tr><th></th><th scope=col>sepal_length</th><th scope=col>sepal_width</th><th scope=col>petal_length</th><th scope=col>petal_width</th><th scope=col>species</th><th scope=col>sepal_volume</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td><td>setosa</td><td>17.85</td></tr>
+	<tr><th scope=row>2</th><td>4.9</td><td>3.0</td><td>1.4</td><td>0.2</td><td>setosa</td><td>14.70</td></tr>
+	<tr><th scope=row>3</th><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td><td>15.04</td></tr>
+	<tr><th scope=row>4</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td><td>setosa</td><td>14.26</td></tr>
+	<tr><th scope=row>5</th><td>5.0</td><td>3.6</td><td>1.4</td><td>0.2</td><td>setosa</td><td>18.00</td></tr>
+	<tr><th scope=row>6</th><td>5.4</td><td>3.9</td><td>1.7</td><td>0.4</td><td>setosa</td><td>21.06</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>We can always use a preceding created column to define a new column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># This creates a new column by multiplying multiplying sepal_length with sepal_width, and a second column with the logarithm</span>
+<span class="n">iris.df.volume.2</span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="n">sepal_volume</span><span class="o">=</span><span class="n">sepal_length</span><span class="o">*</span><span class="n">sepal_width</span><span class="p">,</span><span class="w"> </span><span class="n">sepal_volume_log</span><span class="o">=</span><span class="nf">log</span><span class="p">(</span><span class="n">sepal_volume</span><span class="p">))</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.volume.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 7</caption>
+<thead>
+	<tr><th></th><th scope=col>sepal_length</th><th scope=col>sepal_width</th><th scope=col>petal_length</th><th scope=col>petal_width</th><th scope=col>species</th><th scope=col>sepal_volume</th><th scope=col>sepal_volume_log</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td><td>setosa</td><td>17.85</td><td>2.882004</td></tr>
+	<tr><th scope=row>2</th><td>4.9</td><td>3.0</td><td>1.4</td><td>0.2</td><td>setosa</td><td>14.70</td><td>2.687847</td></tr>
+	<tr><th scope=row>3</th><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td><td>15.04</td><td>2.710713</td></tr>
+	<tr><th scope=row>4</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td><td>setosa</td><td>14.26</td><td>2.657458</td></tr>
+	<tr><th scope=row>5</th><td>5.0</td><td>3.6</td><td>1.4</td><td>0.2</td><td>setosa</td><td>18.00</td><td>2.890372</td></tr>
+	<tr><th scope=row>6</th><td>5.4</td><td>3.9</td><td>1.7</td><td>0.4</td><td>setosa</td><td>21.06</td><td>3.047376</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obviously, this is going to give an error because we are trying to use a sepal_volume before it was created</span>
+<span class="n">iris.df.volume.3</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="n">sepal_volume_log</span><span class="o">=</span><span class="nf">log</span><span class="p">(</span><span class="n">sepal_volume</span><span class="p">),</span><span class="w"> </span><span class="n">sepal_volume</span><span class="o">=</span><span class="n">sepal_length</span><span class="o">*</span><span class="n">sepal_width</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.volume.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="err">`</span><span class="n">mutate</span><span class="p">()</span><span class="err">`</span><span class="p">:</span>
+<span class="n">ℹ</span> <span class="n">In</span> <span class="n">argument</span><span class="p">:</span> <span class="err">`</span><span class="n">sepal_volume_log</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">sepal_volume</span><span class="p">)</span><span class="err">`</span><span class="o">.</span>
+<span class="n">Caused</span> <span class="n">by</span> <span class="n">error</span><span class="p">:</span>
+<span class="o">!</span><span class="w"> </span>objeto<span class="w"> </span><span class="s1">&#39;sepal_volume&#39;</span><span class="w"> </span>no<span class="w"> </span>encontrado
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">mutate</span><span class="p">(</span><span class="o">.</span><span class="p">,</span> <span class="n">sepal_volume_log</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">sepal_volume</span><span class="p">),</span> <span class="n">sepal_volume</span> <span class="o">=</span> <span class="n">sepal_length</span> <span class="o">*</span> 
+ <span class="o">.</span>     <span class="n">sepal_width</span><span class="p">)</span>
+<span class="mi">2</span><span class="o">.</span> <span class="n">mutate</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="o">.</span><span class="p">,</span> <span class="n">sepal_volume_log</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">sepal_volume</span><span class="p">),</span> <span class="n">sepal_volume</span> <span class="o">=</span> <span class="n">sepal_length</span> <span class="o">*</span> 
+ <span class="o">.</span>     <span class="n">sepal_width</span><span class="p">)</span>
+<span class="mi">3</span><span class="o">.</span> <span class="n">mutate_cols</span><span class="p">(</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dplyr_quosures</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">by</span><span class="p">)</span>
+<span class="mi">4</span><span class="o">.</span> <span class="n">withCallingHandlers</span><span class="p">(</span><span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="ow">in</span> <span class="n">seq_along</span><span class="p">(</span><span class="n">dots</span><span class="p">))</span> <span class="p">{</span>
+ <span class="o">.</span>     <span class="n">poke_error_context</span><span class="p">(</span><span class="n">dots</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">context_poke</span><span class="p">(</span><span class="s2">&quot;column&quot;</span><span class="p">,</span> <span class="n">old_current_column</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">new_columns</span> <span class="o">&lt;-</span> <span class="n">mutate_col</span><span class="p">(</span><span class="n">dots</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span> <span class="n">data</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">new_columns</span><span class="p">)</span>
+ <span class="o">.</span> <span class="p">},</span> <span class="n">error</span> <span class="o">=</span> <span class="n">dplyr_error_handler</span><span class="p">(</span><span class="n">dots</span> <span class="o">=</span> <span class="n">dots</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">,</span> <span class="n">bullets</span> <span class="o">=</span> <span class="n">mutate_bullets</span><span class="p">,</span> 
+ <span class="o">.</span>     <span class="n">error_call</span> <span class="o">=</span> <span class="n">error_call</span><span class="p">,</span> <span class="n">error_class</span> <span class="o">=</span> <span class="s2">&quot;dplyr:::mutate_error&quot;</span><span class="p">),</span> 
+ <span class="o">.</span>     <span class="n">warning</span> <span class="o">=</span> <span class="n">dplyr_warning_handler</span><span class="p">(</span><span class="n">state</span> <span class="o">=</span> <span class="n">warnings_state</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">,</span> 
+ <span class="o">.</span>         <span class="n">error_call</span> <span class="o">=</span> <span class="n">error_call</span><span class="p">))</span>
+<span class="mi">5</span><span class="o">.</span> <span class="n">mutate_col</span><span class="p">(</span><span class="n">dots</span><span class="p">[[</span><span class="n">i</span><span class="p">]],</span> <span class="n">data</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">new_columns</span><span class="p">)</span>
+<span class="mi">6</span><span class="o">.</span> <span class="n">mask</span><span class="err">$</span><span class="n">eval_all_mutate</span><span class="p">(</span><span class="n">quo</span><span class="p">)</span>
+<span class="mi">7</span><span class="o">.</span> <span class="nb">eval</span><span class="p">()</span>
+<span class="mi">8</span><span class="o">.</span> <span class="o">.</span><span class="n">handleSimpleError</span><span class="p">(</span><span class="n">function</span> <span class="p">(</span><span class="n">cnd</span><span class="p">)</span> 
+ <span class="o">.</span> <span class="p">{</span>
+ <span class="o">.</span>     <span class="n">local_error_context</span><span class="p">(</span><span class="n">dots</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[[</span><span class="n">i_sym</span><span class="p">]],</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="k">if</span> <span class="p">(</span><span class="n">inherits</span><span class="p">(</span><span class="n">cnd</span><span class="p">,</span> <span class="s2">&quot;dplyr:::internal_error&quot;</span><span class="p">))</span> <span class="p">{</span>
+ <span class="o">.</span>         <span class="n">parent</span> <span class="o">&lt;-</span> <span class="n">error_cnd</span><span class="p">(</span><span class="n">message</span> <span class="o">=</span> <span class="n">bullets</span><span class="p">(</span><span class="n">cnd</span><span class="p">))</span>
+ <span class="o">.</span>     <span class="p">}</span>
+ <span class="o">.</span>     <span class="k">else</span> <span class="p">{</span>
+ <span class="o">.</span>         <span class="n">parent</span> <span class="o">&lt;-</span> <span class="n">cnd</span>
+ <span class="o">.</span>     <span class="p">}</span>
+ <span class="o">.</span>     <span class="n">message</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="n">cnd_bullet_header</span><span class="p">(</span><span class="n">action</span><span class="p">),</span> <span class="n">i</span> <span class="o">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">has_active_group_context</span><span class="p">(</span><span class="n">mask</span><span class="p">))</span> <span class="n">cnd_bullet_cur_group_label</span><span class="p">())</span>
+ <span class="o">.</span>     <span class="n">abort</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="k">class</span> <span class="err">= </span><span class="nc">error_class</span><span class="p">,</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span><span class="p">,</span> <span class="n">call</span> <span class="o">=</span> <span class="n">error_call</span><span class="p">)</span>
+ <span class="o">.</span> <span class="p">},</span> <span class="s2">&quot;objeto &#39;sepal_volume&#39; no encontrado&quot;</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">quote</span><span class="p">(</span><span class="n">NULL</span><span class="p">))</span>
+<span class="mi">9</span><span class="o">.</span> <span class="n">h</span><span class="p">(</span><span class="n">simpleError</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">call</span><span class="p">))</span>
+<span class="mi">10</span><span class="o">.</span> <span class="n">abort</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="k">class</span> <span class="err">= </span><span class="nc">error_class</span><span class="p">,</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span><span class="p">,</span> <span class="n">call</span> <span class="o">=</span> <span class="n">error_call</span><span class="p">)</span>
+<span class="mi">11</span><span class="o">.</span> <span class="n">signal_abort</span><span class="p">(</span><span class="n">cnd</span><span class="p">,</span> <span class="o">.</span><span class="n">file</span><span class="p">)</span>
+<span class="mi">12</span><span class="o">.</span> <span class="n">signalCondition</span><span class="p">(</span><span class="n">cnd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="group-by-and-summarize-collapse-down-to-a-single-summary">
+<h3><code class="docutils literal notranslate"><span class="pre">group_by</span></code> and <code class="docutils literal notranslate"><span class="pre">summarize</span></code>: collapse down to a single summary<a class="headerlink" href="#group-by-and-summarize-collapse-down-to-a-single-summary" title="Link to this heading">#</a></h3>
+<p>This would be similar to using <code class="docutils literal notranslate"><span class="pre">groupby</span></code> method in Pandas’ dataframes</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># This first groups by species and then calculates the average sepal length within each category</span>
+<span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">summarize</span><span class="p">(</span><span class="n">mean_sepal_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">sepal_length</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 3 × 2</caption>
+<thead>
+	<tr><th scope=col>species</th><th scope=col>mean_sepal_length</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>setosa    </td><td>5.006</td></tr>
+	<tr><td>versicolor</td><td>5.936</td></tr>
+	<tr><td>virginica </td><td>6.588</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can can have several aggregation methods too</span>
+<span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">summarize</span><span class="p">(</span><span class="n">mean_sepal_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">sepal_length</span><span class="p">),</span>
+<span class="w">                                            </span><span class="n">median_sepal_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">median</span><span class="p">(</span><span class="n">sepal_length</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 3 × 3</caption>
+<thead>
+	<tr><th scope=col>species</th><th scope=col>mean_sepal_length</th><th scope=col>median_sepal_length</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>setosa    </td><td>5.006</td><td>5.0</td></tr>
+	<tr><td>versicolor</td><td>5.936</td><td>5.9</td></tr>
+	<tr><td>virginica </td><td>6.588</td><td>6.5</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>If you want to apply the same aggregation method to several columns, you need to use the <code class="docutils literal notranslate"><span class="pre">across</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># This first groups by species and then calculates the average across all columns between sepal_length and petal_width</span>
+<span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">summarize</span><span class="p">(</span><span class="nf">across</span><span class="p">(</span><span class="n">sepal_length</span><span class="o">:</span><span class="n">petal_width</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">))</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 3 × 5</caption>
+<thead>
+	<tr><th scope=col>species</th><th scope=col>sepal_length</th><th scope=col>sepal_width</th><th scope=col>petal_length</th><th scope=col>petal_width</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>setosa    </td><td>5.006</td><td>3.428</td><td>1.462</td><td>0.246</td></tr>
+	<tr><td>versicolor</td><td>5.936</td><td>2.770</td><td>4.260</td><td>1.326</td></tr>
+	<tr><td>virginica </td><td>6.588</td><td>2.974</td><td>5.552</td><td>2.026</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="pivot-longer-reshape-data-to-long-format">
+<h2><code class="docutils literal notranslate"><span class="pre">pivot_longer</span></code>: reshape data to long format<a class="headerlink" href="#pivot-longer-reshape-data-to-long-format" title="Link to this heading">#</a></h2>
+<p>This would be similart to <code class="docutils literal notranslate"><span class="pre">pd.melt</span></code> in Python’s Pandas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">iris.df.melt</span><span class="o">&lt;-</span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">pivot_longer</span><span class="p">(</span><span class="n">sepal_length</span><span class="o">:</span><span class="n">petal_width</span><span class="p">)</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">iris.df.melt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 3</caption>
+<thead>
+	<tr><th scope=col>species</th><th scope=col>name</th><th scope=col>value</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>setosa</td><td>sepal_length</td><td>5.1</td></tr>
+	<tr><td>setosa</td><td>sepal_width </td><td>3.5</td></tr>
+	<tr><td>setosa</td><td>petal_length</td><td>1.4</td></tr>
+	<tr><td>setosa</td><td>petal_width </td><td>0.2</td></tr>
+	<tr><td>setosa</td><td>sepal_length</td><td>4.9</td></tr>
+	<tr><td>setosa</td><td>sepal_width </td><td>3.0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="data-visualization">
+<h2>Data visualization<a class="headerlink" href="#data-visualization" title="Link to this heading">#</a></h2>
+<p>I don’t want to finish this introduction to doing data science in R without briefly showing <strong>ggplot2</strong>.</p>
+<p><strong>ggplot2</strong> is for data visualization, and personally, I think it is the best thing in R. It allows you to create magnificient and professional plots in an elegant and versatile way.</p>
+<p>It is based on grammar of graphics, a coherent system for describing and building graphs.</p>
+<p>To build a ggplot, you need to use the following basic template that can be used for different types of plots:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">ggplot(data</span> <span class="pre">=</span> <span class="pre">&lt;DATA&gt;,</span> <span class="pre">mapping</span> <span class="pre">=</span> <span class="pre">aes(&lt;MAPPINGS&gt;))</span> <span class="pre">+</span>&#160; <span class="pre">&lt;GEOM_FUNCTION&gt;()</span></code></p>
+</div></blockquote>
+<p>or</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">ggplot(data</span> <span class="pre">=</span> <span class="pre">&lt;DATA&gt;)</span> <span class="pre">+</span>&#160; <span class="pre">&lt;GEOM_FUNCTION&gt;(mapping</span> <span class="pre">=</span> <span class="pre">aes(&lt;MAPPINGS&gt;))</span></code></p>
+</div></blockquote>
+<p>In a nutshell:</p>
+<ul class="simple">
+<li><p>One begins a plot with the function <code class="docutils literal notranslate"><span class="pre">ggplot</span></code>, which creates a coordinate system where you can add layers to.</p></li>
+<li><p>The first argument of <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> is the dataset to use in the graph.</p></li>
+<li><p>The graph can be then completed by adding one or more layers to <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> using a <code class="docutils literal notranslate"><span class="pre">geom</span></code> function.</p></li>
+<li><p>Each <code class="docutils literal notranslate"><span class="pre">geom</span></code> function in <strong>ggplot2</strong> takes a mapping argument. This defines how variables in your dataset are mapped to visual properties. The mapping argument is always paired with the function <code class="docutils literal notranslate"><span class="pre">aes</span></code>, and the x and y arguments of <code class="docutils literal notranslate"><span class="pre">aes()</span></code> specify which variables to map to the x- and y-axes.</p></li>
+<li><p><strong>ggplot2</strong> comes with many <code class="docutils literal notranslate"><span class="pre">geom</span></code> functions that each add a different type of layer to a plot</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sepal_length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">petal_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_point</span><span class="p">()</span>
+
+<span class="c1"># or</span>
+
+<span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sepal_length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">petal_length</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f9ade33cb27f72b38cecff8ef0ec8953489c13e5bc0d11926c16ac9cb1c86075.png" src="../../_images/f9ade33cb27f72b38cecff8ef0ec8953489c13e5bc0d11926c16ac9cb1c86075.png" />
+<img alt="../../_images/f9ade33cb27f72b38cecff8ef0ec8953489c13e5bc0d11926c16ac9cb1c86075.png" src="../../_images/f9ade33cb27f72b38cecff8ef0ec8953489c13e5bc0d11926c16ac9cb1c86075.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">petal_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/77ce98207d59a8564c658cd2eaf90076c308fa485adacb1b2aa4bb9e492412ee.png" src="../../_images/77ce98207d59a8564c658cd2eaf90076c308fa485adacb1b2aa4bb9e492412ee.png" />
+</div>
+</div>
+<p>We can assign the plot to a variable and render it any time we like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sepal_length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">petal_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_point</span><span class="p">()</span>
+<span class="n">g</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f9ade33cb27f72b38cecff8ef0ec8953489c13e5bc0d11926c16ac9cb1c86075.png" src="../../_images/f9ade33cb27f72b38cecff8ef0ec8953489c13e5bc0d11926c16ac9cb1c86075.png" />
+</div>
+</div>
+<p>And we can keep adding layers to incorporate more graphics to the plot:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">&#39;lm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula = &#39;y ~ x&#39;
+</pre></div>
+</div>
+<img alt="../../_images/148f86ae02e0ae7c5c1038bc67ab1f9e7160c635cb55a1757ae7b9acc27a348d.png" src="../../_images/148f86ae02e0ae7c5c1038bc67ab1f9e7160c635cb55a1757ae7b9acc27a348d.png" />
+</div>
+</div>
+<p>The full list of available layers (<code class="docutils literal notranslate"><span class="pre">geom_</span></code> functions) can be found at <a class="reference external" href="https://ggplot2.tidyverse.org/reference">https://ggplot2.tidyverse.org/reference</a>.</p>
+<p>And as we mentioned, we can also control the <strong>aesthetics</strong> of the plot through the <code class="docutils literal notranslate"><span class="pre">aes</span></code> function. Examples of this include:</p>
+<ul class="simple">
+<li><p>Position (i.e., on the x and y axes)</p></li>
+<li><p>Color (“outside” color)</p></li>
+<li><p>Fill (“inside” color)</p></li>
+<li><p>Shape (of points)</p></li>
+<li><p>Alpha (Transparency)</p></li>
+<li><p>Line type</p></li>
+<li><p>Size</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sepal_length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">petal_length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="n">species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_point</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f511e7252283c1e3d17d0a93ce0a91798e02f0f671d34a2d3f81dfe670de5891.png" src="../../_images/f511e7252283c1e3d17d0a93ce0a91798e02f0f671d34a2d3f81dfe670de5891.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sepal_length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">petal_length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="n">petal_width</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_point</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/983e1339ed895d86ceafb5297022aa80096c720086c462fd42bdd97a92a3ebac.png" src="../../_images/983e1339ed895d86ceafb5297022aa80096c720086c462fd42bdd97a92a3ebac.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">iris.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">petal_length</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">species</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/766c05ccc01d2da0f846b0c1523e5d8fc683bbcbdf2c1179e0d4c8bb24fc3754.png" src="../../_images/766c05ccc01d2da0f846b0c1523e5d8fc683bbcbdf2c1179e0d4c8bb24fc3754.png" />
+</div>
+</div>
+<p>I recommend visiting the <a class="reference external" href="https://r-graph-gallery.com/">R graph gallery</a> for a complete list of recipes on creating graphs using <strong>ggplot</strong>. You’ll have fun!</p>
+</section>
+<section id="practice-exercises">
+<h2>Practice exercises<a class="headerlink" href="#practice-exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="tidyverse1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 61 </span></p>
+<section id="exercise-content">
+<p>1- Import the data from “<a class="reference external" href="https://vincentarelbundock.github.io/Rdatasets/csv/psych/sat.act.csv">https://vincentarelbundock.github.io/Rdatasets/csv/psych/sat.act.csv</a>”, which contains SAT and ACT scores for a sample of students. Save it to a variable named sat.dat.</p>
+<p>2- Using the pipe (<code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code>) operator, perform the following operations in sequence:</p>
+<ul class="simple">
+<li><p>Filter the data to include only observations where <code class="docutils literal notranslate"><span class="pre">age</span></code> is between 18 and 45 years.</p></li>
+<li><p>Create a new variable, <code class="docutils literal notranslate"><span class="pre">SATV.avg</span></code>, representing the average of <code class="docutils literal notranslate"><span class="pre">SATQ</span></code> and <code class="docutils literal notranslate"><span class="pre">SATV</span></code>.</p></li>
+<li><p>Select the columns <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">education</span></code>, and <code class="docutils literal notranslate"><span class="pre">SATV.avg</span></code>.</p></li>
+<li><p>Group the dataframe by <code class="docutils literal notranslate"><span class="pre">gender</span></code> and <code class="docutils literal notranslate"><span class="pre">education</span></code>.</p></li>
+<li><p>Summarize the dataframe by computing the mean and standard deviation of <code class="docutils literal notranslate"><span class="pre">SATV.avg</span></code>.</p></li>
+</ul>
+<p>Save the resulting dataframe in a variable named <code class="docutils literal notranslate"><span class="pre">sat.dat.preprocessed</span></code> and display it.</p>
+<p>3- With the resulting dataframe, create a barplot using <code class="docutils literal notranslate"><span class="pre">geom_bar</span></code>:</p>
+<ul class="simple">
+<li><p>Set the x position to each level of <code class="docutils literal notranslate"><span class="pre">education</span></code>, and the <code class="docutils literal notranslate"><span class="pre">height</span></code> (y position) to the mean of <code class="docutils literal notranslate"><span class="pre">SATV.avg</span></code>.</p></li>
+<li><p>To display a separate bar for each <code class="docutils literal notranslate"><span class="pre">gender</span></code>, set <code class="docutils literal notranslate"><span class="pre">fill</span> <span class="pre">=</span> <span class="pre">gender</span></code> in the aesthetics, and use <code class="docutils literal notranslate"><span class="pre">position</span> <span class="pre">=</span> <span class="pre">&quot;dodge&quot;</span></code> to place the bars side by side rather than stacked.</p></li>
+</ul>
+<p>Adjust the plot aesthetics to make it more visually appealing.</p>
+</section>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./chapters/module-5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="054-functions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Functions</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-tidyverse">Loading the tidyverse</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pipe-operator">The pipe (<code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code>) operator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">Data cleaning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-na-drop-missing-values"><code class="docutils literal notranslate"><span class="pre">drop_na</span></code>: drop missing values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#replace-na-replace-missing-values"><code class="docutils literal notranslate"><span class="pre">replace_na</span></code>: replace missing values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distinc-drop-duplicated-data"><code class="docutils literal notranslate"><span class="pre">distinc</span></code>: drop duplicated data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-manipulation">Data manipulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-pick-observations-by-their-values"><code class="docutils literal notranslate"><span class="pre">filter</span></code>: Pick observations by their values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrange-sort-data-by-value"><code class="docutils literal notranslate"><span class="pre">arrange</span></code>: sort data by value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-select-columns"><code class="docutils literal notranslate"><span class="pre">select</span></code>: select columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutate-creating-columns"><code class="docutils literal notranslate"><span class="pre">mutate</span></code>: creating columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-by-and-summarize-collapse-down-to-a-single-summary"><code class="docutils literal notranslate"><span class="pre">group_by</span></code> and <code class="docutils literal notranslate"><span class="pre">summarize</span></code>: collapse down to a single summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-longer-reshape-data-to-long-format"><code class="docutils literal notranslate"><span class="pre">pivot_longer</span></code>: reshape data to long format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-visualization">Data visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">Practice exercises</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Javier Rasero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
