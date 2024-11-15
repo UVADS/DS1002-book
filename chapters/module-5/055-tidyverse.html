@@ -424,7 +424,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ──────────────────────── tidyverse 2.0.0 ──
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr    </span> 1.1.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr    </span> 2.1.5
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats  </span> 1.0.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr  </span> 1.5.1
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2  </span> 3.5.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble   </span> 3.2.1
@@ -432,7 +432,7 @@ document.write(`
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr    </span> 1.0.2     
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──
 <span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span> masks <span class=" -Color -Color-Blue">stats</span>::filter()
 <span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>    masks <span class=" -Color -Color-Blue">stats</span>::lag()
 <span class=" -Color -Color-Cyan">ℹ</span> Use the conflicted package (<span class=" -Color -Color-Blue">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors
@@ -1231,26 +1231,27 @@ document.write(`
 <p class="admonition-title"><span class="caption-number">Exercise 61 </span></p>
 <section id="exercise-content">
 <p>1- Import the data from “<a class="reference external" href="https://vincentarelbundock.github.io/Rdatasets/csv/psych/sat.act.csv">https://vincentarelbundock.github.io/Rdatasets/csv/psych/sat.act.csv</a>”, which contains SAT and ACT scores for a sample of students. Save it to a variable named sat.dat.</p>
-<p>2- Using the pipe (<code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code>) operator, perform the following operations in sequence:</p>
+<p>2- Convert “education” and “gender” columns to factor type. (Hint: use <code class="docutils literal notranslate"><span class="pre">as.factor</span></code> function)</p>
+<p>3- Using the pipe (<code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code>) operator, perform the following operations in sequence:</p>
 <ul class="simple">
 <li><p>Filter the data to include only observations where <code class="docutils literal notranslate"><span class="pre">age</span></code> is between 18 and 45 years.</p></li>
-<li><p>Create a new variable, <code class="docutils literal notranslate"><span class="pre">SATV.avg</span></code>, representing the average of <code class="docutils literal notranslate"><span class="pre">SATQ</span></code> and <code class="docutils literal notranslate"><span class="pre">SATV</span></code>.</p></li>
-<li><p>Select the columns <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">education</span></code>, and <code class="docutils literal notranslate"><span class="pre">SATV.avg</span></code>.</p></li>
+<li><p>Create a new variable, <code class="docutils literal notranslate"><span class="pre">SAT.avg</span></code>, representing the average of <code class="docutils literal notranslate"><span class="pre">SATQ</span></code> and <code class="docutils literal notranslate"><span class="pre">SATV</span></code>.</p></li>
+<li><p>Select the columns <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">education</span></code>, and <code class="docutils literal notranslate"><span class="pre">SAT.avg</span></code>.</p></li>
 <li><p>Group the dataframe by <code class="docutils literal notranslate"><span class="pre">gender</span></code> and <code class="docutils literal notranslate"><span class="pre">education</span></code>.</p></li>
-<li><p>Summarize the dataframe by computing the mean and standard deviation of <code class="docutils literal notranslate"><span class="pre">SATV.avg</span></code>.</p></li>
+<li><p>Summarize the dataframe by computing the mean and standard deviation of <code class="docutils literal notranslate"><span class="pre">SAT.avg</span></code>. Here, since there are some missing information, you will need to remove these observations. You can actually do this when using the <code class="docutils literal notranslate"><span class="pre">mean</span></code> and <code class="docutils literal notranslate"><span class="pre">sd</span></code> functions. Look into their documentation to figure out how to do this.</p></li>
 </ul>
 <p>Save the resulting dataframe in a variable named <code class="docutils literal notranslate"><span class="pre">sat.dat.preprocessed</span></code> and display it.</p>
-<p>3- With the resulting dataframe, create a barplot using <code class="docutils literal notranslate"><span class="pre">geom_bar</span></code>:</p>
+<p>4- With the resulting dataframe, create a barplot using <code class="docutils literal notranslate"><span class="pre">geom_bar</span></code>:</p>
 <ul class="simple">
-<li><p>Set the x position to each level of <code class="docutils literal notranslate"><span class="pre">education</span></code>, and the <code class="docutils literal notranslate"><span class="pre">height</span></code> (y position) to the mean of <code class="docutils literal notranslate"><span class="pre">SATV.avg</span></code>.</p></li>
+<li><p>Set the x position to each level of <code class="docutils literal notranslate"><span class="pre">education</span></code>, and the <code class="docutils literal notranslate"><span class="pre">height</span></code> (y position) to the mean of <code class="docutils literal notranslate"><span class="pre">SAT.avg</span></code>.</p></li>
 <li><p>To display a separate bar for each <code class="docutils literal notranslate"><span class="pre">gender</span></code>, set <code class="docutils literal notranslate"><span class="pre">fill</span> <span class="pre">=</span> <span class="pre">gender</span></code> in the aesthetics, and use <code class="docutils literal notranslate"><span class="pre">position</span> <span class="pre">=</span> <span class="pre">&quot;dodge&quot;</span></code> to place the bars side by side rather than stacked.</p></li>
 </ul>
-<p>Adjust the plot aesthetics to make it more visually appealing.</p>
+<p>Adjust the plot aesthetics to make it more visually appealing. You may find the following page useful for this: <a class="reference external" href="https://r-graph-gallery.com/4-barplot-with-error-bar.html">https://r-graph-gallery.com/4-barplot-with-error-bar.html</a></p>
 </section>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers here</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your answers from here</span>
 </pre></div>
 </div>
 </div>
