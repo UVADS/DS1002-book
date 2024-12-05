@@ -406,7 +406,7 @@ document.write(`
 <section id="visualization">
 <h3>Visualization<a class="headerlink" href="#visualization" title="Link to this heading">#</a></h3>
 <p>Clear and effective visualization is crucial for communicating with data.</p>
-<p>Here are a few examples:</p>
+<p>Here are a few libraries/packages to achieve this in Python and R:</p>
 <ul class="simple">
 <li><p><strong>Python</strong>: <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></p></li>
 <li><p><strong>R</strong>: <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code></p></li>
@@ -568,7 +568,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fcffd3316d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f558f53f710&gt;
 </pre></div>
 </div>
 <img alt="_images/8393299fa27a42e0b7e0f92dbf4b389608087a22bb19b8d8552621c98c9857b5.png" src="_images/8393299fa27a42e0b7e0f92dbf4b389608087a22bb19b8d8552621c98c9857b5.png" />
@@ -595,13 +595,13 @@ document.write(`
 
 <span class="n">res</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the average accuracy in classifying the types of Iris using a decision tree and cross-validation is:&quot;</span><span class="p">,</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average accuracy in classifying the types of Iris using a decision tree and cross-validation is:&quot;</span><span class="p">,</span> 
       <span class="n">res</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the average accuracy in classifying the types of Iris using a decision tree and cross-validation is: 0.9666666666666668
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The average accuracy in classifying the types of Iris using a decision tree and cross-validation is: 0.9600000000000002
 </pre></div>
 </div>
 </div>
@@ -630,7 +630,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The same as above, but using a linear regression model </span>
-<span class="c1"># (tip for life: any almost basic stastical tests is just a particular instation of a linear regression model).</span>
+<span class="c1"># (tip for life: almost any basic statistical test is just a particular instantiation of a linear regression model).</span>
 
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 
@@ -650,7 +650,7 @@ Dep. Variable:                      y   R-squared:                       0.004
 Model:                            OLS   Adj. R-squared:                  0.003
 Method:                 Least Squares   F-statistic:                     4.185
 Date:                Wed, 04 Dec 2024   Prob (F-statistic):             0.0411
-Time:                        21:16:04   Log-Likelihood:                -3001.1
+Time:                        21:27:04   Log-Likelihood:                -3001.1
 No. Observations:                1000   AIC:                             6006.
 Df Residuals:                     998   BIC:                             6016.
 Df Model:                           1                                         
@@ -697,8 +697,9 @@ Notes:
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/javi/Documentos/docencia/DS-1002/DS1002-book
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>06_numpy_intro.ipynb  _build	_config.yml  epilogue.ipynb  index.md
-admonition	      chapters	data	     imgs	     _toc.yml
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>06_numpy_intro.ipynb  chapters	   epilogue.ipynb  my_folder
+admonition	      _config.yml  imgs		   _toc.yml
+_build		      data	   index.md
 </pre></div>
 </div>
 </div>
@@ -732,6 +733,7 @@ admonition	      chapters	data	     imgs	     _toc.yml
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>my_folder/hello_world.py
+<span class="o">!</span>rm<span class="w"> </span>-f<span class="w"> </span>my_folder/*<span class="w"> </span>#<span class="w"> </span>Remove<span class="w"> </span>created<span class="w"> </span>content<span class="p">;</span><span class="w"> </span>-f<span class="w"> </span>option<span class="w"> </span>to<span class="w"> </span>not<span class="w"> </span>raise<span class="w"> </span>an<span class="w"> </span>error<span class="w"> </span><span class="k">if</span><span class="w"> </span>the<span class="w"> </span>folder<span class="w"> </span>was<span class="w"> </span>already<span class="w"> </span>empty
 </pre></div>
 </div>
 </div>
