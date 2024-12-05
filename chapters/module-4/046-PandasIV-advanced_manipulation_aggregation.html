@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../../_static/exercise.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -213,6 +213,18 @@
 <li class="toctree-l1"><a class="reference internal" href="045-PandasIII-manipulation.html">Pandas: Data Manipulation</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Pandas: Advanced Data Manipulation and Aggregation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="047-PandasV-Intro_Feature_Engineering.html">Pandas: Introduction to Feature Engineering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 5: R</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-5/051-intro_to_R.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-5/052-data-structures.html">Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-5/053-Control-structures.html">Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-5/054-functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-5/055-tidyverse.html">R for data science: Tidyverse</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wrapping up</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../wrap-up.html">Looking Ahead</a></li>
 </ul>
 
     </div>
@@ -564,22 +576,22 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          a         b         c         d
-0  2.185435  1.002872 -0.029634  2.028856
-1 -0.875013 -1.323426 -0.517671 -0.519281
-2 -0.655456  0.708395 -0.419140  1.257233
+0  0.174450 -1.018138  0.968461 -0.412483
+1  0.703028 -0.594527  1.997723 -1.159000
+2 -0.415667  0.290691  1.538168  0.236634
 ---------------------------------------------
           a         b         c         d
-0 -0.640966 -2.015608 -0.241571 -0.303553
-1 -1.782508 -0.317744 -0.998355 -0.939285
-2  0.455360 -0.545225  0.459453  0.282877
+0  1.141372  0.539766  0.924608 -1.013957
+1  1.333616 -0.966171  1.258023  0.185296
+2 -0.060995  0.330361 -0.710879 -0.408728
 ---------------------------------------------
           a         b         c         d
-0  2.185435  1.002872 -0.029634  2.028856
-1 -0.875013 -1.323426 -0.517671 -0.519281
-2 -0.655456  0.708395 -0.419140  1.257233
-0 -0.640966 -2.015608 -0.241571 -0.303553
-1 -1.782508 -0.317744 -0.998355 -0.939285
-2  0.455360 -0.545225  0.459453  0.282877
+0  0.174450 -1.018138  0.968461 -0.412483
+1  0.703028 -0.594527  1.997723 -1.159000
+2 -0.415667  0.290691  1.538168  0.236634
+0  1.141372  0.539766  0.924608 -1.013957
+1  1.333616 -0.966171  1.258023  0.185296
+2 -0.060995  0.330361 -0.710879 -0.408728
 </pre></div>
 </div>
 </div>
@@ -632,33 +644,33 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.189000</td>
-      <td>-1.051835</td>
-      <td>0.675315</td>
-      <td>0.983315</td>
-      <td>-0.667326</td>
-      <td>-0.367171</td>
-      <td>-0.650382</td>
+      <td>0.358929</td>
+      <td>-0.851815</td>
+      <td>0.313507</td>
+      <td>0.727029</td>
+      <td>0.732533</td>
+      <td>-1.176725</td>
+      <td>0.359086</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.819721</td>
-      <td>0.084818</td>
-      <td>0.254183</td>
-      <td>0.300219</td>
-      <td>1.210534</td>
-      <td>0.201252</td>
-      <td>-0.409164</td>
+      <td>1.212873</td>
+      <td>-1.549474</td>
+      <td>0.040366</td>
+      <td>0.525790</td>
+      <td>1.353637</td>
+      <td>1.343218</td>
+      <td>-0.161630</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.911595</td>
-      <td>-1.838310</td>
-      <td>-0.582055</td>
-      <td>-0.404169</td>
-      <td>1.912954</td>
-      <td>0.288270</td>
-      <td>1.105270</td>
+      <td>-0.344516</td>
+      <td>-0.645047</td>
+      <td>-0.412381</td>
+      <td>0.107239</td>
+      <td>-0.375055</td>
+      <td>-0.723952</td>
+      <td>0.493891</td>
     </tr>
   </tbody>
 </table>

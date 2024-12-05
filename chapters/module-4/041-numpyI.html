@@ -210,6 +210,21 @@
 <li class="toctree-l1"><a class="reference internal" href="042-numpyII.html">NumPy (Part II)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="043-PandasI-Introduction.html">Introduction to Pandas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="044-PandasII-exploration.html">Pandas: Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="045-PandasIII-manipulation.html">Pandas: Data Manipulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="046-PandasIV-advanced_manipulation_aggregation.html">Pandas: Advanced Data Manipulation and Aggregation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="047-PandasV-Intro_Feature_Engineering.html">Pandas: Introduction to Feature Engineering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Module 5: R</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../module-5/051-intro_to_R.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-5/052-data-structures.html">Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-5/053-Control-structures.html">Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-5/054-functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module-5/055-tidyverse.html">R for data science: Tidyverse</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Wrapping up</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../wrap-up.html">Looking Ahead</a></li>
 </ul>
 
     </div>
@@ -483,7 +498,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9983151051472091 &lt;class &#39;float&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.5106196181630014 &lt;class &#39;float&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -497,8 +512,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.16765433  0.29513178  0.46948154]
- [ 0.37200198 -1.24104694  0.01450445]] &lt;class &#39;numpy.ndarray&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.50357981  1.60435582  0.06693117]
+ [-0.76137145  1.07623844 -0.00815216]] &lt;class &#39;numpy.ndarray&#39;&gt;
 </pre></div>
 </div>
 </div>
@@ -511,8 +526,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ -1.67654327,   2.95131775,   4.69481541],
-       [  3.7200198 , -12.41046939,   0.14504455]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 5.03579813, 16.04355815,  0.66931166],
+       [-7.61371454, 10.76238442, -0.08152162]])
 </pre></div>
 </div>
 </div>
@@ -527,10 +542,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.33530865  0.59026355  0.93896308]
- [ 0.74400396 -2.48209388  0.02900891]]
-[[-0.33530865  0.59026355  0.93896308]
- [ 0.74400396 -2.48209388  0.02900891]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.00715963  3.20871163  0.13386233]
+ [-1.52274291  2.15247688 -0.01630432]]
+[[ 1.00715963  3.20871163  0.13386233]
+ [-1.52274291  2.15247688 -0.01630432]]
 </pre></div>
 </div>
 </div>
@@ -558,9 +573,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.16765433  0.29513178]
- [ 0.46948154  0.37200198]
- [-1.24104694  0.01450445]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.50357981  1.60435582]
+ [ 0.06693117 -0.76137145]
+ [ 1.07623844 -0.00815216]]
 (3, 2)
 </pre></div>
 </div>
@@ -847,11 +862,11 @@ standard_normal(...) method of numpy.random.mtrand.RandomState instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 9.00243578e-04,  1.84055731e-02],
-       [ 3.60407289e-01, -4.39962457e-01],
-       [-4.46618444e-01, -1.63880396e+00],
-       [-4.95315855e-01, -5.70438779e-01],
-       [ 2.57633731e-01, -1.21895535e+00]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.5256863 ,  0.73393186],
+       [-0.42945253, -0.21709978],
+       [-0.5252806 , -0.60517355],
+       [-2.27295385,  1.0068564 ],
+       [ 0.73981497,  0.22700545]])
 </pre></div>
 </div>
 </div>
